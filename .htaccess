@@ -1,0 +1,33 @@
+RewriteEngine on 
+
+
+RewriteRule 	^login/?$	app/controller/login.php
+
+RewriteRule 	^register/?$		app/controller/register.php
+RewriteRule     ^logout.php/?$     	app/controller/logout.php
+
+RewriteRule  	^processRegistration.php/?$	app/controller/processRegistration.php
+
+RewriteRule  	^processLogin.php/?$ app/controller/processLogin.php
+
+RewriteRule  	^test.php$  app/controller/test.php
+
+RewriteRule 	^$  app/view/firstscreen.php
+
+RewriteRule 	^dashboard.php$  app/controller/dashboard.php
+
+RewriteRule 	^ProcessDashBoardChangeRegion.php$  app/controller/ProcessDashBoardChangeRegion.php
+
+
+RewriteRule  	^processDashboardEdit.php$    app/controller/processDashboardEdit.php
+
+RewriteRule	  	^processDashboardDelete.php$	app/controller/processDashboardDelete.php
+
+RewriteRule     ^processUserEdit.php$ 		    app/controller/processUserEdit.php
+
+RewriteRule 	^dashboardAddNewPrediction.php$  app/controller/dashboardAddNewPrediction.php
+
+
+RewriteRule		^processHandlePredictionChanges.php$ app/controller/processHandlePredictionChanges.php
+
+

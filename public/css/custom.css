@@ -1,0 +1,11 @@
+/* This is a custom CSS file */
+
+/* Fix for Navbar causing the animals getting 
+ truncated or remoted */
+body {
+	padding-top: 70px;
+}
+
+.breadcrumb > li + li:before {
+	content: none;
+}
