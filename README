@@ -6,11 +6,11 @@ for project 4 and project 5.
 Also, for running this locally on the machine do the following
 changes:
 
-app/config file:
+1) After checking out, rename Project_code as flutracker
+
+2)app/config file:
 
 a) Change the database constants suitably
-b) After checking out, rename Project_code as flutracker
-
 
 
 Never commit these below specified files:
