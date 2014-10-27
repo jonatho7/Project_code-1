@@ -36,7 +36,7 @@ if ($userObj->getUserID() != $_SESSION['userName']) {
 	redirectToDashBoard();
 }
 
-echo "Successfully reached till the end";
+#echo "Successfully reached till the end";
 
 if ($userPred->deleteUserPred()) {
 	//echo "Sucussfully deleted the entry";

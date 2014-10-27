@@ -80,7 +80,10 @@ if (isset($_POST['profileVisibility'])  && ($_POST['profileVisibility'] == 'yes'
 
 #Everything so far is good. Just copy the profile picture 
 #provided by the user.
-
+#
+# NOTE: This functionality is not yet implemented. However,
+# code exists.
+#
 if (isset($_FILES["inputFile"]) && (!empty($_FILES["inputFile"]))) {
 	
 	if ($_FILES['inputFile']['error'] > 0) {
@@ -112,13 +115,9 @@ $userArgument = Array(
 
 $user = new User($userArgument, True);
 
-/* 
- * Done creating the user id: 
- * Forward to Login page. As of now 
- * it doesn't exist so redirect to test page.
- */
-# CHANGE ME:
-$e_implement = "Expected being Forwarded to login page";
+#
+# Should we redirect or include here??
+#
 session_unset(); # Free all session specific data
 require_once 'login.php';
 

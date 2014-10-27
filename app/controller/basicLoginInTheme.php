@@ -3,6 +3,11 @@
 	$e_Title="Basic Theme Example";
 	require_once '../global.php';
 	require_once '../view/loggedInHeader.tpl';
+	/*
+	 * Note: this is simpy a template file and should
+	 * be removed later or hidden. Only created for testing purposes.
+	 * 
+	 */
 ?>
 	<!-- Page Heading -->
                 <div class="row">
