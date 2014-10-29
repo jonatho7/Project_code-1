@@ -51,7 +51,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="<?= SERVER_PATH ?>">Flu Tracker</a>
+                <a class="navbar-brand" href="<?= SERVER_PATH ?>/dashboard.php">Flu Tracker</a>
             </div>
             
             <!-- 
