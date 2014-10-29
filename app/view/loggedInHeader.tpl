@@ -144,20 +144,14 @@
                     </li>
                     	END OF COMMENTS
                      -->
-                    <li class="active">
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> DashBoard <i class="fa fa-fw fa-caret-down"></i></a>
-                        <!-- Not implemented so far -->
-                        <ul id="demo" class="collapse">
-                            <li class="active">
-                                <a href="<?=SERVER_PATH?>dashboard.php"> My Predictions</a>
-                            </li>
-                            <li>
-                                <a href="#"> Others Predictions</a>
-                            </li>
-                        </ul>
-                        <!-- Not implemented so far -->
+					<li>
+                        <a href="<?=SERVER_PATH?>dashboard.php"><i class="fa fa-fw fa-wrench"></i> My Predictions</a>
                     </li>
-                    
+					
+					<li>
+                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Others Predictions</a>
+                    </li>
+					
                     <li>
                         <a href="<?=SERVER_PATH?>dashboardAddNewPrediction.php"><i class="fa fa-fw fa-wrench"></i> Make New Predictions</a>
                     </li>
