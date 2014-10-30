@@ -88,31 +88,39 @@
 	
 	<div class="profileDiv">
 		<h3>Email Address</h3>
-		<div>
-			<p class="userTPL_profile"><strong>Visibility: </strong></p>
-			<p class="userTPL_profile">
-				<?php 
-					if($profile_visibility == "y"){
-						echo "public";
-					} else {
-						echo "private";
-					}
-				?>
-			</p>
-		</div>
+		<?php
+			if ($viewingOwnProfile == true){
+				echo "<div>";
+					echo '<p class="userTPL_profile"><strong>Visibility: </strong></p>';
+					echo '<p class="userTPL_profile">';
+						if($profile_visibility == "y"){
+							echo "public";
+						} else {
+							echo "private";
+						}
+					echo "</p>";
+				echo "</div>";
+			}
+		?>
+		
 		<div>
 			<p class="userTPL_profile"><strong>Email: </strong></p>
 			<p class="userTPL_profile"><?php echo $profile_emailAddress?></p>
 		</div>
 		
 	</div>
-
-</div>
-
-
-<div class="clearFloat">
 	
+	<div class="clearFloat">
+		<!--  Add the buttons now side by side -->
+        <button class="btn btn-primary btn-sm" >Discard Changes</button>
+        <button formmethod="post" formaction="<?=SERVER_PATH?>processUserEdit.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
+     	
+	</div>
+
 </div>
+
+
+
 
 
 

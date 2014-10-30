@@ -52,7 +52,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="<?= SERVER_PATH ?>/dashboard.php">Flu Tracker</a>
+                <a class="navbar-brand" href="<?= SERVER_PATH ?>dashboard.php">Flu Tracker</a>
             </div>
             
             <!-- 
@@ -101,12 +101,11 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <?php 
-                            	/*
-                            	 * Change me the link to profile page.
-                            	 */
-                            ?>
-                            <a href="<?=SERVER_PATH?>app/controller/profile.php"><i class="fa fa-fw fa-user"></i> Profile</a>
+							<?php
+								$userName = $e_user->getUserid();
+								$redirectPath = SERVER_PATH . 'users/' . $userName;
+							?>
+                            <a href="<?=$redirectPath?>"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
