@@ -11,7 +11,7 @@
    if (empty($_SESSION['userName'])) {
     	# Redirect as user is not logged in.
     	session_unset();
-    	require_once 'login.php';
+		header('Location: '. SERVER_PATH. 'login/');
     	exit();
     }
     
@@ -21,7 +21,7 @@
     
     if ($user == NULL) {
         # CHANGE ME to login folder.
-        header('Location: '. SERVER_PATH. 'test');
+        header('Location: '. SERVER_PATH. 'login/');
         exit();
     }
     
