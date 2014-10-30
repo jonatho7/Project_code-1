@@ -38,6 +38,7 @@
 
 	<link href="<?= SERVER_PATH ?>public/css/profilePage.css" rel="stylesheet">
 	<link href="<?= SERVER_PATH ?>public/css/flutracker.css" rel="stylesheet">
+	<script src="<?= SERVER_PATH ?>public/js/flutracker.js"></script>
 
 </head>
 

@@ -46,9 +46,12 @@
 	$profile_emailAddress = $profile_user->get('emailAddress');
 ?>
 
-<div>
+<div class="profileContainer">
 	<div class="userTPL_left">
-		<img alt="Profile Picture" src="<?=SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
+		<div>
+			<img alt="Profile Picture" src="<?=SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
+		</div>
+		
 	</div>
 
 	<div>
@@ -111,13 +114,19 @@
 	</div>
 	
 	<div class="clearFloat">
-		<!--  Add the buttons now side by side -->
-        <button class="btn btn-primary btn-sm" >Discard Changes</button>
-        <button formmethod="post" formaction="<?=SERVER_PATH?>processUserEdit.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
-     	
+	
 	</div>
-
+	
+	<div class="editProfileDiv">
+		<?php
+			if ($viewingOwnProfile == true){
+				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+			}
+		?>
+	</div>
+	
 </div>
+
 
 
 

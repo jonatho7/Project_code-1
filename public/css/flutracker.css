@@ -14,9 +14,19 @@
 
 .profileDiv {
 	float: left;
-	margin: 0em 2em 0em 2em;
+	margin: 2em;
 }
 
 .profileHeader {
 	margin: 0em 2em;
+}
+
+.editProfileDiv {
+	float: left;
+	width: 300px;
+	margin: 2em 0em;
+}
+
+.profileContainer {
+
 }
