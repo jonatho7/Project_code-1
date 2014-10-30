@@ -22,7 +22,7 @@
     
     if ($user == NULL) {
         # CHANGE ME to login folder.
-        header('Location: '. SERVER_PATH. 'atest');
+        header('Location: '. SERVER_PATH. 'login/');
         exit();
     }
     
