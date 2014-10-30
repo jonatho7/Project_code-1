@@ -27,11 +27,11 @@
     }
     
     # Set the title and user object
-    $e_Title = "Profile";
+    $e_Title = "User Profile";
     $e_user = $user;
     
     require_once '../view/loggedInHeader.tpl';
-    require_once '../view/profile.tpl';
+    require_once '../view/user.tpl';
 	require_once '../view/loggedInFooter.tpl';
 
 ?>

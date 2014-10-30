@@ -12,6 +12,7 @@ class User {
 	protected $middleName;
 	protected $userId;
 	protected $profilePic;
+	protected $emailAddress;
 	protected $visibility;
 	protected $admin;
 	protected $registeredDate;
@@ -25,6 +26,7 @@ class User {
 			'middle_name'=>'middleName',
 			'user_id'=>'userId',
 			'profile_pic'=>'profilePic',
+			'email_address'=>'emailAddress',
 			'visibility'=>'visibility',
 			'admin'=>'admin',
 			'register_date'=>'registeredDate',

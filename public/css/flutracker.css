@@ -1,0 +1,22 @@
+
+.userTPL_left {
+	float: left;
+	min-width: 100px;
+}
+
+.clearFloat {
+	clear: both;
+}
+
+.userTPL_profile{
+	display: inline;
+}
+
+.profileDiv {
+	float: left;
+	margin: 0em 2em 0em 2em;
+}
+
+.profileHeader {
+	margin: 0em 2em;
+}
