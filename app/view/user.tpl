@@ -113,16 +113,48 @@
 		
 	</div>
 	
-	<div class="clearFloat">
+	<div class="clearFloat"></div>
 	
+	<?php
+		if ($viewingOwnProfile == true){
+			echo '<div class="editProfileDiv">';
+				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+			echo '</div>';
+		}
+	?>
+	
+	<div class="clearFloat"></div>
+	
+	<div class="followersDiv">
+		<div>
+			<h3>Friends</h3>
+		</div>
+		
+		<div class="followDiv">
+			<p class="userTPL_profile"><strong>Following: </strong> </p>
+			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho7</a></p>
+			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/sarang87">sarang87</a></p>
+			<p class="userTPL_profile">and 10 others</p>
+		</div>
+		
+		<div class="followDiv">
+			<p class="userTPL_profile"><strong>Followers: </strong> </p>
+			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/harshalh">harshalh</a></p>
+			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho77</a></p>
+			<p class="userTPL_profile">and 12 others</p>
+		</div>
+		
 	</div>
 	
-	<div class="editProfileDiv">
-		<?php
-			if ($viewingOwnProfile == true){
-				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
-			}
-		?>
+	<div class="userActivityFeed">
+		<div>
+			<h3>Recent Activity</h3>
+		</div>
+		<div>
+			<p>Something something something...</p>
+			<p>Yada yada yada...</p>
+			<p>someone did something really exciting.</p>
+		</div>
 	</div>
 	
 </div>

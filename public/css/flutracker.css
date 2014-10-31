@@ -18,15 +18,15 @@
 }
 
 .profileHeader {
-	margin: 0em 2em;
+	float: left;
+	margin: 1em 1em;
+	height: 50px;
 }
 
-.editProfileDiv {
-	float: left;
-	width: 300px;
+.editProfileDiv, .followersDiv, .userActivityFeed {
 	margin: 2em 0em;
 }
 
-.profileContainer {
-
+.followDiv,  {
+	margin: 1em 0em;
 }
