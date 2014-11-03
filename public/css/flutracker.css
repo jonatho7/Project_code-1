@@ -14,7 +14,8 @@
 
 .profileDiv {
 	float: left;
-	margin: 2em;
+	margin: 1em;
+	height: 200px;
 }
 
 .profileHeader {
@@ -30,3 +31,25 @@
 .followDiv,  {
 	margin: 1em 0em;
 }
+
+.userTPL_firstNameForm,
+.userTPL_middleNameForm,
+.userTPL_lastNameForm,
+.userTPL_userNameForm,
+.userTPL_visibilityForm,
+.userTPL_emailForm,
+.submitChangesButton,
+.passwordDiv{
+	display: none;
+}
+
+.errorBox {
+  background-color: rgb(255, 200, 200);
+  font-size: 13pt;
+  height: 2em;
+  display: none;
+  margin: 1em;
+}
+
+
+	

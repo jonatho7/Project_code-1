@@ -58,36 +58,42 @@
 		<h1 class="profileHeader">Profile</h1>
 	</div>
 	
+	<div class="clearFloat"></div>
 	
 	<div class="profileDiv">
 		
 		<h3>Name</h3>
 		<div>
 			<p class="userTPL_profile"><strong>First: </strong></p>
-			<p class="userTPL_profile"><?php echo $profile_firstName?></p>
+			<p class="userTPL_profile userTPL_firstName"><?php echo $profile_firstName?></p>
+			<div>
+				<input class="form-control userTPL_firstNameForm" type="text" required="" name="firstName">
+			</div>
 		</div>
 		<div>
 			<p class="userTPL_profile"><strong>Middle: </strong></p>
-			<p class="userTPL_profile">
+			<p class="userTPL_profile userTPL_middleName">
 				<?php 
 					if($profile_middleName != NULL){
 						echo $profile_middleName;
 					}
 				?>
 			</p>
+			<div>
+				<input class="form-control userTPL_middleNameForm" type="text" required="" name="middleName">
+			</div>
 		</div>
 		<div>
 			<p class="userTPL_profile"><strong>Last: </strong></p>
-			<p class="userTPL_profile"><?php echo $profile_lastName?></p>
+			<p class="userTPL_profile userTPL_lastName"><?php echo $profile_lastName?></p>
+			<div>
+				<input class="form-control userTPL_lastNameForm" type="text" required="" name="lastName">
+			</div>
 		</div>
 	</div>
 	
 	
-	<div class="profileDiv">
-		<h3>Username</h3>
-		<p class="userTPL_profile"><strong>Username: </strong></p>
-		<p class="userTPL_profile"><?php echo $profile_userName?></p>
-	</div>
+	
 	
 	<div class="profileDiv">
 		<h3>Email Address</h3>
@@ -95,33 +101,79 @@
 			if ($viewingOwnProfile == true){
 				echo "<div>";
 					echo '<p class="userTPL_profile"><strong>Visibility: </strong></p>';
-					echo '<p class="userTPL_profile">';
+					echo '<p class="userTPL_profile userTPL_visibility">';
 						if($profile_visibility == "y"){
-							echo "public";
+							echo "Public";
 						} else {
-							echo "private";
+							echo "Private";
 						}
 					echo "</p>";
 				echo "</div>";
 			}
 		?>
+		<div class="form-group">
+			<select class="form-control userTPL_visibilityForm" name="emailVisibility">
+				<option>Public</option>
+				<option>Private</option>
+			</select>
+		</div>
 		
 		<div>
 			<p class="userTPL_profile"><strong>Email: </strong></p>
-			<p class="userTPL_profile"><?php echo $profile_emailAddress?></p>
+			<p class="userTPL_profile userTPL_email"><?php echo $profile_emailAddress?></p>
+			<div>
+				<input class="form-control userTPL_emailForm" type="text" required="" name="emailAddress">
+			</div>
 		</div>
 		
+		
+		
+	</div>
+	
+	<?php
+		//If a user is viewing their own profile, create the password div.
+		if ($viewingOwnProfile == true){
+			echo '<div class="profileDiv">';
+				echo '<div class="passwordDiv">';
+					echo '<h3>Password</h3>';
+					echo '<p class="userTPL_profile"><strong>New Password: </strong></p>';
+					echo '<div>';
+						echo '<input class="form-control userTPL_passwordForm" type="password" required="" name="password">';
+					echo '</div>';
+					echo '<p class="userTPL_profile"><strong>Confirm Password: </strong></p>';
+					echo '<div>';
+						echo '<input class="form-control userTPL_confirmPasswordForm" type="password" required="" name="confirmPassword">';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+		}
+	?>
+	
+	<div class="profileDiv">
+		<h3>Username</h3>
+		<p class="userTPL_profile"><strong>Username: </strong></p>
+		<p class="userTPL_profile userTPL_userName"><?php echo $profile_userName?></p>
 	</div>
 	
 	<div class="clearFloat"></div>
 	
+	<div class="errorBox">
+		<p id="errorMessage"></p>
+	</div>
+	
 	<?php
+		//If a user is viewing their own profile, show the Edit Buttons.
 		if ($viewingOwnProfile == true){
 			echo '<div class="editProfileDiv">';
 				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
 			echo '</div>';
+			echo '<div class="editProfileDiv">';
+				echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+			echo '</div>';
 		}
 	?>
+	
+	
 	
 	<div class="clearFloat"></div>
 	
