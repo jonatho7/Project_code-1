@@ -1,6 +1,6 @@
 <?php
 	$e_Title="test";	
-	require_once '../global.php';
+	require_once '../config.php';
 	require_once '../view/basic_header.tpl';
 	require_once '../model/DBAccess.class.php';
 	require_once '../model/User.class.php';

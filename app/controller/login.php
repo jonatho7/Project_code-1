@@ -3,7 +3,7 @@
 	//The login can be moved over to the splash page once it is finished.
 
     	
-	require_once '../global.php';
+	require_once '../config.php';
 	$e_Title="Login";
 	
     require_once '../view/loggedOutHeader.tpl';

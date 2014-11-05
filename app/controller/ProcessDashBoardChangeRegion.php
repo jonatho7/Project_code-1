@@ -3,7 +3,7 @@
 
 #echo "I am here";
 
-require_once '../global.php';
+require_once '../config.php';
 require_once '../model/UserState.class.php';
 require_once 'sessionAttributes.php';
 

@@ -11,7 +11,7 @@
 	 * argument: USer login id is stored as USER_NAME in SESSION 
 	 */
 
-require_once '../global.php';
+require_once '../config.php';
 require_once 'sessionAttributes.php';
 require_once '../model/User.class.php';
 require_once '../model/UserState.class.php';

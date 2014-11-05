@@ -5,7 +5,7 @@
  * This is a logout processing page.
  */
 
-require_once '../global.php';
+require_once '../config.php';
 
 require_once 'sessionAttributes.php';
 require_once '../model/User.class.php';

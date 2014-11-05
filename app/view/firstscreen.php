@@ -145,20 +145,6 @@ require_once '../config.php';
         </div>
     </div>
 
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-        <div class="col-md-5">
-            <a href ="<?=SERVER_PATH?>/public/img/anatomy.png">
-            <img class="featurette-image img-responsive" src="<?=SERVER_PATH?>public/img/anatomy.png" alt="Generic placeholder image">
-                </a>
-        </div>
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Anatomy <span class="text-muted"></span></h2>
-            <p class="lead">The below flowchart describes how front end and backend interact with each other to provide the desired functionality.
-                The model present in the backend provides the necessary functionality to store the predictions with the help of DBMS, downloads the predictions perodically from online flu prediction systems and runs the quantitive analysis againsn't user's predictions.</p>
-        </div>
-    </div>
 
     <hr class="featurette-divider">
 
