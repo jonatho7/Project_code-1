@@ -34,7 +34,7 @@ class UserPred {
 	}
 	
 	public function getDateFormatted() {
-		return date_create($this->up_date)->format('m/d/Y');
+		return date_create($this->up_date)->format('D jS M Y');
 	}
 	
 	public function getValue() {
@@ -47,6 +47,10 @@ class UserPred {
 	
 	public function  getLastModified() {
 		return $this->up_modified;
+	}
+	
+	public function getLastModifiedFormatted() {
+		return date_create($this->getLastModified())->format('G:ia \o\n D jS M Y');
 	}
 	
 	public function getup_pk() {

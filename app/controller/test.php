@@ -8,7 +8,11 @@
 	require_once '../model/UserPred.class.php';
 
 ?>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.js"></script>
+<!--
 
+//-->
+</script>
 
 <h1>
 	
@@ -73,6 +77,35 @@
   </ul>
 </div>
 
+<div>
+	<form class="cmxform" id="commentForm" method="get" action="">
+			<legend>Please provide your name, email address (won't be published) and a comment</legend>
+			<p>
+				<label for="cname">Name</label>
+				<input id="name" name="name" type="text">
+			</p>
+			<p>
+				<label for="password">password</label>
+				<input id="password" type="password" name="password">
+			</p>
+			<p>
+      			<input class="submit" type="submit" value="Submit"/>
+    		</p>
+	</form>
+	<script>
+		$("#commentForm").validate({
+			rules: {
+				name: "required",
+				password: "required"
+			},
+			messages : {
+				name: "user name is required",
+				password: "password is required"
+			}
+		});
+	</script>
+
+</div>
 
 <?php 
 

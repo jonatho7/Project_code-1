@@ -50,7 +50,7 @@
                  	$p_date = $e_userPred->getDateFormatted();
                  	$p_value = $e_userPred->getValue();
                  	$p_comment = $e_userPred->getComment();
-                 	$p_lastModified = $e_userPred->getLastModified();
+                 	$p_lastModified = $e_userPred->getLastModifiedFormatted();
                  	/* Save prediction id in SESSION */
                  	$_SESSION['PREDICTION_ID'] = $e_userPred->getup_pk();
                  ?>

@@ -111,6 +111,7 @@
                          	<tr>
                               <th>Date</th>
                               <th>Value</th>
+                              <th>Comment</th>
                               <th>Modify</th>
                             </tr>
                         </thead>
@@ -121,6 +122,7 @@
 								<tr>
 									<td><?=$userPredList[$i]->getDateFormatted()?></td>
 									<td><?=$userPredList[$i]->getValue()?></td>
+									<td><?=$userPredList[$i]->getComment()?></td>
 									<td>
 										<form role="role">
 											<button type="submit" formmethod="post" formaction="<?=SERVER_PATH?>processDashboardEdit.php" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?=$userPredList[$i]->getup_pk()?>">Edit</button>
