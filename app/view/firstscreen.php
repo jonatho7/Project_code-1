@@ -15,11 +15,11 @@ require_once '../config.php';
     <title>Flu Predictions Overview</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?=SERVER_PATH?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH?>public/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="<?=SERVER_PATH?>public/js/ie-emulation-modes-warning.js"></script>
+    <script src="<?php echo SERVER_PATH?>public/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -28,7 +28,7 @@ require_once '../config.php';
     <![endif]-->
 
     <!-- Custom styles for this template -->
-    <link href="<?=SERVER_PATH?>public/css/carousel.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH?>public/css/carousel.css" rel="stylesheet">
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -50,7 +50,7 @@ require_once '../config.php';
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
-                        <li><a href="<?=SERVER_PATH?>login">Login</a></li>
+                        <li><a href="<?php echo SERVER_PATH?>login">Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -78,7 +78,7 @@ require_once '../config.php';
                     <p>This is a website for tracking Flu activity in the United States. This system is mostly useful for epidemiologists for comparing and contrasting prediction qualities of various flu tracking systems like Google Flu trends, Health Map, etc.</p>
 
 
-                    <p><a class="btn btn-lg btn-primary" href="<?=SERVER_PATH?>register">Sign up today</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo SERVER_PATH?>register">Sign up today</a></p>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@ require_once '../config.php';
                     <h1>Make Predictions.</h1>
                   
                     <p > . Once the user is registered on the website, he/she can provide their own predictions and finally, after CDC (Centers for Disease Control and Prevention) publishes actual data based on ground surveillance reports, the user predictions are evaluated in terms of accuracy..</p>
-                    <p><a class="btn btn-lg btn-primary" href="<?=SERVER_PATH?>register" role="button" role="button">Sign up today</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo SERVER_PATH?>register" role="button" role="button">Sign up today</a></p>
                 </div>
             </div>
         </div>
@@ -99,7 +99,7 @@ require_once '../config.php';
                 <div class="carousel-caption">
                     <h1>Get a prediction ranking</h1>
                     <p>Every user is given certain points based on the accuracy of his estimates and points get accumulated over time to give user a rank. The website acts a single place to download various data sets. The overall objective of the application is to increase flu awareness in the society and help data analysts and epidemiologists in better modeling and predicting flu activity</p>
-                    <p><a class="btn btn-lg btn-primary" href="<?=SERVER_PATH?>register" role="button">Sign up today</a></p>
+                    <p><a class="btn btn-lg btn-primary" href="<?php echo SERVER_PATH?>register" role="button">Sign up today</a></p>
                 </div>
             </div>
         </div>
@@ -138,8 +138,8 @@ require_once '../config.php';
                 <br>Light Blue: Multiple predictions are made depending upon on severity of the flu disease in the current season.</p>
         </div>
         <div class="col-md-5">
-            <a href ="<?=SERVER_PATH?>public/img/gft.png">
-            <img class="featurette-image img-responsive" src="<?=SERVER_PATH?>public/img/gft.png" alt="Generic placeholder image">
+            <a href ="<?php echo SERVER_PATH?>public/img/gft.png">
+            <img class="featurette-image img-responsive" src="<?php echo SERVER_PATH?>public/img/gft.png" alt="Generic placeholder image">
             </a>
 
         </div>
@@ -164,10 +164,10 @@ require_once '../config.php';
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="<?=SERVER_PATH?>public/js/jquery-1.11.0.js"></script>
-<script src="<?=SERVER_PATH?>public/js/bootstrap.min.js"></script>
-<script src="<?=SERVER_PATH?>public/js/docs.min.js"></script>
+<script src="<?php echo SERVER_PATH?>public/js/jquery-1.11.0.js"></script>
+<script src="<?php echo SERVER_PATH?>public/js/bootstrap.min.js"></script>
+<script src="<?php echo SERVER_PATH?>public/js/docs.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="<?=SERVER_PATH?>public/js/ie10-viewport-bug-workaround.js"></script>
+<script src="<?php echo SERVER_PATH?>public/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

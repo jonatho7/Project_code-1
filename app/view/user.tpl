@@ -49,7 +49,7 @@
 <div class="profileContainer">
 	<div class="userTPL_left">
 		<div>
-			<img alt="Profile Picture" src="<?=SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
+			<img alt="Profile Picture" src="<?php echo SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
 		</div>
 		
 	</div>
@@ -184,15 +184,15 @@
 		
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Following: </strong> </p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho7</a></p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/sarang87">sarang87</a></p>
+			<p class="userTPL_profile"> <a href="<?php echo  SERVER_PATH ?>users/jonatho7">jonatho7</a></p>
+			<p class="userTPL_profile"> <a href="<?php echo  SERVER_PATH ?>users/sarang87">sarang87</a></p>
 			<p class="userTPL_profile">and 10 others</p>
 		</div>
 		
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Followers: </strong> </p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/harshalh">harshalh</a></p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho77</a></p>
+			<p class="userTPL_profile"> <a href="<?php echo  SERVER_PATH ?>users/harshalh">harshalh</a></p>
+			<p class="userTPL_profile"> <a href="<?php echo  SERVER_PATH ?>users/jonatho7">jonatho77</a></p>
 			<p class="userTPL_profile">and 12 others</p>
 		</div>
 		

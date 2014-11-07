@@ -23,20 +23,20 @@
 		<!--Change this icon-->
     <link rel="icon" href="../../favicon.ico">
 		
-	<title><?= $e_Title?></title>
+	<title><?php echo  $e_Title?></title>
 	
 	<!-- Bootstrap core CSS -->
-    <link href="<?=SERVER_PATH?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH?>public/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?=SERVER_PATH?>public/css/navbar-static-top.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH?>public/css/navbar-static-top.css" rel="stylesheet">
 
     <!-- Bootstrap JS -->
-	<script src="<?=SERVER_PATH?>public/js/bootstrap.min.js"></script>
+	<script src="<?php echo SERVER_PATH?>public/js/bootstrap.min.js"></script>
 	
 	
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="<?= SERVER_PATH ?>public/js/respond.js"></script>
+    <script src="<?php echo  SERVER_PATH ?>public/js/respond.js"></script>
 	
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

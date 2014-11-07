@@ -19,26 +19,26 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?=$e_Title?></title>
+    <title><?php echo $e_Title?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?= SERVER_PATH ?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo  SERVER_PATH ?>public/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link href="<?= SERVER_PATH ?>public/css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo  SERVER_PATH ?>public/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= SERVER_PATH ?>public/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo  SERVER_PATH ?>public/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="<?= SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
+    <script src="<?php echo  SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?= SERVER_PATH ?>public/js/bootstrap.min.js"></script>
+    <script src="<?php echo  SERVER_PATH ?>public/js/bootstrap.min.js"></script>
 
-	<link href="<?= SERVER_PATH ?>public/css/profilePage.css" rel="stylesheet">
-	<link href="<?= SERVER_PATH ?>public/css/flutracker.css" rel="stylesheet">
-	<script src="<?= SERVER_PATH ?>public/js/flutracker.js"></script>
+	<link href="<?php echo  SERVER_PATH ?>public/css/profilePage.css" rel="stylesheet">
+	<link href="<?php echo  SERVER_PATH ?>public/css/flutracker.css" rel="stylesheet">
+	<script src="<?php echo  SERVER_PATH ?>public/js/flutracker.js"></script>
 
 </head>
 
@@ -53,7 +53,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="<?= SERVER_PATH ?>dashboard.php">Flu Tracker</a>
+                <a class="navbar-brand" href="<?php echo  SERVER_PATH ?>dashboard.php">Flu Tracker</a>
             </div>
             
             <!-- 
@@ -97,7 +97,7 @@
 						}
                     ?>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    	<i class="fa fa-user"></i> <?= $firstName. " ". $lastName ?> 
+                    	<i class="fa fa-user"></i> <?php echo  $firstName. " ". $lastName ?> 
                     		<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -106,7 +106,7 @@
 								$userName = $e_user->getUserid();
 								$redirectPath = SERVER_PATH . 'users/' . $userName;
 							?>
-                            <a href="<?=$redirectPath?>"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="<?php echo $redirectPath?>"><i class="fa fa-fw fa-user"></i> Profile</a>
                         </li>
                         <li class="divider"></li>
                         <li>
@@ -120,7 +120,7 @@
                             	 */
                             
                             ?>
-                            <a href="<?=SERVER_PATH?>logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="<?php echo SERVER_PATH?>logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -146,7 +146,7 @@
                     	END OF COMMENTS
                      -->
 					<li>
-                        <a href="<?=SERVER_PATH?>dashboard.php"><i class="fa fa-fw fa-wrench"></i> My Predictions</a>
+                        <a href="<?php echo SERVER_PATH?>dashboard.php"><i class="fa fa-fw fa-wrench"></i> My Predictions</a>
                     </li>
 					
 					<li>
@@ -154,7 +154,7 @@
                     </li>
 					
                     <li>
-                        <a href="<?=SERVER_PATH?>dashboardAddNewPrediction.php"><i class="fa fa-fw fa-wrench"></i> Make New Predictions</a>
+                        <a href="<?php echo SERVER_PATH?>dashboardAddNewPrediction.php"><i class="fa fa-fw fa-wrench"></i> Make New Predictions</a>
                     </li>
                 	
                 	<!--       
