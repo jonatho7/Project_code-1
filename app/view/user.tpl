@@ -54,8 +54,9 @@
 		
 	</div>
 
-	<div>
-		<h1 class="profileHeader">Profile</h1>
+	<div class="userTPL_left">
+		<h2 class="profileHeader">Profile</h2>
+		<h2 class="profileHeader"><?php echo $userQuery ?></h2>
 	</div>
 	
 	<div class="clearFloat"></div>
@@ -184,16 +185,54 @@
 		
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Following: </strong> </p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho7</a></p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/sarang87">sarang87</a></p>
-			<p class="userTPL_profile">and 10 others</p>
+		<?php
+			//TODO. Need to get the actual followingArray values from the database.
+			//Hardcode.
+			$followingArray = array("jonatho7", "sarang87", "harshalh", "otherdude", "otherdude2", "otherdude3");
+			$maxFriendsToShow = 5;	//Only show this many friends.
+			$indexMax = $maxFriendsToShow;
+			if (count($followingArray) < $maxFriendsToShow){
+				$indexMax = count($followingArray);
+			}
+			
+			for ($index = 0; $index < $indexMax; $index++) {
+				$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>, </p>";
+			}
+			
+			if (count($followingArray) > $maxFriendsToShow){
+				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
+				echo "<p class='userTPL_profile'><a href ='$redirectPath'>...</a></p>";
+			}
+			
+		?>
 		</div>
 		
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Followers: </strong> </p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/harshalh">harshalh</a></p>
-			<p class="userTPL_profile"> <a href="<?= SERVER_PATH ?>users/jonatho7">jonatho77</a></p>
-			<p class="userTPL_profile">and 12 others</p>
+		<?php
+			//TODO. Need to get the actual followersArray values from the database.
+			//Hardcode.
+			$followersArray = array("harshalh", "jonatho7", "other", "other2", "other3", "other4");
+			$indexMax = $maxFriendsToShow;
+			if (count($followersArray) < $maxFriendsToShow){
+				$indexMax = count($followersArray);
+			}
+			
+			for ($index = 0; $index < $indexMax; $index++) {
+				$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>, </p>";
+			}
+			
+			if (count($followersArray) > $maxFriendsToShow){
+				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
+				echo "<p class='userTPL_profile'><a href ='$redirectPath'>...</a></p>";
+			}
+		?>
+		</div>
+		
+		<div>
+			<p><a href="<?= SERVER_PATH . 'users/' . $userQuery . '/friends'?>">(Show All)</a>   </p>
 		</div>
 		
 	</div>

@@ -33,3 +33,5 @@ RewriteRule		^processHandlePredictionChanges.php$ app/controller/processHandlePr
 RewriteRule     ^users/usernotfound/?$ app/controller/userNotFound.php
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/?$ app/controller/user.php?userQuery=$1
 
+RewriteRule     ^users/([a-zA-Z0-9_-]+)/friends/?$ app/controller/friends.php?userQuery=$1
+
