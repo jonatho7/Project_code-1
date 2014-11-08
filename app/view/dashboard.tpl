@@ -68,7 +68,7 @@
                         </select>
                         </div>
                         <div class="form-group">
-                            <button formmethod="post" formaction="<?=SERVER_PATH?>ProcessDashBoardChangeRegion.php" 
+                            <button formmethod="post" formaction="<?php echo SERVER_PATH?>ProcessDashBoardChangeRegion.php" 
                             		type="submit" class="btn btn-primary">
                            		Change Region
                             </button>
@@ -120,13 +120,13 @@
                          	$count = count($userPredList);
                          	for ($i=0; $i < $count; $i++) { ?>
 								<tr>
-									<td><?=$userPredList[$i]->getDateFormatted()?></td>
-									<td><?=$userPredList[$i]->getValue()?></td>
-									<td><?=$userPredList[$i]->getComment()?></td>
+									<td><?php echo $userPredList[$i]->getDateFormatted()?></td>
+									<td><?php echo $userPredList[$i]->getValue()?></td>
+									<td><?php echo $userPredList[$i]->getComment()?></td>
 									<td>
 										<form role="role">
-											<button type="submit" formmethod="post" formaction="<?=SERVER_PATH?>processDashboardEdit.php" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?=$userPredList[$i]->getup_pk()?>">Edit</button>
-											<button type="submit" formmethod="post" formaction="<?=SERVER_PATH?>processDashboardDelete.php" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?=$userPredList[$i]->getup_pk()?>">Delete</button>
+											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
+											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
 										</form>
 									</td>
 								</tr>

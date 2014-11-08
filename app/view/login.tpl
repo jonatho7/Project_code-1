@@ -36,7 +36,7 @@
    
 
    <button type="submit" class="btn btn-default" style="margin: 2em 0 2em 0;" 
-   		formmethod="post" formaction="<?=SERVER_PATH?>processLogin.php">Submit
+   		formmethod="post" formaction="<?php echo SERVER_PATH?>processLogin.php">Submit
    </button>
    
 </form>

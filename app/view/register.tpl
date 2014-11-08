@@ -58,6 +58,6 @@
       </label>
    </div>
    <button type="submit" class="btn btn-default" style="margin: 2em 0 2em 0;" 
-   		formmethod="post" formaction="<?=SERVER_PATH?>processRegistration.php">Submit
+   		formmethod="post" formaction="<?php echo SERVER_PATH?>processRegistration.php">Submit
    </button>
 </form>

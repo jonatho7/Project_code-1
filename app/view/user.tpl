@@ -49,7 +49,7 @@
 <div class="profileContainer">
 	<div class="userTPL_left">
 		<div>
-			<img alt="Profile Picture" src="<?=SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
+			<img alt="Profile Picture" src="<?php echo SERVER_PATH?>public/img/emptyProfilePicLarge.jpg">
 		</div>
 		
 	</div>

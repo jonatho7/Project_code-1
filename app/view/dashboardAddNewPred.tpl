@@ -21,7 +21,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="<?=SERVER_PATH?>dashboard.php">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<?php echo SERVER_PATH?>dashboard.php">Dashboard</a>
                             </li>
                             <li class="active">
                             	<i class="fa fa-dashboard" ></i>  <a href="#">Make new Prediction</a>
@@ -75,7 +75,7 @@
 						
 						<td>
 							<div class="col-md-8">
-								<input type="date" required class="form-control" min="<?=$min_date->format('Y-m-d')?>" name="predDate"> 
+								<input type="date" required class="form-control" min="<?php echo $min_date->format('Y-m-d')?>" name="predDate"> 
 							</div>
 						</td>
 						<td>
@@ -94,8 +94,8 @@
               </table> <!-- <!-- End of table format -->
               
               <!--  Add the buttons now side by side -->
-              <button formmethod="post" formaction="<?=SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm" >Discard Changes</button>
-              <button formmethod="post" formaction="<?=SERVER_PATH?>processUserEdit.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm" >Discard Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>processUserEdit.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
      	
      	</form> <!-- End of form -->
      </div>

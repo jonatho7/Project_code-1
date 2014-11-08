@@ -21,7 +21,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-dashboard"></i>  <a href="<?=SERVER_PATH?>dashboard.php">Dashboard</a>
+                                <i class="fa fa-dashboard"></i>  <a href="<?php echo SERVER_PATH?>dashboard.php">Dashboard</a>
                             </li>
                             <li class="active">
                             	<i class="fa fa-dashboard" ></i>  <a href="#">Edit Page</a>
@@ -56,27 +56,27 @@
                  ?>
                  <tbody> <!--  Start of rows -->
 					<tr>
-						<td><?=$r_name?></td>
-						<td><?=$p_date?></td>
+						<td><?php echo $r_name?></td>
+						<td><?php echo $p_date?></td>
 						<td>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="<?=$e_userPred->getup_pk().'-'.'value'?>" value="<?=$p_value?>">
+								<input type="text" class="form-control" name="<?php echo $e_userPred->getup_pk().'-'.'value'?>" value="<?php echo $p_value?>">
 							</div>
 						</td>
 						<td>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="<?= $e_userPred->getup_pk().'-'.'comment'?>" value="<?=$p_comment?>">
+								<input type="text" class="form-control" name="<?php echo  $e_userPred->getup_pk().'-'.'comment'?>" value="<?php echo $p_comment?>">
 							</div>
 						</td>
-						<td><?=$p_lastModified?></td>
+						<td><?php echo $p_lastModified?></td>
 					</tr>
                   </tbody> <!-- End of rows --> 
                   
               </table> <!-- <!-- End of table format -->
               
               <!--  Add the buttons now side by side -->
-              <button formmethod="post" formaction="<?=SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm">Discard Changes</button>
-              <button formmethod="post" formaction="<?=SERVER_PATH?>processHandlePredictionChanges.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm">Discard Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>processHandlePredictionChanges.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
      	
      	</form> <!-- End of form -->
      </div>

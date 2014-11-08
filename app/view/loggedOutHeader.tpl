@@ -18,22 +18,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?=$e_Title?></title>
+    <title><?php echo $e_Title?></title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?= SERVER_PATH ?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo  SERVER_PATH ?>public/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Custom CSS -->
-    <link href="<?= SERVER_PATH ?>public/css/sb-admin.css" rel="stylesheet">
+    <link href="<?php echo  SERVER_PATH ?>public/css/sb-admin.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?= SERVER_PATH ?>public/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo  SERVER_PATH ?>public/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- jQuery Version 1.11.0 -->
-    <script src="<?= SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
+    <script src="<?php echo  SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?= SERVER_PATH ?>public/js/bootstrap.min.js"></script>
+    <script src="<?php echo  SERVER_PATH ?>public/js/bootstrap.min.js"></script>
 
 
 </head>
@@ -49,7 +49,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <a class="navbar-brand" href="<?= SERVER_PATH ?>">Flu Tracker</a>
+                <a class="navbar-brand" href="<?php echo  SERVER_PATH ?>">Flu Tracker</a>
             </div>
             
             
