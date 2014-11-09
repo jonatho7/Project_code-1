@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2014 at 02:03 PM
+-- Generation Time: Nov 09, 2014 at 03:29 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `activity_log` (
 `activity_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL COMMENT 'foreign key to user.user_id',
-  `activity_type` int(11) NOT NULL COMMENT 'foreign key to activity_types.activity_type_id',
-  `user_id2` int(11) DEFAULT NULL COMMENT 'foreign key (used for user following)',
+  `u_id` int(11) NOT NULL COMMENT 'foreign key to user.user_id',
+  `user_id_string` varchar(100) NOT NULL,
+  `activity_type_id` int(11) NOT NULL COMMENT 'foreign key to activity_types.activity_type_id',
+  `u_id2` int(11) DEFAULT NULL COMMENT 'foreign key (used for user following)',
+  `user_id2_string` varchar(100) DEFAULT NULL,
   `date_modified_new` datetime DEFAULT CURRENT_TIMESTAMP,
   `date_modified_old` datetime DEFAULT NULL,
   `up_id` int(11) DEFAULT NULL COMMENT 'foreign key to user_pred.up_id',
@@ -52,13 +54,13 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
 -- Dumping data for table `activity_log`
 --
 
-INSERT INTO `activity_log` (`activity_id`, `user_id`, `activity_type`, `user_id2`, `date_modified_new`, `date_modified_old`, `up_id`, `up_value_new`, `up_value_old`, `up_date`, `r_name`, `comment_new`, `comment_old`, `first_name_new`, `first_name_old`, `middle_name_new`, `middle_name_old`, `last_name_new`, `last_name_old`) VALUES
-(1, 1, 1, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
-(2, 1, 2, 24, '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 25, 2, 1, '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 3, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 1, 4, NULL, '2014-11-09 13:48:47', '2014-10-21 18:53:33', 61, 200, 130, '2014-10-12', 'West Virginia', 'I think this prediction will be more accurate, actually.', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 1, 5, NULL, '2014-11-09 13:51:55', '2014-10-14 03:09:02', 33, NULL, 155, '2014-10-29', 'West Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `activity_log` (`activity_id`, `u_id`, `user_id_string`, `activity_type_id`, `u_id2`, `user_id2_string`, `date_modified_new`, `date_modified_old`, `up_id`, `up_value_new`, `up_value_old`, `up_date`, `r_name`, `comment_new`, `comment_old`, `first_name_new`, `first_name_old`, `middle_name_new`, `middle_name_old`, `last_name_new`, `last_name_old`) VALUES
+(1, 1, 'vivekb88', 1, NULL, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
+(2, 1, 'vivekb88', 2, 24, 'jonatho7', '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 25, 'harshalh', 2, 1, 'vivekb88', '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 1, 'vivekb88', 3, NULL, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 1, 'vivekb88', 4, NULL, NULL, '2014-11-09 13:48:47', '2014-10-21 18:53:33', 61, 200, 130, '2014-10-12', 'West Virginia', 'I think this prediction will be more accurate, actually.', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 1, 'vivekb88', 5, NULL, NULL, '2014-11-09 13:51:55', '2014-10-14 03:09:02', 33, NULL, 155, '2014-10-29', 'West Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -8196,7 +8198,7 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 -- Indexes for table `activity_log`
 --
 ALTER TABLE `activity_log`
- ADD PRIMARY KEY (`activity_id`), ADD KEY `user_id` (`user_id`,`activity_type`,`user_id2`);
+ ADD PRIMARY KEY (`activity_id`), ADD KEY `user_id` (`u_id`,`activity_type_id`,`u_id2`), ADD KEY `activity_type_id` (`activity_type_id`), ADD KEY `user_id_2` (`user_id_string`), ADD KEY `up_id` (`up_id`), ADD KEY `u_id2` (`u_id2`);
 
 --
 -- Indexes for table `activity_types`
@@ -8276,6 +8278,14 @@ MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `activity_log`
+--
+ALTER TABLE `activity_log`
+ADD CONSTRAINT `activity_log_ibfk_1` FOREIGN KEY (`activity_type_id`) REFERENCES `activity_types` (`activity_type_id`) ON DELETE CASCADE,
+ADD CONSTRAINT `activity_log_ibfk_2` FOREIGN KEY (`u_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `activity_log_ibfk_3` FOREIGN KEY (`u_id2`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `actual_data`
