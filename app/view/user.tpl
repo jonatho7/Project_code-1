@@ -241,14 +241,70 @@
 		<div>
 			<h3>Recent Activity</h3>
 		</div>
+		<?php
+			/*
+			 *TODO. Need to get all activities which correspond to the specific user.
+			 *...Get the entire rows of the activity_log table which have a user_id or user_id2
+			 *which corresponds to the user_id of "vivekb88", for example.
+			 *
+			 *What needs to be done: Provide the $activities array, which is accessed from the database.
+			 *
+			 **/
+			
+			//Some hardcode, for testing. ...
+			//DELETE after database access is implemented.(Start)
+			$activity1 = new Activity();
+			$activity1->set('activity_id',1);
+			$activity1->set('u_id',1);
+			$activity1->set('u_id_string','vivekb88');
+			$activity1->set('activity_type_id',1);
+			$activity1->set('date_modified_new','2014-11-09 13:29:28');
+			$activity1->set('date_modified_old','2014-11-07 09:19:02');
+			$activity1->set('first_name_new','Vivek');
+			$activity1->set('first_name_old','Vive');
+			$activity1->set('middle_name_new','Bharath');
+			$activity1->set('middle_name_old','B');
+			$activity1->set('last_name_new','Akupatni');
+			$activity1->set('last_name_old','Ak.');
+			
+			$activity2 = new Activity();
+			$activity2->set('u_id_string','vivekb88');
+			
+			//The activities array.
+			$activities = array($activity1, $activity2);
+			//DELETE after database access is implemented.(End)
+			
+			//Max number of activity feed items to show.
+			$max_activity_feed = 20;
+			
+			//iterate over the activity feed.
+			for($index = 0; $index < count($activities) || $index < $max_activity_feed; $index++){
+				//Coming soon...
+			}
+			
+			
+		?>
+		<div>
+			<?php $newName = $activity1->get('first_name_new') . " " . $activity1->get('middle_name_new') . " " . $activity1->get('last_name_new')  ?>
+			<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
+			<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
+		</div>
+		
 		<div>
 			<p><strong>Hard code examples, which correllate to the activity_log table in mysql...Will make more dynamic soon.</strong></p>
+			
 			<p>vivekb88 changed their name to Vivek Bharath Akupatni</p>
+			
 			<p>vivekb88 is now following jonatho7</p>
+			
 			<p>harshalh is now following vivekb88</p>
+			
 			<p>vivekb88 made a new prediction for West Virginia for 2014-10-12. "This is so much fun!"</p>
+			
 			<p>vivekb88 modified their prediction for West Virginia for 2014-10-12. "I think this prediction will be more accurate, actually."</p>
+			
 			<p>vivekb88 deleted their prediction for West Virginia for 2014-10-29."</p>
+			
 		</div>
 	</div>
 	

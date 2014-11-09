@@ -5,6 +5,7 @@
     require_once 'sessionAttributes.php';
     require_once '../model/User.class.php';
     require_once '../model/UserState.class.php';
+	require_once '../model/Activity.class.php';
     
     
     
