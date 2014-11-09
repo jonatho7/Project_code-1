@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 09, 2014 at 03:29 PM
+-- Host: localhost
+-- Generation Time: Nov 09, 2014 at 11:03 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8031,6 +8031,34 @@ INSERT INTO `actual_data` (`ad_id`, `r_id`, `ad_value`, `ad_date`, `ad_season`, 
 (7918, 47, 13, '2014-09-10', 0, 0, 1),
 (7919, 47, 34, '2014-09-17', 0, 0, 1),
 (7920, 47, 19, '2014-09-24', 0, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `amt_result`
+--
+
+CREATE TABLE IF NOT EXISTS `amt_result` (
+  `worker_id` varchar(100) NOT NULL COMMENT 'Worker Id of amazon mechanical turk',
+  `task_id` int(11) NOT NULL,
+  `task_answer` varchar(32) NOT NULL,
+  `task_comment` varchar(2048) NOT NULL,
+  `task_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `amt_result`
+--
+
+INSERT INTO `amt_result` (`worker_id`, `task_id`, `task_answer`, `task_comment`, `task_entry`) VALUES
+('bot', 1, 'on', '', '2014-11-09 16:52:37'),
+('bot', 1, 'on', '', '2014-11-09 16:55:13'),
+('bot', 1, 'red', '', '2014-11-09 16:56:44'),
+('bot', 1, 'blue', '', '2014-11-09 16:57:12'),
+('bot', 1, 'red', '', '2014-11-09 16:57:24'),
+('bot', 1, 'same', '', '2014-11-09 16:57:35'),
+('bot', 1, 'same', 'Both seem to be shifted', '2014-11-09 16:57:55'),
+('bot', 1, 'red', 'Red curve seems to be fitting well, but I am still confused.', '2014-11-09 16:58:44');
 
 -- --------------------------------------------------------
 
