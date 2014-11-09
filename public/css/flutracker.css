@@ -51,16 +51,26 @@
   margin: 1em;
 }
 
-.activityFeedParag{
-  background-color: #fff;
-  border: 1px solid #d8d8d8;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  word-wrap: break-word;
-  min-height: 84px;
+.activityFeedDiv{
+	background-color: #fff;
+	border: 1px solid #d8d8d8;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	word-wrap: break-word;
+	min-height: 84px;
+}
+
+.activityFeedParag, .activityFeedDate{
+	display: inline;
+	word-wrap: break-word;
+}
+
+.activityFeedDate {
+	color: gray;
+	margin-left: 2em;
 }
 
 	

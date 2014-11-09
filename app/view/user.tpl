@@ -269,6 +269,8 @@
 			
 			$activity2 = new Activity();
 			$activity2->set('u_id_string','vivekb88');
+			$activity2->set('u_id2_string','jonatho7');
+			$activity2->set('date_modified_new','2014-11-09 13:29:34');
 			
 			//The activities array.
 			$activities = array($activity1, $activity2);
@@ -285,9 +287,16 @@
 			
 		?>
 		<div>
-			<?php $newName = $activity1->get('first_name_new') . " " . $activity1->get('middle_name_new') . " " . $activity1->get('last_name_new')  ?>
-			<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
-			<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
+			<div class="activityFeedDiv">
+				<?php $newName = $activity1->get('first_name_new') . " " . $activity1->get('middle_name_new') . " " . $activity1->get('last_name_new')  ?>
+				<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity1->getDate_Modified_New() ?></p>
+			</div>
+			
+			<div class="activityFeedDiv">
+				<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity2->get('u_id_string')?>"><?php echo $activity2->get('u_id_string') ?></a> is now following <a href="<?= SERVER_PATH . 'users/' . $activity2->get('u_id2_string')?>"><?php echo $activity2->get('u_id2_string') ?></a></p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity2->getDate_Modified_New() ?></p>
+			</div>
 		</div>
 		
 		<div>
