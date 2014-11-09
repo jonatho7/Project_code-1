@@ -242,9 +242,13 @@
 			<h3>Recent Activity</h3>
 		</div>
 		<div>
-			<p>Something something something...</p>
-			<p>Yada yada yada...</p>
-			<p>someone did something really exciting.</p>
+			<p><strong>Hard code examples, which correllate to the activity_log table in mysql...Will make more dynamic soon.</strong></p>
+			<p>vivekb88 changed their name to Vivek Bharath Akupatni</p>
+			<p>vivekb88 is now following jonatho7</p>
+			<p>harshalh is now following vivekb88</p>
+			<p>vivekb88 made a new prediction for West Virginia for 2014-10-12. "This is so much fun!"</p>
+			<p>vivekb88 modified their prediction for West Virginia for 2014-10-12. "I think this prediction will be more accurate, actually."</p>
+			<p>vivekb88 deleted their prediction for West Virginia for 2014-10-29."</p>
 		</div>
 	</div>
 	
