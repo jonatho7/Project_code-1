@@ -13,12 +13,6 @@ changes:
 a) Change the database constants suitably
 
 
-Never commit these below specified files:
-
-1)app/config.php
-2)app/global.php
-
-
 
 
 

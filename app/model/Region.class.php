@@ -1,6 +1,6 @@
 <?php
 
-require_once 'DBAccess.class.php';
+require_once 'DbAccess.class.php';
 
 class Region {
 	/*
