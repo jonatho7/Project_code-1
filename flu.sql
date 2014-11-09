@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2014 at 08:38 PM
+-- Generation Time: Nov 09, 2014 at 02:03 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,6 +19,68 @@ SET time_zone = "+00:00";
 --
 -- Database: `flu`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_log`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_log` (
+`activity_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL COMMENT 'foreign key to user.user_id',
+  `activity_type` int(11) NOT NULL COMMENT 'foreign key to activity_types.activity_type_id',
+  `user_id2` int(11) DEFAULT NULL COMMENT 'foreign key (used for user following)',
+  `date_modified_new` datetime DEFAULT CURRENT_TIMESTAMP,
+  `date_modified_old` datetime DEFAULT NULL,
+  `up_id` int(11) DEFAULT NULL COMMENT 'foreign key to user_pred.up_id',
+  `up_value_new` int(11) DEFAULT NULL COMMENT 'user prediction new value',
+  `up_value_old` int(11) DEFAULT NULL COMMENT 'user prediction old value',
+  `up_date` date DEFAULT NULL COMMENT 'For convenience. No activity feed func.',
+  `r_name` varchar(100) DEFAULT NULL COMMENT 'For convenience. No activity feed func. ',
+  `comment_new` varchar(500) DEFAULT NULL,
+  `comment_old` varchar(500) DEFAULT NULL,
+  `first_name_new` varchar(100) DEFAULT NULL,
+  `first_name_old` varchar(100) DEFAULT NULL,
+  `middle_name_new` varchar(100) DEFAULT NULL,
+  `middle_name_old` varchar(100) DEFAULT NULL,
+  `last_name_new` varchar(100) DEFAULT NULL,
+  `last_name_old` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `activity_log`
+--
+
+INSERT INTO `activity_log` (`activity_id`, `user_id`, `activity_type`, `user_id2`, `date_modified_new`, `date_modified_old`, `up_id`, `up_value_new`, `up_value_old`, `up_date`, `r_name`, `comment_new`, `comment_old`, `first_name_new`, `first_name_old`, `middle_name_new`, `middle_name_old`, `last_name_new`, `last_name_old`) VALUES
+(1, 1, 1, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
+(2, 1, 2, 24, '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 25, 2, 1, '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 1, 3, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 1, 4, NULL, '2014-11-09 13:48:47', '2014-10-21 18:53:33', 61, 200, 130, '2014-10-12', 'West Virginia', 'I think this prediction will be more accurate, actually.', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 1, 5, NULL, '2014-11-09 13:51:55', '2014-10-14 03:09:02', 33, NULL, 155, '2014-10-29', 'West Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_types`
+--
+
+CREATE TABLE IF NOT EXISTS `activity_types` (
+`activity_type_id` int(11) NOT NULL,
+  `activity_description` varchar(100) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `activity_types`
+--
+
+INSERT INTO `activity_types` (`activity_type_id`, `activity_description`) VALUES
+(1, 'change_name'),
+(2, 'now_following'),
+(3, 'new_prediction'),
+(4, 'modify_prediction'),
+(5, 'delete_prediction');
 
 -- --------------------------------------------------------
 
@@ -8032,7 +8094,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(100) NOT NULL,
   `email_address` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `user`
@@ -8062,7 +8124,8 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `
 (23, 'vivekb88', 'asdasd', NULL, 'zzz', NULL, 'n', 'n', '2014-11-04 23:24:11', 'zzz', ''),
 (24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'y', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'n', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
-(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'y', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu');
+(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'y', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
+(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'y', 'n', '2014-11-08 00:24:38', 'pass', '');
 
 -- --------------------------------------------------------
 
@@ -8078,7 +8141,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8100,7 +8163,6 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (28, 165, '2014-10-14 03:04:46', 41, '2014-10-15', NULL, 1),
 (29, 1250, '2014-10-14 03:04:46', 41, '2014-10-08', '', 1),
 (32, 130, '2014-10-14 03:09:02', 43, '2014-10-22', NULL, 1),
-(33, 155, '2014-10-14 03:09:02', 43, '2014-10-29', NULL, 1),
 (34, 130, '2014-10-14 03:09:53', 45, '2014-10-22', NULL, 1),
 (35, 155, '2014-10-14 03:09:53', 45, '2014-10-29', NULL, 1),
 (38, 130, '2014-10-14 03:11:33', 45, '2014-10-15', NULL, 1),
@@ -8117,17 +8179,30 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (56, 2, '2014-10-14 04:39:14', 46, '2014-10-28', 'k2', 1),
 (57, 3, '2014-10-14 04:39:30', 46, '2014-10-28', 'k3', 1),
 (60, 9999, '2014-10-14 05:07:51', 44, '2014-10-25', 'vivek', 1),
-(61, 200, '2014-10-21 18:53:33', 43, '2014-10-12', 'Testing', 1),
+(61, 200, '2014-10-21 18:53:33', 43, '2014-10-12', 'I think this prediction will be more accurate, actually.', 1),
 (63, 1000, '2014-10-21 20:44:34', 42, '2014-09-24', '', 18),
 (65, 190, '2014-10-22 21:25:23', 38, '2014-10-24', 'fgfgfd', 19),
 (66, 100, '2014-10-24 20:39:29', 39, '2014-10-12', 'asdsad', 1),
 (67, 240, '2014-10-26 13:02:58', 38, '0000-00-00', 'asdas', 1),
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
-(69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1);
+(69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
+(72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `activity_log`
+--
+ALTER TABLE `activity_log`
+ ADD PRIMARY KEY (`activity_id`), ADD KEY `user_id` (`user_id`,`activity_type`,`user_id2`);
+
+--
+-- Indexes for table `activity_types`
+--
+ALTER TABLE `activity_types`
+ ADD PRIMARY KEY (`activity_type_id`);
 
 --
 -- Indexes for table `actual_data`
@@ -8164,6 +8239,16 @@ ALTER TABLE `user_pred`
 --
 
 --
+-- AUTO_INCREMENT for table `activity_log`
+--
+ALTER TABLE `activity_log`
+MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `activity_types`
+--
+ALTER TABLE `activity_types`
+MODIFY `activity_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `actual_data`
 --
 ALTER TABLE `actual_data`
@@ -8182,12 +8267,12 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=71;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=73;
 --
 -- Constraints for dumped tables
 --
