@@ -4,7 +4,7 @@ define('SERVER_PATH','http://localhost/flutracker/');
 
 
 // database constants
-define('DB_HOST','127.0.0.1');
+define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','buddY181');
 define('DB_DATABASE','flu');

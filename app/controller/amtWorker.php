@@ -49,7 +49,8 @@ if ($assignmentID == PREVIEW_HIT) {
 	
 	$user = User::getUserByUserName($workerId);
 	if ($user == null) {
-		echo "user doesn't exist so creating a new one";
+		#echo "user doesn't exist so creating a new one";
+		User::
 	}
 	
 	
