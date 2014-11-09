@@ -1,3 +1,4 @@
+Options +FollowSymLinks
 RewriteEngine on 
 
 
@@ -36,4 +37,3 @@ RewriteRule     ^users/([a-zA-Z0-9_-]+)/?$ app/controller/user.php?userQuery=$1
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/friends/?$ app/controller/friends.php?userQuery=$1
 
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php
-
