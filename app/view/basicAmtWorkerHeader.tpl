@@ -6,6 +6,8 @@
  * $e_* naming convention.
  *  This will include the necessary content for 
  *  running with bootstrap code.
+ *  
+ *  $e_Preview = hit being preview or not
  * 
  */
 
@@ -40,3 +42,28 @@
 </head>
 
 <body class="container">
+	<?php 
+		if (!empty($e_Preview)) { ?>
+			<div class="alert alert-warning" role="alert"> 
+				Preview Mode. Accept HIT to complete the task.
+			</div>
+		<?php }
+	?>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+    		<h3 class="panel-title">Instructions for completing the Task</h3>
+  		</div>
+  		<div class="panel-body">
+    		<p>
+    			This assignment would consist of 10 plots (1 plot per page). A
+    			plot will consist of 3 time series curves indicated by following colors:<br>
+    			<ul>
+  					<li>Blue</li>
+  					<li>Red</li>
+  					<li>Orange</li>
+				</ul>
+				The task is to determine which curve i.e. red or orange curve that fits/predicts/follows
+				blue curve.
+    		</p>
+  		</div>
+	</div>

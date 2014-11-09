@@ -2,7 +2,7 @@
 	$e_Title="test";	
 	require_once '../config.php';
 	require_once '../view/basic_header.tpl';
-	require_once '../model/DBAccess.class.php';
+	require_once '../model/DbAccess.class.php';
 	require_once '../model/User.class.php';
 	require_once '../model/Region.class.php';
 	require_once '../model/UserPred.class.php';
@@ -78,6 +78,17 @@
 </div>
 
 <div>
+	<p class="navbar-text">Signed in as Mark Otto</p>
+	
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+    		<h3 class="panel-title">Panel title</h3>
+  		</div>
+  		<div class="panel-body">
+    		Panel content
+  		</div>
+	</div>
+	
 	<form class="cmxform" id="commentForm" method="get" action="">
 			<legend>Please provide your name, email address (won't be published) and a comment</legend>
 			<p>

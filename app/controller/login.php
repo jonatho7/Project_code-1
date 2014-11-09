@@ -5,7 +5,6 @@
     	
 	require_once '../config.php';
 	$e_Title="Login";
-	
     require_once '../view/loggedOutHeader.tpl';
     require_once '../view/login.tpl';
 	require_once '../view/loggedInFooter.tpl';

@@ -1,6 +1,7 @@
 <?php 
 	
 	$e_Title = "HIT PreView";
+	$e_Preview = true;
 	require_once 'basicAmtWorkerHeader.tpl';
 ?>
 

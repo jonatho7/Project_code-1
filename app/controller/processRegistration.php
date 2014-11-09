@@ -119,6 +119,7 @@ $user = new User($userArgument, True);
 # Should we redirect or include here??
 #
 session_unset(); # Free all session specific data
+
 require_once 'login.php';
 
 
