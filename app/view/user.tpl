@@ -232,7 +232,10 @@
 		</div>
 		
 		<div>
-			<p><a href="<?php SERVER_PATH . 'users/' . $userQuery . '/friends'?>">(Show All)</a>   </p>
+			<?php
+				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
+				echo "<p><a href ='$redirectPath'>(Show All)</a></p>";
+			?>
 		</div>
 		
 	</div>
@@ -306,101 +309,69 @@
 			$activity6->set('r_name','West Virginia');
 			
 			//The activities array.
-			$activities = array($activity1, $activity2, $activity3, $activity4, $activity5);
+			$activities = array($activity1, $activity2, $activity3, $activity4, $activity5, $activity6);
 			//DELETE after database access is implemented.(End)
 			
 			//Max number of activity feed items to show.
 			$max_activity_feed = 20;
 			
 			//iterate over the activity feed.
-			for($index = 0; $index < count($activities) || $index < $max_activity_feed; $index++){
+			for($index = 0; $index < count($activities) && $index < $max_activity_feed; $index++){
 				$activity = $activities[$index];
 				
 				if ($activity->get('activity_type_id') == 1){
 					echo '<div class="activityFeedDiv">';
 						$newName = $activity->get('first_name_new') . " " . $activity->get('middle_name_new') . " " . $activity->get('last_name_new');
-						echo "<p class='activityFeedParag'><a href=\"SERVER_PATH . 'users/' . {$activity->get('user_id_string')}\">{$activity->get('user_id_string')}</a> changed their name to {$newName}</p>";
+						echo "<p class='activityFeedParag'><a href='SERVER_PATH . 'users/' . {$activity->get('user_id_string')}'>{$activity->get('user_id_string')}</a> changed their name to {$newName}</p>";
+						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
+					echo '</div>';
+				}
+				
+				if ($activity->get('activity_type_id') == 2){
+					echo '<div class="activityFeedDiv">';
+						$newName = $activity->get('first_name_new') . " " . $activity->get('middle_name_new') . " " . $activity->get('last_name_new');
+						echo "<p class='activityFeedParag'><a href='SERVER_PATH . 'users/' . {$activity->get('user_id_string')}'>{$activity->get('user_id_string')}</a> is now following <a href='SERVER_PATH . 'users/' . {$activity->get('user_id2_string')}'>{$activity->get('user_id2_string')}</a></p>";
 						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
 					echo '</div>';
 				}
 				
 				if ($activity->get('activity_type_id') == 3){
 					echo '<div class="activityFeedDiv">';
-						echo "<p class='activityFeedParag'><a href=\"SERVER_PATH . 'users/' . {$activity->get('user_id_string')}\">{$activity->get('user_id_string')}</a> made a new prediction for {$activity->get('r_name')} for {$activity->get('up_date')}.</p>";
+						echo "<p class='activityFeedParag'><a href='SERVER_PATH . 'users/' . {$activity->get('user_id_string')}'>{$activity->get('user_id_string')}</a> made a new prediction for {$activity->get('r_name')} for {$activity->get('up_date')}.</p>";
 						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
 						echo "<p class='activityFeedComment'><strong>\"{$activity->get('comment_new')}\"</strong></p>";
 					echo '</div>';
 				}
 				
-				if ($index == 1){
-					$index = 50;
+				if ($activity->get('activity_type_id') == 4){
+					echo '<div class="activityFeedDiv">';
+						echo "<p class='activityFeedParag'><a href='SERVER_PATH . 'users/' . {$activity->get('user_id_string')}'>{$activity->get('user_id_string')}</a> modified their prediction for {$activity->get('r_name')} for {$activity->get('up_date')}.</p>";
+						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
+						echo "<p class='activityFeedComment'><strong>\"{$activity->get('comment_new')}\"</strong></p>";
+					echo '</div>';
 				}
 				
+				if ($activity->get('activity_type_id') == 5){
+					echo '<div class="activityFeedDiv">';
+						echo "<p class='activityFeedParag'><a href='SERVER_PATH . 'users/' . {$activity->get('user_id_string')}'>{$activity->get('user_id_string')}</a> deleted their prediction for {$activity->get('r_name')} for {$activity->get('up_date')}.</p>";
+						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
+					echo '</div>';
+				}
 			}
-			
-			
 		?>
-		<div>
-			
-			
-			<?php $activity = $activity1 ?>
-			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> made a new prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.</p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-				<p class="activityFeedComment"><strong>"<?php echo $activity->get('comment_new') ?>"</strong></p>
-			</div>
-			
-			<?php $activity = $activity2 ?>
-			<div class="activityFeedDiv">
-				<?php $newName = $activity->get('first_name_new') . " " . $activity->get('middle_name_new') . " " . $activity->get('last_name_new')  ?>
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> changed their name to <?php echo $newName?></p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-			</div>
-			
-			<?php $activity = $activity3 ?>
-			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> is now following <a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id2_string')?>"><?php echo $activity->get('user_id2_string') ?></a></p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-			</div>
-			
-			<?php $activity = $activity4 ?>
-			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> is now following <a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id2_string')?>"><?php echo $activity->get('user_id2_string') ?></a></p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-			</div>
-			
-			<?php $activity = $activity5 ?>
-			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> modified their prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.</p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-				<p class="activityFeedComment"><strong>"<?php echo $activity->get('comment_new') ?>"</strong></p>
-			</div>
-			
-			<?php $activity = $activity6 ?>
-			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> deleted a prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.?>"</p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
-			</div>
-			
-			
-		</div>
 		
+		<!--
 		<div>
 			<p><strong>Hard code examples, which correllate to the activity_log table in mysql...Will make more dynamic soon.</strong></p>
-			
 			<p>vivekb88 changed their name to Vivek Bharath Akupatni</p>
-			
 			<p>vivekb88 is now following jonatho7</p>
-			
 			<p>harshalh is now following vivekb88</p>
-			
 			<p>vivekb88 made a new prediction for West Virginia for 2014-10-12. "This is so much fun!"</p>
-			
 			<p>vivekb88 modified their prediction for West Virginia for 2014-10-12. "I think this prediction will be more accurate, actually."</p>
-			
 			<p>vivekb88 deleted their prediction for West Virginia for 2014-10-29."</p>
-			
 		</div>
+		-->
+		
 	</div>
 	
 </div>
