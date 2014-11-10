@@ -55,7 +55,7 @@
   		</div>
   		<div class="panel-body">
     		<p>
-    			This assignment would consist of 10 plots (1 plot per page). A
+    			This assignment would consist of 6 plots (1 plot per page). A
     			plot will consist of 3 time series curves indicated by following colors:<br>
     			<ul>
   					<li>Black</li>
