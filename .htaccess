@@ -17,6 +17,8 @@ RewriteRule 	^$  app/view/firstscreen.php
 
 RewriteRule 	^dashboard.php$  app/controller/dashboard.php
 
+RewriteRule 	^activityFeed/?$  app/controller/activityFeed.php
+
 RewriteRule 	^ProcessDashBoardChangeRegion.php$  app/controller/ProcessDashBoardChangeRegion.php
 
 

@@ -60,7 +60,7 @@
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 	word-wrap: break-word;
-	min-height: 96px;
+	min-height: 200px;
 }
 
 .activityFeedParag, .activityFeedDate{
@@ -77,4 +77,7 @@
 	margin-top: 0.5em;
 }
 
+.activityFeedPageHeader {
+	margin-bottom: 9em;
+}
 	

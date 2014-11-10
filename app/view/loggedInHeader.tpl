@@ -145,6 +145,10 @@
                     </li>
                     	END OF COMMENTS
                      -->
+					 <li>
+                        <a href="<?php echo SERVER_PATH?>activityFeed"><i class="fa fa-fw fa-wrench"></i> Activity Feed</a>
+                    </li>
+					 
 					<li>
                         <a href="<?php echo SERVER_PATH?>dashboard.php"><i class="fa fa-fw fa-wrench"></i> My Predictions</a>
                     </li>

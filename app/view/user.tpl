@@ -242,7 +242,7 @@
 	
 	<div class="userActivityFeed">
 		<div>
-			<h3>Recent Activity</h3>
+			<h3>Activity Feed</h3>
 		</div>
 		<?php
 			/*
