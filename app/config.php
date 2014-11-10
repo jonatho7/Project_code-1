@@ -16,11 +16,10 @@ define('USER_STATE', 'userState');
 
 //Change this parameter depending on where the results need to be submitted
 //for Amazon Mechanical Turks
-define("AMT_SUBMIF_FORM", "http://localhost/flutracker/test.php");
+define("AMT_SUBMIT_FORM", SERVER_PATH. "test.php");
 define("PREVIEW_HIT", "ASSIGNMENT_ID_NOT_AVAILABLE");
 define("ASSIGNMENT_ID", "assignmentId");
 define("WORKER_ID", "workerId");
 define("HIT_ID", "hitId");
 define("CURRRENT_TASK", "task"); //Indicates the current task that the turker is supposed to do.
 define("MAX_QUESTIONS", "10");
-

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 09, 2014 at 11:03 PM
+-- Generation Time: Nov 10, 2014 at 02:47 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8045,20 +8045,6 @@ CREATE TABLE IF NOT EXISTS `amt_result` (
   `task_comment` varchar(2048) NOT NULL,
   `task_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `amt_result`
---
-
-INSERT INTO `amt_result` (`worker_id`, `task_id`, `task_answer`, `task_comment`, `task_entry`) VALUES
-('bot', 1, 'on', '', '2014-11-09 16:52:37'),
-('bot', 1, 'on', '', '2014-11-09 16:55:13'),
-('bot', 1, 'red', '', '2014-11-09 16:56:44'),
-('bot', 1, 'blue', '', '2014-11-09 16:57:12'),
-('bot', 1, 'red', '', '2014-11-09 16:57:24'),
-('bot', 1, 'same', '', '2014-11-09 16:57:35'),
-('bot', 1, 'same', 'Both seem to be shifted', '2014-11-09 16:57:55'),
-('bot', 1, 'red', 'Red curve seems to be fitting well, but I am still confused.', '2014-11-09 16:58:44');
 
 -- --------------------------------------------------------
 

@@ -58,12 +58,12 @@
     			This assignment would consist of 10 plots (1 plot per page). A
     			plot will consist of 3 time series curves indicated by following colors:<br>
     			<ul>
-  					<li>Blue</li>
+  					<li>Black</li>
   					<li>Red</li>
-  					<li>Orange</li>
+  					<li>Blue</li>
 				</ul>
-				The task is to determine which curve i.e. red or orange curve that fits/predicts/follows
-				blue curve.
+				The task is to determine which curve i.e. red or blue curve that fits/predicts/follows
+				black curve.
     		</p>
   		</div>
 	</div>

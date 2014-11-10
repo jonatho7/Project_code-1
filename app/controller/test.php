@@ -1,4 +1,12 @@
 <?php
+	
+	/*
+	 * Ignore this file. 
+	 * 
+	 * This is only meant for testing purposes.
+	 * 
+	 */
+
 	$e_Title="test";	
 	require_once '../config.php';
 	require_once '../view/basic_header.tpl';
@@ -6,6 +14,7 @@
 	require_once '../model/User.class.php';
 	require_once '../model/Region.class.php';
 	require_once '../model/UserPred.class.php';
+	require_once 'AMTTurkerState.php';
 
 ?>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.js"></script>
@@ -115,6 +124,14 @@
 			}
 		});
 	</script>
+
+</div>
+
+<div class="row">
+	<?php 
+		echo "assignment Id = ". $_POST[ASSIGNMENT_ID] . "<br>";
+		echo "worker ID = ". $_POST[WORKER_ID] . "<br>";
+	?>
 
 </div>
 

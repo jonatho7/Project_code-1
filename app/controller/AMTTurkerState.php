@@ -6,7 +6,7 @@ require_once '../config.php';
 * in session object.
 */
 function cacheTurkerResults($assignmentId, $workerId, $hitId) {
-	session_start();
+	@session_start();
 	$_SESSION[ASSIGNMENT_ID] = $assignmentId;
 	$_SESSION[WORKER_ID] = $workerId;
 	$_SESSION[HIT_ID] = $hitId;
@@ -48,3 +48,36 @@ function hasNextQuestion() {
 	return true;
 }
 
+function isAnyQuestionActive() {
+	if (empty($_SESSION[CURRRENT_TASK])) {
+		return false;
+	} else {
+		return false;
+	}
+}
+/*
+ * Gets worker Id
+ *
+ */
+function getWorkerId() {
+	@session_start();
+	return @$_SESSION[WORKER_ID];
+}
+
+/*
+ * 
+ * Set the state for next question:
+ */
+function setNextQuestion() {
+	@session_start();
+	$_SESSION[CURRRENT_TASK] = strval(intval($_SESSION[CURRRENT_TASK]) + 1);
+}
+
+/*
+ * Get the assignment id for AMT worker
+ */
+
+function getAssignmentId() {
+	@session_start();
+	return @$_SESSION[ASSIGNMENT_ID];
+}
