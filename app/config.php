@@ -24,4 +24,4 @@ define("ASSIGNMENT_ID", "assignmentId");
 define("WORKER_ID", "workerId");
 define("HIT_ID", "hitId");
 define("CURRRENT_TASK", "task"); //Indicates the current task that the turker is supposed to do.
-define("MAX_QUESTIONS", "10");
+define("MAX_QUESTIONS", "6");
