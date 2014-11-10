@@ -1,0 +1,8 @@
+#!/bin/bash
+
+for i in `seq 2 10`;
+do
+     #echo $i;
+     echo task$i.png
+     cp task1.png task$i.png
+done

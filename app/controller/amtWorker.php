@@ -2,6 +2,7 @@
 
 require_once '../config.php';
 require_once '../model/User.class.php';
+require_once 'AMTTurkerState.php';
 
 /*
  * This is a page that would be displayed only for Amazon
@@ -11,11 +12,12 @@ require_once '../model/User.class.php';
  * 
  * ii) If worker is previewing the hit, sample test will be shown
  * 
- * iii) If the worker has accepted the hit, then a new user with
- * the following paramaters <username, password> = <workerId, workerID>
- * in the dabasase.
- * 
+ * iii) If the worker has accepted the hit, 10 tasks will be shown
+ *     sequencially to the AMT user.
  * To do: Figure out what else to cache.
+ *   a) hitId
+ *   b) workerId
+ *   c) AssignmentId
  * 
  */
 
@@ -25,15 +27,15 @@ require_once '../model/User.class.php';
  * Need to add more checkings later
  */ 
 
-if (empty($_GET["assignmentId"])) {
+if (empty($_GET[ASSIGNMENT_ID]) || empty($_GET[WORKER_ID]) || empty($_GET[HIT_ID])) {
 	echo "Unauthorized access. Access only for AMT workers";
 	exit();
 } 
 
 
-$assignmentID = $_GET[ASSIGNMENT_ID];
+$assignmentId = $_GET[ASSIGNMENT_ID];
 
-if ($assignmentID == PREVIEW_HIT) {
+if ($assignmentId == PREVIEW_HIT) {
 	require_once '../view/previewHit.tpl';
 	exit();
 } else {
@@ -41,17 +43,16 @@ if ($assignmentID == PREVIEW_HIT) {
 	 * Add a user Id if user doesn't already exists
 	 * and start providing him the tasks.
 	 */
-	if (empty($_GET[WORKER_ID])) {
-		echo "workerID is null. Exiting";
-		exit();
-	}
 	$workerId = $_GET[WORKER_ID];
+	$hitId = $_GET[HIT_ID];
 	
-	$user = User::getUserByUserName($workerId);
-	if ($user == null) {
-		#echo "user doesn't exist so creating a new one";
-		#$user = new User()
+	if (isAMTTurkerActive($workerId) == false) {
+		/*
+		 * Well, this got to the first time AMT user is coming here.
+		 * Store, all the details in the Session.
+		 */
+		
+		cacheTurkerResults($assignmentId, $workerId, $hitId);	
 	}
-	
-	
+	require_once '../view/renderTaskToTurker.tpl'; 
 }
