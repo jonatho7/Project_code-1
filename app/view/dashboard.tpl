@@ -7,25 +7,71 @@
 	require_once '../model/Region.class.php';
 	require_once '../model/UserState.class.php';
 ?>
+	
+	<?php
+		//TODO. Get user role from database.
+		//userRole options: 0 = "registered_user", 1 = "moderator", 2 = "admin".
+		$userRole = 2;
+		
+		//The logged in user's username
+		$userName = $e_user->getUserid();
+		
+		//Whether the user is viewing their own page or someone else's page.
+		$viewingOwnPage = true;
+		
+		if ($userRole > 0){
+			if (isset($_GET["userQuery"])){
+				$userQuery = $_GET["userQuery"];
+				
+				//We need to determine whether the username from the userQuery is a valid user in the database.
+				$profile_user = User::getUserByUserName($userQuery);
+				if ($profile_user == null){
+					//This user does not exist in the DB. Display a message.
+					echo "<h2>I'm sorry</h2>";
+					echo "<h3>This user was not found.</h3>";
+					$redirectPath = SERVER_PATH . 'dashboard.php';
+					echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
+					die();
+				}
+				
+				$profile_userName = $profile_user->getUserid();
+				if ($profile_userName == $userName){
+					$viewingOwnPage = true;
+				} else {
+					$viewingOwnPage = false;
+				}
+			}
+		}
+		
+	?>
+
 	<!-- Basic Header -->
 	<div class="row">
     	<div class="col-lg-12">
-        	<h1 class="page-header">
-                            DashBoard	
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="#">Dashboard</a>
-                            </li>
-                            
-                            <!--  Not Required as of Now. See me later.
-                            	<li class="active">
-                                	<i class="fa fa-file"></i>My Predictions
-                            	</li>
-                             -->
-                        </ol>
-                    </div>
+			<?php
+				if ($userRole > 0 && $viewingOwnPage == true ){
+					echo "<h1 class='page-header'>DashBoard</h1>";
+				} else {
+					echo "<h1 class='page-header'>DashBoard (for {$userQuery})</h1>";
+				}
+			?>
+			<ol class="breadcrumb">
+				<li>
+					<i class="fa fa-dashboard"></i>  <a href="#">Dashboard</a>
+				</li>
+				
+				<!--  Not Required as of Now. See me later.
+					<li class="active">
+						<i class="fa fa-file"></i>My Predictions
+					</li>
+				 -->
+			</ol>
+        </div>
      </div>
+	
+	<?php
+		//echo "<p>$e_userState: {$e_userState}</p>";
+	?>
      
      <!-- End of Basic Header -->
      <div class="row">

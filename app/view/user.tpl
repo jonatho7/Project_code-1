@@ -18,7 +18,7 @@
 	//We need to determine whether the username from the userQuery is a valid user in the database.
 	$profile_user = User::getUserByUserName($userQuery);
 	if ($profile_user == null){
-		//This user does not exist in the DB. 
+		//This user does not exist in the DB. Display a message.
 		echo "<h2>I'm sorry</h2>";
 		echo "<h3>This user was not found.</h3>";
 		$redirectPath = SERVER_PATH . 'dashboard.php';
@@ -27,17 +27,13 @@
 	}
 		
 	$profile_userName = $profile_user->getUserid();
-	//echo 'profile_userName ' . $profile_userName . '!';
 	$userName = $e_user->getUserid();
-	//echo 'userName ' . $userName . '!';
-
 
 	if ($profile_userName == $userName){
 		$viewingOwnProfile = true;
 	} else {
 		$viewingOwnProfile = false;
 	}
-	//echo 'viewing own profile: ' . $viewingOwnProfile ;
 	
 	$profile_firstName = $profile_user->getFirstName();
 	$profile_middleName = $profile_user->get('middleName');
@@ -182,7 +178,7 @@
 		if ($viewingOwnProfile == false){
 			echo '<div class="followButtonsDiv">';
 				//echo "<button type='submit' class='btn btn-primary btn-sm followButton' >Follow</button>";
-				echo "<button type='submit' class='btn btn-primary btn-sm followButton";
+				echo "<button type='submit' class='btn btn-warning btn-sm followButton";
 				if ($followingOtherUser == true){
 					echo " buttonDisplayHidden";
 				} else {
@@ -192,7 +188,7 @@
 			echo '</div>';
 			echo '<div class="followButtonsDiv">';
 				//echo "<button type='button' class='btn btn-primary btn-sm unfollowButton' >Unfollow</button>";
-				echo "<button type='button' class='btn btn-primary btn-sm unfollowButton";
+				echo "<button type='button' class='btn btn-warning btn-sm unfollowButton";
 				if ($followingOtherUser == true){
 					echo " buttonDisplayInherit";
 				} else {
