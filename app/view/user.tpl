@@ -232,7 +232,7 @@
 		</div>
 		
 		<div>
-			<p><a href="<?= SERVER_PATH . 'users/' . $userQuery . '/friends'?>">(Show All)</a>   </p>
+			<p><a href="<?php SERVER_PATH . 'users/' . $userQuery . '/friends'?>">(Show All)</a>   </p>
 		</div>
 		
 	</div>
@@ -253,27 +253,60 @@
 			
 			//Some hardcode, for testing. ...
 			//DELETE after database access is implemented.(Start)
+			
 			$activity1 = new Activity();
-			$activity1->set('activity_id',1);
-			$activity1->set('u_id',1);
-			$activity1->set('u_id_string','vivekb88');
-			$activity1->set('activity_type_id',1);
-			$activity1->set('date_modified_new','2014-11-09 13:29:28');
-			$activity1->set('date_modified_old','2014-11-07 09:19:02');
-			$activity1->set('first_name_new','Vivek');
-			$activity1->set('first_name_old','Vive');
-			$activity1->set('middle_name_new','Bharath');
-			$activity1->set('middle_name_old','B');
-			$activity1->set('last_name_new','Akupatni');
-			$activity1->set('last_name_old','Ak.');
+			$activity1->set('activity_type_id',3);
+			$activity1->set('user_id_string','vivekb88');
+			$activity1->set('date_modified_new','2014-10-21 18:53:33');
+			$activity1->set('up_value_new','130');
+			$activity1->set('up_date','2014-10-12');
+			$activity1->set('r_name','West Virginia');
+			$activity1->set('comment_new','This is so much fun!');
 			
 			$activity2 = new Activity();
-			$activity2->set('u_id_string','vivekb88');
-			$activity2->set('u_id2_string','jonatho7');
-			$activity2->set('date_modified_new','2014-11-09 13:29:34');
+			$activity2->set('activity_id',1);
+			$activity2->set('u_id',1);
+			$activity2->set('user_id_string','vivekb88');
+			$activity2->set('activity_type_id',1);
+			$activity2->set('date_modified_new','2014-11-09 13:29:28');
+			$activity2->set('date_modified_old','2014-11-07 09:19:02');
+			$activity2->set('first_name_new','Vivek');
+			$activity2->set('first_name_old','Vive');
+			$activity2->set('middle_name_new','Bharath');
+			$activity2->set('middle_name_old','B');
+			$activity2->set('last_name_new','Akupatni');
+			$activity2->set('last_name_old','Ak.');
+			
+			$activity3 = new Activity();
+			$activity3->set('activity_type_id',2);
+			$activity3->set('user_id_string','vivekb88');
+			$activity3->set('user_id2_string','jonatho7');
+			$activity3->set('date_modified_new','2014-11-09 13:33:41');
+			
+			$activity4 = new Activity();
+			$activity4->set('activity_type_id',2);
+			$activity4->set('user_id_string','harshalh');
+			$activity4->set('user_id2_string','vivekb88');
+			$activity4->set('date_modified_new','2014-11-09 13:35:05');
+			
+			$activity5 = new Activity();
+			$activity5->set('activity_type_id',4);
+			$activity5->set('user_id_string','vivekb88');
+			$activity5->set('date_modified_new','2014-11-09 13:48:47');
+			$activity5->set('up_value_new','200');
+			$activity5->set('up_date','2014-10-12');
+			$activity5->set('r_name','West Virginia');
+			$activity5->set('comment_new','I think this prediction will be more accurate, actually.');
+			
+			$activity6 = new Activity();
+			$activity6->set('activity_type_id',5);
+			$activity6->set('user_id_string','vivekb88');
+			$activity6->set('date_modified_new','2014-11-09 13:51:55');
+			$activity6->set('up_date','2014-10-12');
+			$activity6->set('r_name','West Virginia');
 			
 			//The activities array.
-			$activities = array($activity1, $activity2);
+			$activities = array($activity1, $activity2, $activity3, $activity4, $activity5);
 			//DELETE after database access is implemented.(End)
 			
 			//Max number of activity feed items to show.
@@ -281,22 +314,75 @@
 			
 			//iterate over the activity feed.
 			for($index = 0; $index < count($activities) || $index < $max_activity_feed; $index++){
-				//Coming soon...
+				$activity = $activities[$index];
+				
+				if ($activity->get('activity_type_id') == 1){
+					echo '<div class="activityFeedDiv">';
+						$newName = $activity->get('first_name_new') . " " . $activity->get('middle_name_new') . " " . $activity->get('last_name_new');
+						echo "<p class='activityFeedParag'><a href=\"SERVER_PATH . 'users/' . {$activity->get('user_id_string')}\">{$activity->get('user_id_string')}</a> changed their name to {$newName}</p>";
+						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
+					echo '</div>';
+				}
+				
+				if ($activity->get('activity_type_id') == 3){
+					echo '<div class="activityFeedDiv">';
+						echo "<p class='activityFeedParag'><a href=\"SERVER_PATH . 'users/' . {$activity->get('user_id_string')}\">{$activity->get('user_id_string')}</a> made a new prediction for {$activity->get('r_name')} for {$activity->get('up_date')}.</p>";
+						echo "<p class='activityFeedParag activityFeedDate'>{$activity->getDate_Modified_New()}</p>";
+						echo "<p class='activityFeedComment'><strong>\"{$activity->get('comment_new')}\"</strong></p>";
+					echo '</div>';
+				}
+				
+				if ($index == 1){
+					$index = 50;
+				}
+				
 			}
 			
 			
 		?>
 		<div>
+			
+			
+			<?php $activity = $activity1 ?>
 			<div class="activityFeedDiv">
-				<?php $newName = $activity1->get('first_name_new') . " " . $activity1->get('middle_name_new') . " " . $activity1->get('last_name_new')  ?>
-				<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity1->get('u_id_string')?>"><?php echo $activity1->get('u_id_string') ?></a> changed their name to <?php echo $newName?></p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity1->getDate_Modified_New() ?></p>
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> made a new prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.</p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
+				<p class="activityFeedComment"><strong>"<?php echo $activity->get('comment_new') ?>"</strong></p>
 			</div>
 			
+			<?php $activity = $activity2 ?>
 			<div class="activityFeedDiv">
-				<p class="activityFeedParag"><a href="<?= SERVER_PATH . 'users/' . $activity2->get('u_id_string')?>"><?php echo $activity2->get('u_id_string') ?></a> is now following <a href="<?= SERVER_PATH . 'users/' . $activity2->get('u_id2_string')?>"><?php echo $activity2->get('u_id2_string') ?></a></p>
-				<p class="activityFeedParag activityFeedDate"><?php echo $activity2->getDate_Modified_New() ?></p>
+				<?php $newName = $activity->get('first_name_new') . " " . $activity->get('middle_name_new') . " " . $activity->get('last_name_new')  ?>
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> changed their name to <?php echo $newName?></p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
 			</div>
+			
+			<?php $activity = $activity3 ?>
+			<div class="activityFeedDiv">
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> is now following <a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id2_string')?>"><?php echo $activity->get('user_id2_string') ?></a></p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
+			</div>
+			
+			<?php $activity = $activity4 ?>
+			<div class="activityFeedDiv">
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> is now following <a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id2_string')?>"><?php echo $activity->get('user_id2_string') ?></a></p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
+			</div>
+			
+			<?php $activity = $activity5 ?>
+			<div class="activityFeedDiv">
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> modified their prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.</p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
+				<p class="activityFeedComment"><strong>"<?php echo $activity->get('comment_new') ?>"</strong></p>
+			</div>
+			
+			<?php $activity = $activity6 ?>
+			<div class="activityFeedDiv">
+				<p class="activityFeedParag"><a href="<?php SERVER_PATH . 'users/' . $activity->get('user_id_string')?>"><?php echo $activity->get('user_id_string') ?></a> deleted a prediction for <?php echo $activity->get('r_name') ?> for <?php echo $activity->get('up_date') ?>.?>"</p>
+				<p class="activityFeedParag activityFeedDate"><?php echo $activity->getDate_Modified_New() ?></p>
+			</div>
+			
+			
 		</div>
 		
 		<div>
