@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 10, 2014 at 02:47 AM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 09, 2014 at 11:39 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `activity_log` (
 --
 
 INSERT INTO `activity_log` (`activity_id`, `u_id`, `user_id_string`, `activity_type_id`, `u_id2`, `user_id2_string`, `date_modified_new`, `date_modified_old`, `up_id`, `up_value_new`, `up_value_old`, `up_date`, `r_name`, `comment_new`, `comment_old`, `first_name_new`, `first_name_old`, `middle_name_new`, `middle_name_old`, `last_name_new`, `last_name_old`) VALUES
-(1, 1, 'vivekb88', 1, NULL, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
-(2, 1, 'vivekb88', 2, 24, 'jonatho7', '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 25, 'harshalh', 2, 1, 'vivekb88', '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 'vivekb88', 3, NULL, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 1, 'vivekb88', 3, NULL, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 1, 'vivekb88', 1, NULL, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
+(3, 1, 'vivekb88', 2, 24, 'jonatho7', '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 25, 'harshalh', 2, 1, 'vivekb88', '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 1, 'vivekb88', 4, NULL, NULL, '2014-11-09 13:48:47', '2014-10-21 18:53:33', 61, 200, 130, '2014-10-12', 'West Virginia', 'I think this prediction will be more accurate, actually.', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL),
 (6, 1, 'vivekb88', 5, NULL, NULL, '2014-11-09 13:51:55', '2014-10-14 03:09:02', 33, NULL, 155, '2014-10-29', 'West Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
