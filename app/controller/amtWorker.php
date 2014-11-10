@@ -27,8 +27,11 @@ require_once 'AMTTurkerState.php';
  * Need to add more checkings later
  */ 
 
-if (empty($_GET[ASSIGNMENT_ID]) || empty($_GET[WORKER_ID]) || empty($_GET[HIT_ID])) {
-	echo "Unauthorized access. Access only for AMT workers";
+if (empty($_GET[ASSIGNMENT_ID])) {
+	echo "Unauthorized access. Access only for AMT workers <br>";
+	echo "assignment ID = ". @$_GET[ASSIGNMENT_ID] . "<br>";
+	echo "worker id =" . @$_GET[WORKER_ID]. "<br>";
+	echo "hitid =". @$_GET[WORKER_ID]. "<br>";
 	exit();
 } 
 
