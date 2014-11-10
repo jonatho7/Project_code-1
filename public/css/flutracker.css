@@ -80,4 +80,12 @@
 .activityFeedPageHeader {
 	margin-bottom: 9em;
 }
+
+.buttonDisplayHidden {
+	display: none;
+}
+
+.buttonDisplayInherit {
+	display: inherit;
+}
 	

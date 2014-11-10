@@ -165,11 +165,40 @@
 	<?php
 		//If a user is viewing their own profile, show the Edit Buttons.
 		if ($viewingOwnProfile == true){
-			echo '<div class="editProfileDiv">';
-				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+				echo '<div class="editProfileDiv">';
+					echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+				echo '</div>';
+				echo '<div class="editProfileDiv">';
+					echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+				echo '</div>';
+		}
+	?>
+	
+	<?php
+		//TODO. Hardcode. Need to get from the database whether you are following the other user or not.
+		$followingOtherUser = false;
+		
+		//If a user is viewing someone else's profile, show the Follow button.
+		if ($viewingOwnProfile == false){
+			echo '<div class="followButtonsDiv">';
+				//echo "<button type='submit' class='btn btn-primary btn-sm followButton' >Follow</button>";
+				echo "<button type='submit' class='btn btn-primary btn-sm followButton";
+				if ($followingOtherUser == true){
+					echo " buttonDisplayHidden";
+				} else {
+					echo " buttonDisplayInherit";
+				}
+				echo "' >Follow</button>";
 			echo '</div>';
-			echo '<div class="editProfileDiv">';
-				echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+			echo '<div class="followButtonsDiv">';
+				//echo "<button type='button' class='btn btn-primary btn-sm unfollowButton' >Unfollow</button>";
+				echo "<button type='button' class='btn btn-primary btn-sm unfollowButton";
+				if ($followingOtherUser == true){
+					echo " buttonDisplayInherit";
+				} else {
+					echo " buttonDisplayHidden";
+				}
+				echo "' >Unfollow</button>";
 			echo '</div>';
 		}
 	?>

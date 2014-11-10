@@ -1,5 +1,38 @@
 var main = function() {
 
+  $(".unfollowButton").click(function() {
+    var result = confirm("Are you sure you want to unfollow this user?");
+    if (result == true){
+      //TODO. Need to unfollow the user. Add this data to the database.
+      ;
+      
+      alert("You are no longer following this user.")
+      
+      //Show the follow button.
+      $(".followButton").removeClass( "buttonDisplayHidden" );
+      $(".followButton").addClass( "buttonDisplayInherit" );
+      
+      //Hide the unfollow button.
+      $(".unfollowButton").removeClass( "buttonDisplayInherit" );
+      $(".unfollowButton").addClass( "buttonDisplayHidden" );
+    }
+  });
+  
+  $(".followButton").click(function() {
+      //TODO. Need to follow the user. Add this data to database.
+      ;
+      
+      alert("You are now following this user.")
+      
+      //Show the unfollow button.
+      $(".unfollowButton").removeClass( "buttonDisplayHidden" );
+      $(".unfollowButton").addClass( "buttonDisplayInherit" );
+      
+      //Hide the follow button.
+      $(".followButton").removeClass( "buttonDisplayInherit" );
+      $(".followButton").addClass( "buttonDisplayHidden" );
+  });
+
   $(".editProfileButton").click(function() {
     //Hide these items.
     $(".userTPL_firstName").css( "display", "none" );
@@ -107,8 +140,7 @@ var main = function() {
     $('#errorMessage').text("");
     $(".errorBox").css( "display", "none" );
   };
-  
-    
+ 
 }
 
 $(document).ready(main);
