@@ -20,7 +20,7 @@ function sendRedirect($key, $value, $url) {
 }
 
 if (empty($_POST['firstName'])) {
-	$userRegistrationErrors['firstName'] = "first name is mandatory";	
+	$userRegistrationErrors['firstName'] = "First name is mandatory";	
 } else {
 	$firstName = $_POST['firstName'];
 }
@@ -32,13 +32,25 @@ if (empty($_POST['lastName'])) {
 }
 
 if (empty($_POST['userName'])) {
-	$userRegistrationErrors['userName'] = "username is empty";
+	$userRegistrationErrors['userName'] = "Username is empty";
 } else {
 	$userName = $_POST['userName'];
 }
 
+if (empty($_POST['emailAddress'])) {
+	$userRegistrationErrors['emailAddress'] = "Email Address is empty";
+} else {
+	$emailAddress = $_POST['emailAddress'];
+}
+
+if (empty($_POST['confirmEmailAddress'])) {
+	$userRegistrationErrors['confirmEmailAddress'] = "Confirm Email Address is empty";
+} else {
+	$confirmEmailAddress = $_POST['confirmEmailAddress'];
+}
+
 if (empty($_POST['password'])) {
-	$userRegistrationErrors['password'] = "password is empty";
+	$userRegistrationErrors['password'] = "Password is empty";
 } else {
 	$password = $_POST['password'];
 }
@@ -65,17 +77,21 @@ if ($user != NULL) {
 if ($confirmPassword != $password) {
 	$userRegistrationErrors['password'] = "Passwords don't match.";
 	sendRedirect('userRegistrationErrors', $userRegistrationErrors, 'register');
-	
 }
 
-// dont' care
+# Check if email address entered twice are the same
+if ($confirmEmailAddress != $emailAddress) {
+	$userRegistrationErrors['confirmEmailAddress'] = "Email Addresses don't match.";
+	sendRedirect('userRegistrationErrors', $userRegistrationErrors, 'register');
+}
+
+//middle name is optional.
 $middleName = $_POST['middleName'];
 
-if (isset($_POST['profileVisibility'])  && ($_POST['profileVisibility'] == 'yes')){
-	$profileVisibility = 'n';
+if (isset($_POST['emailVisibility'])  && ($_POST['emailVisibility'] == 'Public')){
+	$emailVisibility = 'Public';
 } else {
-	$profileVisibility = 'y';
-	//echo '<br> The profile is not set';
+	$emailVisibility = 'Private';
 }
 
 #Everything so far is good. Just copy the profile picture 
@@ -99,8 +115,6 @@ if (isset($_FILES["inputFile"]) && (!empty($_FILES["inputFile"]))) {
 	$profilePic = "";
 }
 
-#echo "Everything is fine till now";
-
 /*
  * Now create the new user in the system
  */
@@ -110,14 +124,13 @@ $userArgument = Array(
 					'middleName'=>$middleName,
 					'userId'=>$userName,
 					'profilePic'=>$profilePic,
-					'visibility'=>$profileVisibility,
-					'password'=>$password);
+					'emailVisibility'=>$emailVisibility,
+					'password'=>$password,
+					'emailAddress'=>$emailAddress);
 
 $user = new User($userArgument, True);
 
-#
-# Should we redirect or include here??
-#
+
 session_unset(); # Free all session specific data
 
 require_once 'login.php';
