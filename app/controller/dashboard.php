@@ -38,11 +38,11 @@ $user = User::getUserByUserName($_SESSION['userName']);
 if ($user == NULL) {
 	# CHANGE ME to login folder.
 	
-	eader('Location: '. SERVER_PATH. 'test.php');
+	header('Location: '. SERVER_PATH. 'test.php');
 	exit();
 }
 
-# Set the title and user object
+# Set the title and usehr object
 $e_Title = "Dashboard";
 $e_user = $user;
 

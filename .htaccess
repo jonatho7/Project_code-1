@@ -47,4 +47,9 @@ RewriteRule     ^handleTurkerRequest$ app/controller/handleTurkerRequest.php
 
 RewriteRule 	^searchUsers.php$  app/controller/searchUsers.php
 RewriteRule     ^testcases$ app/controller/testcases.php
+RewriteRule 	^otherPredictions.php$  app/controller/otherPredictions.php
+
+RewriteRule     ^predictions/([a-zA-Z0-9_-]+)/?$ app/controller/predictions.php?userQuery=$1
+
+RewriteRule 	^ProcessOtherUsersChangeRegion.php$  app/controller/ProcessOtherUsersChangeRegion.php
 
