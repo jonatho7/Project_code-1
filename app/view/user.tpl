@@ -38,7 +38,7 @@
 	$profile_firstName = $profile_user->getFirstName();
 	$profile_middleName = $profile_user->get('middleName');
 	$profile_lastName = $profile_user->getLastName();
-	$profile_visibility = $profile_user->get('visibility');
+	$profile_email_visibility = $profile_user->get('emailVisibility');
 	$profile_emailAddress = $profile_user->get('emailAddress');
 ?>
 
@@ -97,9 +97,9 @@
 		<?php
 			if ($viewingOwnProfile == true){
 				echo "<div>";
-					echo '<p class="userTPL_profile"><strong>Visibility: </strong></p>';
+					echo '<p class="userTPL_profile"><strong>Email Visibility: </strong></p>';
 					echo '<p class="userTPL_profile userTPL_visibility">';
-						if($profile_visibility == "y"){
+						if($profile_email_visibility == "Public"){
 							echo "Public";
 						} else {
 							echo "Private";
@@ -117,7 +117,17 @@
 		
 		<div>
 			<p class="userTPL_profile"><strong>Email: </strong></p>
-			<p class="userTPL_profile userTPL_email"><?php echo $profile_emailAddress?></p>
+			<?php
+				if($profile_email_visibility == "Public"){
+					echo "<p class='userTPL_profile userTPL_email'>{$profile_emailAddress}</p>";
+				} else {
+					if ($viewingOwnProfile == true){
+						echo "<p class='userTPL_profile userTPL_email'>{$profile_emailAddress}</p>";
+					} else {
+						echo "<p class='userTPL_profile userTPL_email'>Private</p>";
+					}
+				}
+			?>
 			<div>
 				<input class="form-control userTPL_emailForm" type="text" required="" name="emailAddress">
 			</div>

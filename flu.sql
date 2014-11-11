@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 11, 2014 at 02:23 AM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 11, 2014 at 12:58 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8143,7 +8143,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `middle_name` varchar(100) DEFAULT NULL,
   `user_id` varchar(100) NOT NULL,
   `profile_pic` varchar(200) DEFAULT NULL,
-  `visibility` char(1) NOT NULL DEFAULT 'y',
+  `email_visibility` varchar(20) NOT NULL DEFAULT 'Public',
   `admin` char(1) NOT NULL DEFAULT 'n',
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(100) NOT NULL,
@@ -8154,12 +8154,12 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bharath', 'akupatni', NULL, 'vivekb88', NULL, 'y', 'y', '2014-10-06 12:43:35', 'vivekb88', ''),
-(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'y', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
-(25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'n', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
-(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'y', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
-(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'y', 'n', '2014-11-08 00:24:38', 'pass', '');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
+(1, 'vivek bharath', 'akupatni', NULL, 'vivekb88', NULL, 'Public', 'y', '2014-10-06 12:43:35', 'vivekb88', 'vivekb88@vt.edu'),
+(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'y', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
+(25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
+(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'y', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
+(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@vt.edu');
 
 -- --------------------------------------------------------
 

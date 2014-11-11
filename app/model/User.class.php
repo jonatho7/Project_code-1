@@ -14,7 +14,7 @@ class User {
 	protected $userId;
 	protected $profilePic;
 	protected $emailAddress;
-	protected $visibility;
+	protected $emailVisibility;
 	protected $admin;
 	protected $registeredDate;
 	protected $password;
@@ -28,7 +28,7 @@ class User {
 			'user_id'=>'userId',
 			'profile_pic'=>'profilePic',
 			'email_address'=>'emailAddress',
-			'visibility'=>'visibility',
+			'email_visibility'=>'emailVisibility',
 			'admin'=>'admin',
 			'register_date'=>'registeredDate',
 			'password'=>'password');
