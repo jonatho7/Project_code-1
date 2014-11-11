@@ -42,7 +42,7 @@
 
 </head>
 
-<body>
+<body data-server-path="<?=SERVER_PATH?>" data-username="<?=$e_user->getUserid()?>">
 
     <!---    
 		This wraps everything in the page.
@@ -159,6 +159,10 @@
 					
                     <li>
                         <a href="<?php echo SERVER_PATH?>dashboardAddNewPrediction.php"><i class="fa fa-fw fa-wrench"></i> Make New Predictions</a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo SERVER_PATH?>searchUsers.php"><i class="fa fa-fw fa-wrench"></i> Find Users</a>
                     </li>
                 	
                 	<!--       

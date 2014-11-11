@@ -34,6 +34,24 @@ class Region {
 	public function getRegionName() {
 		return $this->r_name;
 	}
+
+    public static function getRegionIdFromName($r_name){
+
+        $query = "select r_id from ". self::REGION_TABLE . " where r_name = $r_name";
+        $result = DBAccess::runQuery($query);
+
+        if ($result == NULL || $result == False) {
+            echo "Unable to access database";
+            return NULL;
+        }
+        else
+        {
+            $regionId = mysqli_fetch_assoc($result);
+            return $regionId["r_id"];
+
+        }
+
+    }
 	
 	public static function getAllRegions() {
 		

@@ -1,77 +1,31 @@
 <?php 
 
 	/*
-	 * For this script to operate a lot of things need to be included
-	 * before including this script.
+	 * This is the script for searching users in the application having public profiles.
+	 *
 	 */
 	require_once '../model/Region.class.php';
 	require_once '../model/UserState.class.php';
 ?>
-	
-	<?php
-		//TODO. Get user role from database.
-		//userRole options: 0 = "registered_user", 1 = "moderator", 2 = "admin".
-		$userRole = 2;
-		
-		//The logged in user's username
-		$userName = $e_user->getUserid();
-		
-		//Whether the user is viewing their own page or someone else's page.
-		$viewingOwnPage = true;
-		
-		if ($userRole > 0){
-			if (isset($_GET["userQuery"])){
-				$userQuery = $_GET["userQuery"];
-				
-				//We need to determine whether the username from the userQuery is a valid user in the database.
-				$profile_user = User::getUserByUserName($userQuery);
-				if ($profile_user == null){
-					//This user does not exist in the DB. Display a message.
-					echo "<h2>I'm sorry</h2>";
-					echo "<h3>This user was not found.</h3>";
-					$redirectPath = SERVER_PATH . 'dashboard.php';
-					echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
-					die();
-				}
-				
-				$profile_userName = $profile_user->getUserid();
-				if ($profile_userName == $userName){
-					$viewingOwnPage = true;
-				} else {
-					$viewingOwnPage = false;
-				}
-			}
-		}
-		
-	?>
-
 	<!-- Basic Header -->
 	<div class="row">
     	<div class="col-lg-12">
-			<?php
-				if ($userRole > 0 && $viewingOwnPage == true ){
-					echo "<h1 class='page-header'>DashBoard</h1>";
-				} else {
-					echo "<h1 class='page-header'>DashBoard (for {$userQuery})</h1>";
-				}
-			?>
-			<ol class="breadcrumb">
-				<li>
-					<i class="fa fa-dashboard"></i>  <a href="#">Dashboard</a>
-				</li>
-				
-				<!--  Not Required as of Now. See me later.
-					<li class="active">
-						<i class="fa fa-file"></i>My Predictions
-					</li>
-				 -->
-			</ol>
-        </div>
+        	<h1 class="page-header">
+                            Find Users
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard" ></i>  <a href="#">Find users</a>
+                            </li>
+                            
+                            <!--  Not Required as of Now. See me later.
+                            	<li class="active">
+                                	<i class="fa fa-file"></i>My Predictions
+                            	</li>
+                             -->
+                        </ol>
+                    </div>
      </div>
-	
-	<?php
-		//echo "<p>$e_userState: {$e_userState}</p>";
-	?>
      
      <!-- End of Basic Header -->
      <div class="row">
@@ -89,6 +43,7 @@
      				$userState = $e_userState;
      				$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
      				$userPredList = $userState->getPredictionsforRegion($r_name);
+
 					
      		?>
      	      <!-- Row starts-->
@@ -114,7 +69,7 @@
                         </select>
                         </div>
                         <div class="form-group">
-                            <button formmethod="post" formaction="<?php echo SERVER_PATH?>ProcessDashBoardChangeRegion.php" 
+                            <button formmethod="post" formaction="<?=SERVER_PATH?>ProcessSearchUsersChangeRegion.php"
                             		type="submit" class="btn btn-primary">
                            		Change Region
                             </button>
@@ -133,17 +88,21 @@
                 <!-- Start of table-->
                 <div class="table-responsive">
                     <?php 
-                    	/*$userState = $e_userState;
+
+                    	// get users who have made a prediction as a list. getUsersforRegion($r_name) gets users
+
+
+                    	$userState = $e_userState;
                     	$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-                    	$userPredList = $userState->getPredictionsforRegion($r_name);*/
-                    	//echo count($userPredList);
+                        $userPredList = $userState->getUsersForRegion($r_name);
+
                     ?>
                     <p class="h4">
                     	<?php 
                     	if (count($userPredList) != 0) {
-							echo 'List of predictions made for '.$r_name;
+							echo 'List of users who have predictions for '.$r_name;
 						} else {
-							echo 'No predictions yet made for '.$r_name;
+							echo 'No users with predictions yet made for '.$r_name;
                     	}
 						?>
                 	</p>
@@ -155,26 +114,20 @@
                     <table class="table table-bordered table-hover">
                         <thead>
                          	<tr>
-                              <th>Date</th>
-                              <th>Value</th>
-                              <th>Tag</th>
-                              <th>Modify</th>
+                              <th>UserName</th>
+
                             </tr>
                         </thead>
                         <tbody>
                          <?php
                          	$count = count($userPredList);
-                         	for ($i=0; $i < $count; $i++) { ?>
+
+                         	for ($i=0; $i < $count; $i++) {
+                         	$friendPath = SERVER_PATH . "users/" . $userPredList[$i];
+                         	?>
 								<tr>
-									<td><?php echo $userPredList[$i]->getDateFormatted()?></td>
-									<td><?php echo $userPredList[$i]->getValue()?></td>
-									<td><?php echo $userPredList[$i]->getComment()?></td>
-									<td>
-										<form role="role">
-											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
-											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
-										</form>
-									</td>
+									<td><a href=<?=$friendPath?>><?=$userPredList[$i]?></a></td>
+
 								</tr>
 							<?php }
                          ?>
