@@ -5,6 +5,7 @@ require_once 'DbAccess.class.php';
 class User {
 	
 	const DBTABLE= 'user';
+	const FOLLOWER_TABLE = 'follower_table';
 	
 	protected $pkId;
 	protected $firstName;
@@ -172,4 +173,64 @@ class User {
 		//print_r($row);
 		return new User($row);
 	}
+	
+	/*
+	 * Gets the list of all people that the given user is following
+	 * as an array (note: gives only the user names)
+	 * 
+	 */
+	 public static function getUsersFollowingById($id) {
+	 	
+	 	if ($id == NULL)
+	 		return NULL;
+	 	
+	 	$query = 'select user_id from '. self::DBTABLE . ' where id in ' .
+	 		'(select distinct user_id from ' . self::FOLLOWER_TABLE .
+	 		" where follower_id=" . $id . ')';
+	 	
+	 	#echo $query;
+	 	
+	 	$resultSet = DBAccess::runQuery($query);
+	 	if ($resultSet->num_rows === 0) {
+	 		return NULL;
+	 	}
+	 	
+	 	$following = [];
+	 	for ($i = 0; $i < $resultSet->num_rows; $i++) {
+	 		$row = mysqli_fetch_assoc($resultSet);
+	 		$following[] = $row['user_id'];
+	 	}
+	 	
+	 	return $following;
+	 }
+	 
+	 /*
+	  * Gets the list of all people (only usernames) who are following
+	  * a given user 
+	  * 
+	 */
+	 public static function getUsersFollowersById($id) {
+	 	 
+	 	if ($id == NULL)
+	 		return NULL;
+	 	 
+	 	$query = 'select user_id from '. self::DBTABLE . ' where id in ' .
+	 			'(select distinct follower_id from ' . self::FOLLOWER_TABLE .
+	 			" where user_id=" . $id . ')';
+	 	 
+	 	#echo $query;
+	 	 
+	 	$resultSet = DBAccess::runQuery($query);
+	 	if ($resultSet->num_rows === 0) {
+	 		return NULL;
+	 	}
+	 	 
+	 	$followers = [];
+	 	for ($i = 0; $i < $resultSet->num_rows; $i++) {
+	 		$row = mysqli_fetch_assoc($resultSet);
+	 		$followers[] = $row['user_id'];
+	 	}
+	 	 
+	 	return $followers;
+	 }
 }

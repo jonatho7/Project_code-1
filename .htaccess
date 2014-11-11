@@ -41,3 +41,7 @@ RewriteRule     ^users/([a-zA-Z0-9_-]+)/friends/?$ app/controller/friends.php?us
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php
 
 RewriteRule     ^handleTurkerRequest$ app/controller/handleTurkerRequest.php
+
+RewriteRule     ^testcases$ app/controller/testcases.php
+
+

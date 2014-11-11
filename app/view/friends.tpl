@@ -55,9 +55,12 @@
 	<div class="followDiv">
 		<h3>Following:</h3>
 	<?php
-	//TODO. Get these values from the database.
-	//Hardcode.
-	$followingArray = array("jonatho7", "sarang87", "harshalh", "otherdude", "otherdude2", "otherdude3");
+	
+	/*
+	 * Get the following list for a user from DB.
+	 */
+	
+	$followingArray = User::getUsersFollowingById($profile_user->getUserPKId());
 	
 	for ($index = 0; $index < count($followingArray); $index++) {
 		$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
@@ -68,9 +71,12 @@
 	<div class="followDiv">
 		<h3>Followers:</h3>
 	<?php
-	//TODO. Get these values from the database.
-	//Hardcode.
-	$followersArray = array("harshalh", "jonatho7", "other", "other2", "other3", "other4");
+	
+	/*
+	 * Get Followers for profile user from database.
+	 * 
+	 */
+	$followersArray = User::getUsersFollowersById($profile_user->getUserPKId());
 			
 	for ($index = 0; $index < count($followersArray); $index++) {
 		$friendPath = SERVER_PATH . "users/" . $followersArray[$index];

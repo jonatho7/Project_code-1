@@ -211,18 +211,22 @@
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Following: </strong> </p>
 		<?php
-			//TODO. Need to get the actual followingArray values from the database.
-			//Hardcode.
-			$followingArray = array("jonatho7", "sarang87", "harshalh", "otherdude", "otherdude2", "otherdude3");
+			// Get the following list from the User class
+			
+			$followingArray = User::getUsersFollowingById($profile_user->getUserPKId());
 			$maxFriendsToShow = 5;	//Only show this many friends.
 			$indexMax = $maxFriendsToShow;
 			if (count($followingArray) < $maxFriendsToShow){
 				$indexMax = count($followingArray);
 			}
 			
+			//Don't echo the seperator for the last entry
+			$sep = ',';
 			for ($index = 0; $index < $indexMax; $index++) {
 				$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>, </p>";
+				if ($index == ($indexMax -1))
+					$sep = '';
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>$sep </p>";
 			}
 			
 			if (count($followingArray) > $maxFriendsToShow){
@@ -236,17 +240,20 @@
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Followers: </strong> </p>
 		<?php
-			//TODO. Need to get the actual followersArray values from the database.
-			//Hardcode.
-			$followersArray = array("harshalh", "jonatho7", "other", "other2", "other3", "other4");
+			// Get followers from database; 
+			$followersArray = User::getUsersFollowersById($profile_user->getUserPKId());
+			
 			$indexMax = $maxFriendsToShow;
 			if (count($followersArray) < $maxFriendsToShow){
 				$indexMax = count($followersArray);
 			}
 			
+			$sep = ',';
 			for ($index = 0; $index < $indexMax; $index++) {
 				$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>, </p>";
+				if ($index == ($indexMax-1))
+					$sep = '';
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>$sep </p>";
 			}
 			
 			if (count($followersArray) > $maxFriendsToShow){
