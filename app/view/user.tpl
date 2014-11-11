@@ -117,7 +117,13 @@
 		
 		<div>
 			<p class="userTPL_profile"><strong>Email: </strong></p>
-			<p class="userTPL_profile userTPL_email"><?php echo $profile_emailAddress?></p>
+			<?php
+				if($profile_email_visibility == "Public"){
+					echo "<p class='userTPL_profile userTPL_email'>{$profile_emailAddress}</p>";
+				} else {
+					echo "<p class='userTPL_profile userTPL_email'>Private</p>";
+				}
+			?>
 			<div>
 				<input class="form-control userTPL_emailForm" type="text" required="" name="emailAddress">
 			</div>
