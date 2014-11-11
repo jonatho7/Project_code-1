@@ -42,7 +42,7 @@
 
 </head>
 
-<body>
+<body data-server-path="<?=SERVER_PATH?>" data-username="<?=$e_user->getUserid()?>">
 
     <!---    
 		This wraps everything in the page.

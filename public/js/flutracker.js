@@ -1,3 +1,14 @@
+/*
+	Creates an input element with name and value 
+	pairs
+*/
+function createInputTag(name, value) {
+	var $input = $("<input>");
+	$input.attr("name", name);
+	$input.attr("value", value);
+	return $input;
+}
+
 var main = function() {
 
   $(".unfollowButton").click(function() {
@@ -125,6 +136,24 @@ var main = function() {
       
       alert("Successfully updated your profile information.");
       
+      /*
+       * Create a form and submit the results via post
+       */
+		var $form = $("<form></form>");
+  
+      	$form.attr("method", "post");
+		var serverPath = $("body").data("server-path");
+		$form.attr("action", serverPath + "handleUserProfileChanges.php");
+		$form.append(createInputTag("firstName", $(".userTPL_firstNameForm").val()));
+		$form.append(createInputTag("middleName", $(".userTPL_middleNameForm").val()));
+		$form.append(createInputTag("lastName", $(".userTPL_lastNameForm").val()));
+		$form.append(createInputTag("visibility",$(".userTPL_visibilityForm").val()));
+		$form.append(createInputTag("email",$(".userTPL_emailForm").val()));
+		$form.append(createInputTag("password", $(".userTPL_passwordForm").val()));
+		$form.append(createInputTag("username", $("body").data("username")));
+		$form.submit();
+      
+      	
     } else {
       //Display the error message.
       $(".errorBox").css( "display", "block" );

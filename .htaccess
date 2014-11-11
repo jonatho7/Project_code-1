@@ -45,3 +45,6 @@ RewriteRule     ^handleTurkerRequest$ app/controller/handleTurkerRequest.php
 RewriteRule     ^testcases$ app/controller/testcases.php
 
 
+RewriteRule    ^handleUserProfileChanges.php$ app/controller/handleUserProfileChanges.php
+
+
