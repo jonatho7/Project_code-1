@@ -121,7 +121,11 @@
 				if($profile_email_visibility == "Public"){
 					echo "<p class='userTPL_profile userTPL_email'>{$profile_emailAddress}</p>";
 				} else {
-					echo "<p class='userTPL_profile userTPL_email'>Private</p>";
+					if ($viewingOwnProfile == true){
+						echo "<p class='userTPL_profile userTPL_email'>{$profile_emailAddress}</p>";
+					} else {
+						echo "<p class='userTPL_profile userTPL_email'>Private</p>";
+					}
 				}
 			?>
 			<div>
