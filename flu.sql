@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 11, 2014 at 12:58 AM
+-- Host: localhost
+-- Generation Time: Nov 11, 2014 at 11:19 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8079,6 +8079,35 @@ INSERT INTO `data_source` (`ds_id`, `ds_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `EventType`
+--
+
+CREATE TABLE IF NOT EXISTS `EventType` (
+`eventId` int(11) NOT NULL,
+  `eventName` varchar(256) NOT NULL,
+  `eventPublic` char(1) NOT NULL DEFAULT 'y' COMMENT 'Indicates whether this event change is visible to other uses are not.'
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `EventType`
+--
+
+INSERT INTO `EventType` (`eventId`, `eventName`, `eventPublic`) VALUES
+(1, 'firstName', 'y'),
+(2, 'middleName', 'y'),
+(3, 'lastName', 'y'),
+(4, 'password', 'n'),
+(5, 'emailVisibility', 'n'),
+(6, 'email', 'n'),
+(7, 'follower', 'y'),
+(8, 'following', 'y'),
+(9, 'tag', 'n'),
+(10, 'predictionComment', 'y'),
+(11, 'unfollow', 'n');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `follower_table`
 --
 
@@ -8097,10 +8126,9 @@ INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
 (1, 25, '2014-11-10 19:00:31'),
 (1, 26, '2014-11-10 19:00:31'),
 (1, 27, '2014-11-10 19:00:31'),
-(24, 1, '2014-11-10 19:00:31'),
-(25, 1, '2014-11-10 19:00:31'),
-(26, 1, '2014-11-10 19:00:31'),
-(26, 24, '2014-11-10 19:58:12');
+(26, 24, '2014-11-10 19:58:12'),
+(24, 1, '2014-11-11 04:21:24'),
+(27, 1, '2014-11-11 04:24:23');
 
 -- --------------------------------------------------------
 
@@ -8155,11 +8183,72 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bharath', 'akupatni', NULL, 'vivekb88', NULL, 'Public', 'y', '2014-10-06 12:43:35', 'vivekb88', 'vivekb88@vt.edu'),
-(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'y', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
+(1, 'vivek bh', 'aku', '				bharath								Bharath													', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'buddY181', 'vivekb88@vt.edu'),
+(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
-(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'y', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
-(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@vt.edu');
+(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
+(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userEvent`
+--
+
+CREATE TABLE IF NOT EXISTS `userEvent` (
+`id` int(11) NOT NULL COMMENT 'uniques identifies an event for an user',
+  `u_id` int(11) NOT NULL COMMENT 'foreign key to user table',
+  `eventId` int(11) NOT NULL COMMENT 'foreign key to event table',
+  `pastData` varchar(256) NOT NULL COMMENT 'past Data',
+  `newData` varchar(256) NOT NULL COMMENT 'new Data',
+  `eventDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time when entry has happened'
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+
+--
+-- Dumping data for table `userEvent`
+--
+
+INSERT INTO `userEvent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventDate`) VALUES
+(4, 1, 11, 'harshalh', '', '2014-11-11 04:09:13'),
+(5, 1, 11, 'jonatho7', '', '2014-11-11 04:12:09'),
+(6, 1, 8, '', 'jhellm', '2014-11-11 04:13:07'),
+(7, 27, 7, '', 'vivekb88', '2014-11-11 04:13:07'),
+(8, 1, 11, 'jhellm', '', '2014-11-11 04:14:52'),
+(9, 1, 11, 'sarang87', '', '2014-11-11 04:17:56'),
+(10, 1, 8, '', 'sarang87', '2014-11-11 04:20:33'),
+(11, 26, 7, '', 'vivekb88', '2014-11-11 04:20:33'),
+(12, 1, 8, '', 'jonatho7', '2014-11-11 04:21:24'),
+(13, 24, 7, '', 'vivekb88', '2014-11-11 04:21:24'),
+(14, 1, 8, '', 'harshalh', '2014-11-11 04:23:51'),
+(15, 25, 7, '', 'vivekb88', '2014-11-11 04:23:51'),
+(16, 1, 11, 'harshalh', '', '2014-11-11 04:24:00'),
+(17, 1, 11, 'sarang87', '', '2014-11-11 04:24:15'),
+(18, 1, 8, '', 'jhellm', '2014-11-11 04:24:23'),
+(19, 27, 7, '', 'vivekb88', '2014-11-11 04:24:23'),
+(20, 1, 2, '', '							', '2014-11-11 04:59:20'),
+(21, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 04:59:20'),
+(22, 1, 2, '', '							', '2014-11-11 04:59:47'),
+(23, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 04:59:47'),
+(24, 1, 2, '', '							', '2014-11-11 05:01:22'),
+(25, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:01:22'),
+(26, 1, 2, '', '							', '2014-11-11 05:03:53'),
+(27, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:03:53'),
+(28, 1, 2, '', '							', '2014-11-11 05:03:56'),
+(29, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:03:56'),
+(30, 1, 2, '', '							', '2014-11-11 05:04:29'),
+(31, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:04:29'),
+(32, 1, 2, '', '							', '2014-11-11 05:05:15'),
+(33, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:05:15'),
+(34, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:06:37'),
+(35, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:08:21'),
+(36, 1, 2, '', 'Bharath				', '2014-11-11 05:09:31'),
+(37, 1, 2, 'Bharath				', '				Bharath							', '2014-11-11 05:10:11'),
+(38, 1, 4, 'vivekb88', 'buddY181', '2014-11-11 05:10:11'),
+(39, 1, 2, '				Bharath							', 'bharath								Bharath										', '2014-11-11 05:13:05'),
+(40, 1, 1, 'vivek bharath', 'vivek bh', '2014-11-11 05:14:28'),
+(41, 1, 3, 'akupatni', 'aku', '2014-11-11 05:14:28'),
+(42, 1, 2, 'bharath								Bharath										', '				bharath								Bharath													', '2014-11-11 05:16:38'),
+(43, 1, 5, 'Public', 'Private', '2014-11-11 05:16:38');
 
 -- --------------------------------------------------------
 
@@ -8175,7 +8264,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8217,7 +8306,9 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (67, 240, '2014-10-26 13:02:58', 38, '0000-00-00', 'asdas', 1),
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
 (69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
-(72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1);
+(72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1),
+(74, 100, '2014-11-11 02:19:38', 38, '2014-11-18', 'adsa', 1),
+(75, 1, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1);
 
 --
 -- Indexes for dumped tables
@@ -8248,6 +8339,12 @@ ALTER TABLE `data_source`
  ADD PRIMARY KEY (`ds_id`);
 
 --
+-- Indexes for table `EventType`
+--
+ALTER TABLE `EventType`
+ ADD PRIMARY KEY (`eventId`);
+
+--
 -- Indexes for table `follower_table`
 --
 ALTER TABLE `follower_table`
@@ -8264,6 +8361,12 @@ ALTER TABLE `region`
 --
 ALTER TABLE `user`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `userEvent`
+--
+ALTER TABLE `userEvent`
+ ADD PRIMARY KEY (`id`), ADD KEY `u_id` (`u_id`), ADD KEY `eventId` (`eventId`);
 
 --
 -- Indexes for table `user_pred`
@@ -8296,6 +8399,11 @@ MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7921;
 ALTER TABLE `data_source`
 MODIFY `ds_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `EventType`
+--
+ALTER TABLE `EventType`
+MODIFY `eventId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
 -- AUTO_INCREMENT for table `region`
 --
 ALTER TABLE `region`
@@ -8306,10 +8414,15 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 ALTER TABLE `user`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
+-- AUTO_INCREMENT for table `userEvent`
+--
+ALTER TABLE `userEvent`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=44;
+--
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=74;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=76;
 --
 -- Constraints for dumped tables
 --
@@ -8335,6 +8448,13 @@ ADD CONSTRAINT `test` FOREIGN KEY (`r_id`) REFERENCES `region` (`r_id`) ON DELET
 ALTER TABLE `follower_table`
 ADD CONSTRAINT `follower_table_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `follower_table_ibfk_2` FOREIGN KEY (`follower_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `userEvent`
+--
+ALTER TABLE `userEvent`
+ADD CONSTRAINT `userevent_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `userevent_ibfk_2` FOREIGN KEY (`eventId`) REFERENCES `EventType` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_pred`
