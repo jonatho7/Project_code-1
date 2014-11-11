@@ -9,6 +9,30 @@ function createInputTag(name, value) {
 	return $input;
 }
 
+/*
+	Sends a post request to server to toggle
+	follow/unfollow state
+*/
+function sendPostFollowRequest() {
+	var serverPath = $("body").data("server-path");
+	var profileUser = $(".get-data").data("profile-user");
+	var followState = $(".get-data").data("follow-state");
+	
+	var $form = $("<form></form>");
+	
+	$form.attr("method", "post");
+	
+	var serverPath = $("body").data("server-path");
+	
+	$form.attr("action", serverPath + "handleUserProfileChanges.php");
+	
+	$form.append(createInputTag("profile-user", profileUser));
+	$form.append(createInputTag("follow-state", followState));
+	$form.append(createInputTag("service", "followRequest"));
+	
+	$form.submit();
+}
+
 var main = function() {
 
   $(".unfollowButton").click(function() {
@@ -26,6 +50,7 @@ var main = function() {
       //Hide the unfollow button.
       $(".unfollowButton").removeClass( "buttonDisplayInherit" );
       $(".unfollowButton").addClass( "buttonDisplayHidden" );
+	  sendPostFollowRequest();
     }
   });
   
@@ -42,6 +67,8 @@ var main = function() {
       //Hide the follow button.
       $(".followButton").removeClass( "buttonDisplayInherit" );
       $(".followButton").addClass( "buttonDisplayHidden" );
+	  sendPostFollowRequest();
+	  
   });
 
   $(".editProfileButton").click(function() {

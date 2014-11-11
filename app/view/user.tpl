@@ -181,30 +181,34 @@
 	?>
 	
 	<?php
-		//TODO. Hardcode. Need to get from the database whether you are following the other user or not.
-		$followingOtherUser = false;
+		
+		// Get the follow/following state
+		$followingOtherUser = $e_user->isFollower($profile_user);
+		$followState = $followingOtherUser;
 		
 		//If a user is viewing someone else's profile, show the Follow button.
-		if ($viewingOwnProfile == false){
+		if ($viewingOwnProfile == false){ 
+			$otheruser = $profile_user->getUserid();
+			$dataVariable = "data-profile-user='".$otheruser. "' data-follow-state='". "$followState" . "'";
 			echo '<div class="followButtonsDiv">';
 				//echo "<button type='submit' class='btn btn-primary btn-sm followButton' >Follow</button>";
-				echo "<button type='submit' class='btn btn-warning btn-sm followButton";
+				echo "<button type='submit' class='btn get-data btn-warning btn-sm followButton";
 				if ($followingOtherUser == true){
 					echo " buttonDisplayHidden";
 				} else {
 					echo " buttonDisplayInherit";
 				}
-				echo "' >Follow</button>";
+				echo "' $dataVariable>Follow</button>";
 			echo '</div>';
 			echo '<div class="followButtonsDiv">';
 				//echo "<button type='button' class='btn btn-primary btn-sm unfollowButton' >Unfollow</button>";
-				echo "<button type='button' class='btn btn-warning btn-sm unfollowButton";
+				echo "<button type='button' class='btn get-data btn-warning btn-sm unfollowButton";
 				if ($followingOtherUser == true){
 					echo " buttonDisplayInherit";
 				} else {
 					echo " buttonDisplayHidden";
 				}
-				echo "' >Unfollow</button>";
+				echo "' $dataVariable>Unfollow</button>";
 			echo '</div>';
 		}
 	?>

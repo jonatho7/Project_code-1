@@ -32,6 +32,36 @@ $service = $_POST['service'];
 
 if ($service == 'followRequest') {
 	
+	if (empty($_POST['profile-user'])) {
+		header('Location:'. SERVER_PATH. 'users/'. $user->getUserid());
+		exit();
+	}
+	
+	$eventList = [];
+	if (empty($_POST['follow-state'])) {
+		$currentState = "0";
+	} else {
+		$currentState = "1";
+	}
+	
+	$profileUser = User::getUserByUserName($_POST['profile-user']);
+	
+	$user->toggleFollowerState($profileUser, $currentState);
+	
+	header('Location:'. SERVER_PATH. 'users/'. $user->getUserid());
+	exit();
+}
+
+if ($service == 'profileRequest') {
+	
+	$user->changeFirstName($_POST['firstName']);
+	$user->changeMiddleName($_POST['middleName']);
+	$user->changeLastName($_POST['lastName']);
+	$user->changeVisibility($_POST['visibility']);
+	$user->changeEmailId($_POST['email']);
+	$user->changePassword($_POST['password']);
+	header('Location:'. SERVER_PATH. 'users/'. $user->getUserid());
+	exit();
 }
 
 
