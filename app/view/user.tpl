@@ -18,7 +18,7 @@
 	//We need to determine whether the username from the userQuery is a valid user in the database.
 	$profile_user = User::getUserByUserName($userQuery);
 	if ($profile_user == null){
-		//This user does not exist in the DB. 
+		//This user does not exist in the DB. Display a message.
 		echo "<h2>I'm sorry</h2>";
 		echo "<h3>This user was not found.</h3>";
 		$redirectPath = SERVER_PATH . 'dashboard.php';
@@ -27,17 +27,13 @@
 	}
 		
 	$profile_userName = $profile_user->getUserid();
-	//echo 'profile_userName ' . $profile_userName . '!';
 	$userName = $e_user->getUserid();
-	//echo 'userName ' . $userName . '!';
-
 
 	if ($profile_userName == $userName){
 		$viewingOwnProfile = true;
 	} else {
 		$viewingOwnProfile = false;
 	}
-	//echo 'viewing own profile: ' . $viewingOwnProfile ;
 	
 	$profile_firstName = $profile_user->getFirstName();
 	$profile_middleName = $profile_user->get('middleName');
@@ -165,11 +161,40 @@
 	<?php
 		//If a user is viewing their own profile, show the Edit Buttons.
 		if ($viewingOwnProfile == true){
-			echo '<div class="editProfileDiv">';
-				echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+				echo '<div class="editProfileDiv">';
+					echo "<button type='submit' class='btn btn-primary btn-sm editProfileButton' >Edit Profile</button>";
+				echo '</div>';
+				echo '<div class="editProfileDiv">';
+					echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+				echo '</div>';
+		}
+	?>
+	
+	<?php
+		//TODO. Hardcode. Need to get from the database whether you are following the other user or not.
+		$followingOtherUser = false;
+		
+		//If a user is viewing someone else's profile, show the Follow button.
+		if ($viewingOwnProfile == false){
+			echo '<div class="followButtonsDiv">';
+				//echo "<button type='submit' class='btn btn-primary btn-sm followButton' >Follow</button>";
+				echo "<button type='submit' class='btn btn-warning btn-sm followButton";
+				if ($followingOtherUser == true){
+					echo " buttonDisplayHidden";
+				} else {
+					echo " buttonDisplayInherit";
+				}
+				echo "' >Follow</button>";
 			echo '</div>';
-			echo '<div class="editProfileDiv">';
-				echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+			echo '<div class="followButtonsDiv">';
+				//echo "<button type='button' class='btn btn-primary btn-sm unfollowButton' >Unfollow</button>";
+				echo "<button type='button' class='btn btn-warning btn-sm unfollowButton";
+				if ($followingOtherUser == true){
+					echo " buttonDisplayInherit";
+				} else {
+					echo " buttonDisplayHidden";
+				}
+				echo "' >Unfollow</button>";
 			echo '</div>';
 		}
 	?>
@@ -186,18 +211,22 @@
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Following: </strong> </p>
 		<?php
-			//TODO. Need to get the actual followingArray values from the database.
-			//Hardcode.
-			$followingArray = array("jonatho7", "sarang87", "harshalh", "otherdude", "otherdude2", "otherdude3");
+			// Get the following list from the User class
+			
+			$followingArray = User::getUsersFollowingById($profile_user->getUserPKId());
 			$maxFriendsToShow = 5;	//Only show this many friends.
 			$indexMax = $maxFriendsToShow;
 			if (count($followingArray) < $maxFriendsToShow){
 				$indexMax = count($followingArray);
 			}
 			
+			//Don't echo the seperator for the last entry
+			$sep = ',';
 			for ($index = 0; $index < $indexMax; $index++) {
 				$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>, </p>";
+				if ($index == ($indexMax -1))
+					$sep = '';
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>$sep </p>";
 			}
 			
 			if (count($followingArray) > $maxFriendsToShow){
@@ -211,17 +240,20 @@
 		<div class="followDiv">
 			<p class="userTPL_profile"><strong>Followers: </strong> </p>
 		<?php
-			//TODO. Need to get the actual followersArray values from the database.
-			//Hardcode.
-			$followersArray = array("harshalh", "jonatho7", "other", "other2", "other3", "other4");
+			// Get followers from database; 
+			$followersArray = User::getUsersFollowersById($profile_user->getUserPKId());
+			
 			$indexMax = $maxFriendsToShow;
 			if (count($followersArray) < $maxFriendsToShow){
 				$indexMax = count($followersArray);
 			}
 			
+			$sep = ',';
 			for ($index = 0; $index < $indexMax; $index++) {
 				$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>, </p>";
+				if ($index == ($indexMax-1))
+					$sep = '';
+				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>$sep </p>";
 			}
 			
 			if (count($followersArray) > $maxFriendsToShow){

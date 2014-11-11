@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 09, 2014 at 11:39 PM
+-- Host: localhost
+-- Generation Time: Nov 11, 2014 at 02:23 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8046,6 +8046,18 @@ CREATE TABLE IF NOT EXISTS `amt_result` (
   `task_entry` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `amt_result`
+--
+
+INSERT INTO `amt_result` (`worker_id`, `task_id`, `task_answer`, `task_comment`, `task_entry`) VALUES
+('bot', 1, 'red', '', '2014-11-10 05:10:38'),
+('bot', 2, 'blue', '', '2014-11-10 05:10:44'),
+('bot', 3, 'blue', '', '2014-11-10 05:10:58'),
+('bot', 4, 'blue', '', '2014-11-10 05:11:00'),
+('bot', 5, 'red', '', '2014-11-10 05:11:05'),
+('bot', 6, 'red', '', '2014-11-10 05:11:14');
+
 -- --------------------------------------------------------
 
 --
@@ -8063,6 +8075,32 @@ CREATE TABLE IF NOT EXISTS `data_source` (
 
 INSERT INTO `data_source` (`ds_id`, `ds_name`) VALUES
 (1, 'CDC');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `follower_table`
+--
+
+CREATE TABLE IF NOT EXISTS `follower_table` (
+  `user_id` int(11) NOT NULL COMMENT 'foreign key to user_id',
+  `follower_id` int(11) NOT NULL COMMENT 'foreign key to user id',
+  `follow_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'when did the user started following'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `follower_table`
+--
+
+INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
+(1, 24, '2014-11-10 19:00:31'),
+(1, 25, '2014-11-10 19:00:31'),
+(1, 26, '2014-11-10 19:00:31'),
+(1, 27, '2014-11-10 19:00:31'),
+(24, 1, '2014-11-10 19:00:31'),
+(25, 1, '2014-11-10 19:00:31'),
+(26, 1, '2014-11-10 19:00:31'),
+(26, 24, '2014-11-10 19:58:12');
 
 -- --------------------------------------------------------
 
@@ -8110,7 +8148,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(100) NOT NULL,
   `email_address` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `user`
@@ -8118,26 +8156,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
 (1, 'vivek bharath', 'akupatni', NULL, 'vivekb88', NULL, 'y', 'y', '2014-10-06 12:43:35', 'vivekb88', ''),
-(2, 'vivek', 'vivek', '', 'abc', 'abc_03656_athabascafalls_2880x1800.jpg', 'n', 'n', '2014-10-12 00:25:41', 'abc', ''),
-(3, 'vivek', 'vivek', NULL, 'vivek_lol', 'vivek_lol_20130503_171936.jpg', 'n', 'n', '2014-10-12 01:14:46', 'a', ''),
-(4, 'asdasdasd', 'asda', 'asdasadasd', 'zz', 'zz_20130721_160720.jpg', 'n', 'n', '2014-10-12 01:27:58', 'a', ''),
-(5, 'asa', 'as', 'as', 'ass', 'ass_', 'y', 'n', '2014-10-12 01:31:07', 'a', ''),
-(6, 'asdas', 'asdas', 'asdas', 'last', 'last_', 'y', 'n', '2014-10-12 01:32:22', 'final', ''),
-(7, 'vivke', 'vivke', NULL, 'working', NULL, 'n', 'n', '2014-10-12 01:34:08', 'working', ''),
-(8, 'sasd', 'asdsa', NULL, 'asasas', NULL, 'y', 'n', '2014-10-12 01:43:01', '1', ''),
-(9, 'vivke', 'asasd', NULL, 'zasasas', NULL, 'n', 'n', '2014-10-12 13:45:07', '1', ''),
-(10, 'vivek', 'asdasd', 'asdsa', 'tig', NULL, 'n', 'n', '2014-10-13 01:21:03', '1', ''),
-(12, 'asd', 'asdsa', 'asd', 'asdasmonkey', NULL, 'n', 'n', '2014-10-13 02:00:00', '1234', ''),
-(13, 'asdd', 'asdd', 'asdd', 'asdd', NULL, 'n', 'n', '2014-10-13 21:04:46', 'asdd', ''),
-(14, 'hey', 'dude', 'lil', 'hey', 'hey_deadpool.png', 'y', 'n', '2014-10-13 23:25:54', 'hey', ''),
-(15, 'ds', 'ds', 'ds', 'ds', NULL, 'n', 'n', '2014-10-14 00:32:38', 'ds', ''),
-(16, 'asdad', 'asdsa', NULL, 'vivekb1988', NULL, 'n', 'n', '2014-10-14 04:33:52', 'buddY181', ''),
-(17, 'vive', 'adas', 'sdsa', 'vivek', NULL, 'n', 'n', '2014-10-14 05:09:35', 'buddY181', ''),
-(18, 'demo', 'demo', NULL, 'demo', NULL, 'y', 'n', '2014-10-21 20:42:47', 'demo', ''),
-(19, 'demo', 'user', NULL, 'test', NULL, 'y', 'n', '2014-10-22 21:21:07', '1234', ''),
-(21, 'ambi', 'lol', NULL, 'ambi', NULL, 'y', 'n', '2014-10-24 20:37:23', 'ambi', ''),
-(22, 'vivekb88', 'vivekb88', NULL, 'testabc', NULL, 'y', 'n', '2014-10-27 16:19:05', 'testabc', ''),
-(23, 'vivekb88', 'asdasd', NULL, 'zzz', NULL, 'n', 'n', '2014-11-04 23:24:11', 'zzz', ''),
 (24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'y', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'n', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
 (26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'y', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
@@ -8157,7 +8175,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8196,9 +8214,6 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (57, 3, '2014-10-14 04:39:30', 46, '2014-10-28', 'k3', 1),
 (60, 9999, '2014-10-14 05:07:51', 44, '2014-10-25', 'vivek', 1),
 (61, 200, '2014-10-21 18:53:33', 43, '2014-10-12', 'I think this prediction will be more accurate, actually.', 1),
-(63, 1000, '2014-10-21 20:44:34', 42, '2014-09-24', '', 18),
-(65, 190, '2014-10-22 21:25:23', 38, '2014-10-24', 'fgfgfd', 19),
-(66, 100, '2014-10-24 20:39:29', 39, '2014-10-12', 'asdsad', 1),
 (67, 240, '2014-10-26 13:02:58', 38, '0000-00-00', 'asdas', 1),
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
 (69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
@@ -8231,6 +8246,12 @@ ALTER TABLE `actual_data`
 --
 ALTER TABLE `data_source`
  ADD PRIMARY KEY (`ds_id`);
+
+--
+-- Indexes for table `follower_table`
+--
+ALTER TABLE `follower_table`
+ ADD KEY `user_id` (`user_id`), ADD KEY `follower_id` (`follower_id`);
 
 --
 -- Indexes for table `region`
@@ -8283,12 +8304,12 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=73;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=74;
 --
 -- Constraints for dumped tables
 --
@@ -8307,6 +8328,13 @@ ADD CONSTRAINT `activity_log_ibfk_3` FOREIGN KEY (`u_id2`) REFERENCES `user` (`i
 ALTER TABLE `actual_data`
 ADD CONSTRAINT `data_source_constraint` FOREIGN KEY (`ds_id`) REFERENCES `data_source` (`ds_id`) ON DELETE CASCADE,
 ADD CONSTRAINT `test` FOREIGN KEY (`r_id`) REFERENCES `region` (`r_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `follower_table`
+--
+ALTER TABLE `follower_table`
+ADD CONSTRAINT `follower_table_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `follower_table_ibfk_2` FOREIGN KEY (`follower_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_pred`

@@ -44,4 +44,7 @@ RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php
 
 RewriteRule     ^handleTurkerRequest$ app/controller/handleTurkerRequest.php
 
+
 RewriteRule 	^searchUsers.php$  app/controller/searchUsers.php
+RewriteRule     ^testcases$ app/controller/testcases.php
+
