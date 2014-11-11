@@ -188,6 +188,19 @@
      	
      	<!--  Right side start-->
      	<div class="col-lg-6">
+     		
+     		<?php 
+     			if ($e_user->isAdmin()) { ?>
+					
+					<button type="button" class="adminMode btn btn-primary">Enter Admin Mode</button>
+					
+					<script >
+						$(".adminMode").show();
+						$("li.adminMode").hide();
+						var adminMode = false;
+					</script>
+				<?php }
+     		?>
      	
      	</div>
      

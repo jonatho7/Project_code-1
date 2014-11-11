@@ -33,9 +33,26 @@ function sendPostFollowRequest() {
 	$form.submit();
 }
 
+var adminMode = false;
 var main = function() {
 
-  $(".unfollowButton").click(function() {
+/*
+	Implement toggle between Admin and normal mode
+*/
+	
+	$("button.adminMode").click(function () {
+		if (adminMode == false) {
+			adminMode = true;
+			$("button.adminMode").text("Exit Admin Mode");
+			$("li.adminMode").show();
+		} else {
+			adminMode = false;
+			$("li.adminMode").hide();
+			$("button.adminMode").text("Enter Admin Mode");
+		}
+	});
+	
+$(".unfollowButton").click(function() {
     var result = confirm("Are you sure you want to unfollow this user?");
     if (result == true){
       //TODO. Need to unfollow the user. Add this data to the database.

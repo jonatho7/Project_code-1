@@ -67,6 +67,12 @@ class User {
 		}
 	}
 	
+	public function isAdmin() {
+		if ($this->admin == 'y')
+			return true;
+		else 
+			return false;
+	}
 	
 	public function addUsertoDB() {
 		$userArray = $this->UserObjtoArray_DBSchema();
