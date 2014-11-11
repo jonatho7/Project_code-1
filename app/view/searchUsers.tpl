@@ -123,6 +123,8 @@
                          	$count = count($userPredList);
 
                          	for ($i=0; $i < $count; $i++) {
+                         	if ($userPredList[$i]==$userName)
+                         	continue;
                          	$friendPath = SERVER_PATH . "users/" . $userPredList[$i];
                          	?>
 								<tr>

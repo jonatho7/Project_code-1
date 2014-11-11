@@ -154,7 +154,7 @@
                     </li>
 					
 					<li>
-                        <a href="#"><i class="fa fa-fw fa-wrench"></i> Others Predictions</a>
+                        <a href="<?php echo SERVER_PATH?>otherPredictions.php"><i class="fa fa-fw fa-wrench"></i> Others Predictions</a>
                     </li>
 					
                     <li>
