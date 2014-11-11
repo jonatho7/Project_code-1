@@ -4,9 +4,6 @@
 	 * when he logs in.
 	 * 
 	 * 
-	 *  Note:
-	 * CHANGE ME. I have hardcoded the value to get 
-	 * "vivekb88" as username"
 	 * 
 	 * argument: USer login id is stored as USER_NAME in SESSION 
 	 */

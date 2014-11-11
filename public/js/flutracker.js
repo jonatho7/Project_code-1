@@ -1,6 +1,58 @@
+/*
+	Creates an input element with name and value 
+	pairs
+*/
+function createInputTag(name, value) {
+	var $input = $("<input>");
+	$input.attr("name", name);
+	$input.attr("value", value);
+	return $input;
+}
+
+/*
+	Sends a post request to server to toggle
+	follow/unfollow state
+*/
+function sendPostFollowRequest() {
+	var serverPath = $("body").data("server-path");
+	var profileUser = $(".get-data").data("profile-user");
+	var followState = $(".get-data").data("follow-state");
+	
+	var $form = $("<form></form>");
+	
+	$form.attr("method", "post");
+	
+	var serverPath = $("body").data("server-path");
+	
+	$form.attr("action", serverPath + "handleUserProfileChanges.php");
+	
+	$form.append(createInputTag("profile-user", profileUser));
+	$form.append(createInputTag("follow-state", followState));
+	$form.append(createInputTag("service", "followRequest"));
+	
+	$form.submit();
+}
+
+var adminMode = false;
 var main = function() {
 
-  $(".unfollowButton").click(function() {
+/*
+	Implement toggle between Admin and normal mode
+*/
+	
+	$("button.adminMode").click(function () {
+		if (adminMode == false) {
+			adminMode = true;
+			$("button.adminMode").text("Exit Admin Mode");
+			$("li.adminMode").show();
+		} else {
+			adminMode = false;
+			$("li.adminMode").hide();
+			$("button.adminMode").text("Enter Admin Mode");
+		}
+	});
+	
+$(".unfollowButton").click(function() {
     var result = confirm("Are you sure you want to unfollow this user?");
     if (result == true){
       //TODO. Need to unfollow the user. Add this data to the database.
@@ -15,6 +67,7 @@ var main = function() {
       //Hide the unfollow button.
       $(".unfollowButton").removeClass( "buttonDisplayInherit" );
       $(".unfollowButton").addClass( "buttonDisplayHidden" );
+	  sendPostFollowRequest();
     }
   });
   
@@ -31,6 +84,8 @@ var main = function() {
       //Hide the follow button.
       $(".followButton").removeClass( "buttonDisplayInherit" );
       $(".followButton").addClass( "buttonDisplayHidden" );
+	  sendPostFollowRequest();
+	  
   });
 
   $(".editProfileButton").click(function() {
@@ -125,6 +180,25 @@ var main = function() {
       
       alert("Successfully updated your profile information.");
       
+      /*
+       * Create a form and submit the results via post
+       */
+		var $form = $("<form></form>");
+  
+      	$form.attr("method", "post");
+		var serverPath = $("body").data("server-path");
+		$form.attr("action", serverPath + "handleUserProfileChanges.php");
+		$form.append(createInputTag("firstName", $(".userTPL_firstNameForm").val()));
+		$form.append(createInputTag("middleName", $(".userTPL_middleNameForm").val()));
+		$form.append(createInputTag("lastName", $(".userTPL_lastNameForm").val()));
+		$form.append(createInputTag("visibility",$(".userTPL_visibilityForm").val()));
+		$form.append(createInputTag("email",$(".userTPL_emailForm").val()));
+		$form.append(createInputTag("password", $(".userTPL_passwordForm").val()));
+		$form.append(createInputTag("username", $("body").data("username")));
+		$form.append(createInputTag("service", "profileRequest"));
+		$form.submit();
+      
+      	
     } else {
       //Display the error message.
       $(".errorBox").css( "display", "block" );

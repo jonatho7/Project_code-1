@@ -10,6 +10,9 @@
 require_once '../config.php';
 require_once '../model/User.class.php';
 
+require_once '../model/Event.class.php';
+
+
 function println($string) {
 	echo $string . "<br>";
 }
@@ -30,6 +33,7 @@ for ($i = 0 ; $i < count($followers); $i++) {
 	println($followers[$i]);
 }
 
+Event::createEventNameToIdMapping();
 
 
 

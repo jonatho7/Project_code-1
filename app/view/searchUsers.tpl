@@ -143,7 +143,6 @@
      	
      	<!--  Right side start-->
      	<div class="col-lg-6">
-     	
      	</div>
      
      </div>

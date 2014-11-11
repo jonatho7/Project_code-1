@@ -1,6 +1,7 @@
 <?php
 
 require_once 'DbAccess.class.php';
+require_once 'Event.class.php';
 
 class User {
 	
@@ -14,7 +15,7 @@ class User {
 	protected $userId;
 	protected $profilePic;
 	protected $emailAddress;
-	protected $visibility;
+	protected $emailVisibility;
 	protected $admin;
 	protected $registeredDate;
 	protected $password;
@@ -28,7 +29,7 @@ class User {
 			'user_id'=>'userId',
 			'profile_pic'=>'profilePic',
 			'email_address'=>'emailAddress',
-			'visibility'=>'visibility',
+			'email_visibility'=>'emailVisibility',
 			'admin'=>'admin',
 			'register_date'=>'registeredDate',
 			'password'=>'password');
@@ -66,6 +67,12 @@ class User {
 		}
 	}
 	
+	public function isAdmin() {
+		if ($this->admin == 'y')
+			return true;
+		else 
+			return false;
+	}
 	
 	public function addUsertoDB() {
 		$userArray = $this->UserObjtoArray_DBSchema();
@@ -233,4 +240,142 @@ class User {
 	 	 
 	 	return $followers;
 	 }
+	 
+	 /*
+	  * Returns true or false depending on whether the user 
+	  * instance is a follower of $userObj or not
+	  */
+	 public function isFollower($userObj) {
+		$follower_id = $this->pkId;	
+		$user_id = $userObj->pkId;
+		
+		$query = 'select * from '. self::FOLLOWER_TABLE . ' where user_id='. $user_id .
+				' and follower_id = '. $follower_id;
+		
+		#echo $query;
+		$resultSet = DBAccess::runQuery($query);
+		
+		if ($resultSet == NULL || $resultSet->num_rows === 0) {
+			return false;
+		} else {
+			return true;
+		}
+	 }
+	 
+	 /*
+	  * Toggle follower/unfollower state and add an corresponding
+	  * event.
+	  */
+	 public function toggleFollowerState($profileUser, $currentState) {
+	 	
+	 	if ($profileUser == NULL) {
+	 		return NULL;
+	 	}
+	 	
+	    if ($currentState == "1") {
+	    	//Unfollow
+	    	$follower_id = $this->pkId;
+	    	$user_id = $profileUser->getUserPKId();
+	    	$query = 'delete from '. self::FOLLOWER_TABLE. " where follower_id = $follower_id and user_id= $user_id";
+	    	#echo $query;
+	    	
+	    	$resultSet = DBAccess::runQuery($query);
+	    	if ($resultSet == NULL) {
+	    		echo "failed to remove an entry from follewer table";
+	    	}
+	    	
+	    	//add unfollow event to $this instance.
+	    	Event::createEventgivenUser($this, Event::EVENT_UNFOLLOW, $profileUser->getUserid(), NULL);
+	    	
+	    } else {
+	    	//Follow
+	    	$follower_id = $this->pkId;
+	    	$user_id = $profileUser->getUserPKId();
+	    	$query = 'insert into '. self::FOLLOWER_TABLE. " (user_id, follower_id) VALUES($user_id,$follower_id)";
+	    	$resultSet = DBAccess::runQuery($query);
+	    	if ($resultSet == NULL) {
+	    		echo "insert follow entry failed";
+	    	}
+	    	
+	    	// add two events
+	    	// Following event to $this instance
+	    	Event::createEventgivenUser($this, EVENT::EVENT_FOLLOWING, NULL, $profileUser->getUserid());
+	    	
+	    	// Follower event to $profileUser instance
+	    	Event::createEventgivenUser($profileUser, EVENT::EVENT_FOLLOWER, NULL, $this->userId);
+	    }
+	 	
+	 }
+	 
+	 private function runUpdateQuery($field, $value) {
+	 	
+	 	$query = 'UPDATE '. self::DBTABLE . " set $field=". DBAccess::quoteString($value). " where id=".$this->pkId;
+	 	$resultSet = DBAccess::runQuery($query);
+	 	echo $query;
+	 	if ($resultSet == NULL) {
+	 		echo "Failed to update user Entry";
+	 	}
+	 }
+	 
+	 public function changeFirstName($new) {
+	 	
+	 	if (empty(trim($new)) || ($this->firstName == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	$this->runUpdateQuery("first_name", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_FIRSTNAME, $this->firstName, $new);
+	 }
+	 
+	 public function changeMiddleName($new) {
+	 	 
+	 	if (empty(trim($new)) || ($this->middleName == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	$this->runUpdateQuery("middle_name", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_MIDDLENAME , $this->middleName, $new);
+	 }
+	 
+	 public function changeLastName($new) {
+	 	 
+	 	if (empty(trim($new)) || ($this->lastName == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	$this->runUpdateQuery("last_name", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_LASTNAME, $this->lastName, $new);
+	 }
+	 
+	 public function changeVisibility($new) {
+	 	 
+	 	if (empty(trim($new)) || ($this->emailVisibility == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	$this->runUpdateQuery("email_visibility", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_VISIBILITY, $this->emailVisibility, $new);
+	 }
+	 
+	 public function changeEmailId($new) {
+	 	 
+	 	if (empty(trim($new)) || ($this->emailAddress == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	
+	 	$this->runUpdateQuery("email_address", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_EMAILID, $this->emailAddress, $new);
+	 }
+	 
+	 public function changePassword($new) {
+	 
+	 	if (empty(trim($new)) || ($this->password == $new)) {
+	 		//Nothing changed
+	 		return;
+	 	}
+	 	$this->runUpdateQuery("password", $new);
+	 	Event::createEventgivenUser($this, EVENT::EVENT_PASSWORD, $this->password, $new);
+	 }
+	 
 }

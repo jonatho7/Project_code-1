@@ -53,3 +53,7 @@ RewriteRule     ^predictions/([a-zA-Z0-9_-]+)/?$ app/controller/predictions.php?
 
 RewriteRule 	^ProcessOtherUsersChangeRegion.php$  app/controller/ProcessOtherUsersChangeRegion.php
 
+RewriteRule    ^handleUserProfileChanges.php$ app/controller/handleUserProfileChanges.php
+
+
+
