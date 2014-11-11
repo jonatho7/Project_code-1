@@ -40,7 +40,7 @@
                     	<th>Region</th>
                         <th>Prediction Date</th>
                         <th>Predicted Value</th>
-                        <th>Comment</th>
+                        <th>Tag</th>
                      </tr>
                  </thead>
                  <?php 
