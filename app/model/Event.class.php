@@ -6,6 +6,7 @@
  * in the system and retrieves the events too.
  */
 require_once 'DbAccess.class.php';
+require_once 'User.class.php';
 
 class Event {
 	
@@ -30,7 +31,7 @@ class Event {
 	
 	// Same as database names
 	protected $id;
-	protected $u_Id;
+	protected $u_id;
 	protected $eventId; 
 	protected $pastData;
 	protected $newData;
@@ -39,11 +40,11 @@ class Event {
 	// Invoked because of user actions
 	public function __construct($array, $save) {
 		$this->id = $array['id'];
-		$this->id = $array['u_id'];
-		$this->id = $array['eventId'];
-		$this->id = $array['pastData'];
-		$this->id = $array['newData'];
-		$this->id = $array['eventDate'];
+		$this->u_id = $array['u_id'];
+		$this->eventId = $array['eventId'];
+		$this->pastData = $array['pastData'];
+		$this->newData = $array['newData'];
+		$this->eventDate = $array['eventDate'];
 		
 		if ($save == True) 
 			$this->save($array);
@@ -98,5 +99,95 @@ class Event {
 		}
 		
 		#print_r(self::$event_type_mappings);
+	}
+	
+	public static function getEventsforUserPk($u_id , $includePrivate) {
+	
+		if ($includePrivate == true) {
+			$query = "select * from ". self::DBTABLE . ' where u_id='. $u_id . ' order by eventDate desc';
+		} else {
+			$query = "select * from ". self::DBTABLE . ' where u_id='. $u_id . " and eventId in (select eventId from EventType where eventPublic='y')"
+					. ' order by eventDate desc';
+		}
+		
+		$resultSet = DBAccess::runQuery($query);
+		
+
+		if ($resultSet->num_rows === 0) {
+			echo "unexpected";
+			return NULL;
+		}
+		
+		$events = [];
+		for ($i = 0; $i < $resultSet->num_rows; $i++) {
+			$row = mysqli_fetch_assoc($resultSet);
+			$events[] = new Event($row, false);
+		}
+		
+		return $events;
+		
+	}
+	
+	public static function getEventsfromAll() {
+		
+		$query = "select * from ". self::DBTABLE . " where eventId in (select eventId from EventType where eventPublic='y') order by eventDate desc";
+		
+		#echo $query;
+		
+		$resultSet = DBAccess::runQuery($query);
+		
+		if ($resultSet == NULL) {
+			echo "Query failed";
+			return NULL;
+			
+		}
+		if ($resultSet->num_rows === 0) {
+			echo "unexpected";
+			return NULL;
+		}
+		
+		$events = [];
+		for ($i = 0; $i < $resultSet->num_rows; $i++) {
+			$row = mysqli_fetch_assoc($resultSet);
+			$events[] = new Event($row, false);
+		}
+		
+		return $events;
+	
+	}
+	
+	public function getEventCreater() {
+		$user = User::getUserbyUserID($this->u_id);
+		return $user->getUserid();
+	}
+	
+	public function getEventLog() {
+		if (self::$event_type_mappings == NULL) {
+			self::createEventNameToIdMapping();
+		}
+		$log = "";
+		if ($this->eventId == "1") {
+			$log = 'first name changed to ' . $this->newData. ' from ' . $this->pastData;	
+		}	else if ($this->eventId == "2") {
+			$log = 'middle name changed to ' . $this->newData. ' from ' . $this->pastData;
+		}	else if ($this->eventId == "3") {
+			$log = 'last name changed to ' . $this->newData. ' from ' . $this->pastData;
+		}	else if ($this->eventId == "4") {
+			$log = 'changed password';
+		}	else if ($this->eventId == "5") {
+			$log = 'email visibility changed to '.$this->newData. ' from ' . $this->pastData;
+		} 	else if ($this->eventId == "6") {
+			$log = 'email changed to '.$this->newData. ' from ' . $this->pastData;
+		}	else if (($this->eventId == "7") || ($this->eventId == "8")) {
+			$log = $this->getEventCreater() . ' started following ' . $this->newData;	
+		}  else if ($this->eventId == "11") {
+			$log = $this->getEventCreater() . " unfollowed " . $this->pastData;
+		}
+
+		return $log;
+	}
+	
+	public function getEventTime() {
+		return date_create($this->eventDate)->format('G:ia \o\n D jS M Y');
 	}
 }

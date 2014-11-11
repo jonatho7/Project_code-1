@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2014 at 11:19 AM
+-- Generation Time: Nov 11, 2014 at 03:03 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8127,8 +8127,8 @@ INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
 (1, 26, '2014-11-10 19:00:31'),
 (1, 27, '2014-11-10 19:00:31'),
 (26, 24, '2014-11-10 19:58:12'),
-(24, 1, '2014-11-11 04:21:24'),
-(27, 1, '2014-11-11 04:24:23');
+(26, 1, '2014-11-11 09:00:51'),
+(25, 24, '2014-11-11 09:03:05');
 
 -- --------------------------------------------------------
 
@@ -8183,7 +8183,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bh', 'aku', '				bharath								Bharath													', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'buddY181', 'vivekb88@vt.edu'),
+(1, 'vivek bh', 'akupatni', '																				bharath								Bharath																									', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'vivekb88', 'test@gmail.com'),
 (24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
 (26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
@@ -8202,7 +8202,7 @@ CREATE TABLE IF NOT EXISTS `userEvent` (
   `pastData` varchar(256) NOT NULL COMMENT 'past Data',
   `newData` varchar(256) NOT NULL COMMENT 'new Data',
   `eventDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time when entry has happened'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
 -- Dumping data for table `userEvent`
@@ -8211,44 +8211,34 @@ CREATE TABLE IF NOT EXISTS `userEvent` (
 INSERT INTO `userEvent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventDate`) VALUES
 (4, 1, 11, 'harshalh', '', '2014-11-11 04:09:13'),
 (5, 1, 11, 'jonatho7', '', '2014-11-11 04:12:09'),
-(6, 1, 8, '', 'jhellm', '2014-11-11 04:13:07'),
 (7, 27, 7, '', 'vivekb88', '2014-11-11 04:13:07'),
 (8, 1, 11, 'jhellm', '', '2014-11-11 04:14:52'),
 (9, 1, 11, 'sarang87', '', '2014-11-11 04:17:56'),
-(10, 1, 8, '', 'sarang87', '2014-11-11 04:20:33'),
 (11, 26, 7, '', 'vivekb88', '2014-11-11 04:20:33'),
-(12, 1, 8, '', 'jonatho7', '2014-11-11 04:21:24'),
 (13, 24, 7, '', 'vivekb88', '2014-11-11 04:21:24'),
-(14, 1, 8, '', 'harshalh', '2014-11-11 04:23:51'),
 (15, 25, 7, '', 'vivekb88', '2014-11-11 04:23:51'),
 (16, 1, 11, 'harshalh', '', '2014-11-11 04:24:00'),
 (17, 1, 11, 'sarang87', '', '2014-11-11 04:24:15'),
-(18, 1, 8, '', 'jhellm', '2014-11-11 04:24:23'),
 (19, 27, 7, '', 'vivekb88', '2014-11-11 04:24:23'),
-(20, 1, 2, '', '							', '2014-11-11 04:59:20'),
-(21, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 04:59:20'),
-(22, 1, 2, '', '							', '2014-11-11 04:59:47'),
-(23, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 04:59:47'),
-(24, 1, 2, '', '							', '2014-11-11 05:01:22'),
-(25, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:01:22'),
-(26, 1, 2, '', '							', '2014-11-11 05:03:53'),
-(27, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:03:53'),
-(28, 1, 2, '', '							', '2014-11-11 05:03:56'),
-(29, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:03:56'),
-(30, 1, 2, '', '							', '2014-11-11 05:04:29'),
-(31, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:04:29'),
-(32, 1, 2, '', '							', '2014-11-11 05:05:15'),
-(33, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:05:15'),
-(34, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:06:37'),
-(35, 1, 6, '', 'vivekb88@vt.edu', '2014-11-11 05:08:21'),
-(36, 1, 2, '', 'Bharath				', '2014-11-11 05:09:31'),
-(37, 1, 2, 'Bharath				', '				Bharath							', '2014-11-11 05:10:11'),
 (38, 1, 4, 'vivekb88', 'buddY181', '2014-11-11 05:10:11'),
-(39, 1, 2, '				Bharath							', 'bharath								Bharath										', '2014-11-11 05:13:05'),
 (40, 1, 1, 'vivek bharath', 'vivek bh', '2014-11-11 05:14:28'),
 (41, 1, 3, 'akupatni', 'aku', '2014-11-11 05:14:28'),
-(42, 1, 2, 'bharath								Bharath										', '				bharath								Bharath													', '2014-11-11 05:16:38'),
-(43, 1, 5, 'Public', 'Private', '2014-11-11 05:16:38');
+(43, 1, 5, 'Public', 'Private', '2014-11-11 05:16:38'),
+(45, 1, 5, 'Private', 'Public', '2014-11-11 05:41:34'),
+(47, 1, 5, 'Public', 'Private', '2014-11-11 05:41:39'),
+(49, 1, 4, 'buddY181', 'vivekb88', '2014-11-11 05:52:08'),
+(50, 1, 11, 'jonatho7', '', '2014-11-11 08:18:45'),
+(52, 1, 6, 'vivekb88@vt.edu', 'vickyavb@gmail.com', '2014-11-11 08:27:27'),
+(53, 1, 6, 'vickyavb@gmail.com', 'test@gmail.com', '2014-11-11 08:38:41'),
+(54, 1, 11, 'jhellm', '', '2014-11-11 08:55:05'),
+(55, 1, 8, '', 'jonatho7', '2014-11-11 08:57:35'),
+(56, 24, 7, '', 'vivekb88', '2014-11-11 08:57:35'),
+(57, 1, 11, 'jonatho7', '', '2014-11-11 08:58:59'),
+(58, 25, 7, '', 'vivekb88', '2014-11-11 08:59:56'),
+(59, 1, 11, 'harshalh', '', '2014-11-11 09:00:31'),
+(60, 1, 8, '', 'sarang87', '2014-11-11 09:00:51'),
+(61, 1, 3, 'aku', 'akupatni', '2014-11-11 09:02:03'),
+(62, 24, 8, '', 'harshalh', '2014-11-11 09:03:05');
 
 -- --------------------------------------------------------
 
@@ -8264,7 +8254,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=76 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8307,8 +8297,8 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
 (69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
 (72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1),
-(74, 100, '2014-11-11 02:19:38', 38, '2014-11-18', 'adsa', 1),
-(75, 1, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1);
+(75, 1, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1),
+(76, 1000, '2014-11-11 05:42:38', 38, '2014-11-25', 'adsa', 24);
 
 --
 -- Indexes for dumped tables
@@ -8417,12 +8407,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 -- AUTO_INCREMENT for table `userEvent`
 --
 ALTER TABLE `userEvent`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=44;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=76;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=77;
 --
 -- Constraints for dumped tables
 --

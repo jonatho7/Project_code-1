@@ -302,7 +302,7 @@ class User {
 	    	Event::createEventgivenUser($this, EVENT::EVENT_FOLLOWING, NULL, $profileUser->getUserid());
 	    	
 	    	// Follower event to $profileUser instance
-	    	Event::createEventgivenUser($profileUser, EVENT::EVENT_FOLLOWER, NULL, $this->userId);
+	    	//Event::createEventgivenUser($profileUser, EVENT::EVENT_FOLLOWER, NULL, $this->userId);
 	    }
 	 	
 	 }
@@ -329,7 +329,7 @@ class User {
 	 
 	 public function changeMiddleName($new) {
 	 	 
-	 	if (empty(trim($new)) || ($this->middleName == $new)) {
+	 	if (empty(trim($new)) || (trim($this->middleName) == trim($new))) {
 	 		//Nothing changed
 	 		return;
 	 	}
