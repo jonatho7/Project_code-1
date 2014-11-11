@@ -151,6 +151,7 @@ var main = function() {
 		$form.append(createInputTag("email",$(".userTPL_emailForm").val()));
 		$form.append(createInputTag("password", $(".userTPL_passwordForm").val()));
 		$form.append(createInputTag("username", $("body").data("username")));
+		$form.append(createInputTag("service", "profileRequest"));
 		$form.submit();
       
       	

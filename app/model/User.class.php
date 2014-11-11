@@ -233,4 +233,24 @@ class User {
 	 	 
 	 	return $followers;
 	 }
+	 
+	 /*
+	  * Returns true or false depending on whether the user 
+	  * instance is a follower of $userObj or not
+	  */
+	 public function isFollower($userObj) {
+		$follower_id = $this->pkId;	
+		$user_id = $userObj->pkId;
+		
+		$query = 'select * from '. FOLLOWER_TABLE . ' where user_id='. $user_id .
+				' and follower_id = '. $user_id;
+		
+		$resultSet = DBAccess::runQuery($query);
+		
+		if ($resultSet == NULL || $resultSet->num_rows === 0) {
+			return false;
+		} else {
+			return true;
+		}
+	 }
 }
