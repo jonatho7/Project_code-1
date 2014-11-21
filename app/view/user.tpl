@@ -176,6 +176,7 @@
 				echo '</div>';
 				echo '<div class="editProfileDiv">';
 					echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+					echo "<button type='button' class='btn btn-primary btn-sm cancelChangesButton' >Cancel Changes</button>";
 				echo '</div>';
 		}
 	?>
