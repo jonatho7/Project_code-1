@@ -2,8 +2,8 @@
 -- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 11, 2014 at 03:03 PM
+-- Host: 127.0.0.1
+-- Generation Time: Nov 21, 2014 at 11:47 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -19,70 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `flu`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity_log`
---
-
-CREATE TABLE IF NOT EXISTS `activity_log` (
-`activity_id` int(11) NOT NULL,
-  `u_id` int(11) NOT NULL COMMENT 'foreign key to user.user_id',
-  `user_id_string` varchar(100) NOT NULL,
-  `activity_type_id` int(11) NOT NULL COMMENT 'foreign key to activity_types.activity_type_id',
-  `u_id2` int(11) DEFAULT NULL COMMENT 'foreign key (used for user following)',
-  `user_id2_string` varchar(100) DEFAULT NULL,
-  `date_modified_new` datetime DEFAULT CURRENT_TIMESTAMP,
-  `date_modified_old` datetime DEFAULT NULL,
-  `up_id` int(11) DEFAULT NULL COMMENT 'foreign key to user_pred.up_id',
-  `up_value_new` int(11) DEFAULT NULL COMMENT 'user prediction new value',
-  `up_value_old` int(11) DEFAULT NULL COMMENT 'user prediction old value',
-  `up_date` date DEFAULT NULL COMMENT 'For convenience. No activity feed func.',
-  `r_name` varchar(100) DEFAULT NULL COMMENT 'For convenience. No activity feed func. ',
-  `comment_new` varchar(500) DEFAULT NULL,
-  `comment_old` varchar(500) DEFAULT NULL,
-  `first_name_new` varchar(100) DEFAULT NULL,
-  `first_name_old` varchar(100) DEFAULT NULL,
-  `middle_name_new` varchar(100) DEFAULT NULL,
-  `middle_name_old` varchar(100) DEFAULT NULL,
-  `last_name_new` varchar(100) DEFAULT NULL,
-  `last_name_old` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `activity_log`
---
-
-INSERT INTO `activity_log` (`activity_id`, `u_id`, `user_id_string`, `activity_type_id`, `u_id2`, `user_id2_string`, `date_modified_new`, `date_modified_old`, `up_id`, `up_value_new`, `up_value_old`, `up_date`, `r_name`, `comment_new`, `comment_old`, `first_name_new`, `first_name_old`, `middle_name_new`, `middle_name_old`, `last_name_new`, `last_name_old`) VALUES
-(1, 1, 'vivekb88', 3, NULL, NULL, '2014-10-21 18:53:33', NULL, 61, 130, NULL, '2014-10-12', 'West Virginia', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 1, 'vivekb88', 1, NULL, NULL, '2014-11-09 13:29:28', '2014-11-07 09:19:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Vivek', 'Vive', 'Bharath', 'B', 'Akupatni', 'Ak.'),
-(3, 1, 'vivekb88', 2, 24, 'jonatho7', '2014-11-09 13:33:41', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 25, 'harshalh', 2, 1, 'vivekb88', '2014-11-09 13:35:05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 1, 'vivekb88', 4, NULL, NULL, '2014-11-09 13:48:47', '2014-10-21 18:53:33', 61, 200, 130, '2014-10-12', 'West Virginia', 'I think this prediction will be more accurate, actually.', 'This is so much fun!', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 1, 'vivekb88', 5, NULL, NULL, '2014-11-09 13:51:55', '2014-10-14 03:09:02', 33, NULL, 155, '2014-10-29', 'West Virginia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `activity_types`
---
-
-CREATE TABLE IF NOT EXISTS `activity_types` (
-`activity_type_id` int(11) NOT NULL,
-  `activity_description` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `activity_types`
---
-
-INSERT INTO `activity_types` (`activity_type_id`, `activity_description`) VALUES
-(1, 'change_name'),
-(2, 'now_following'),
-(3, 'new_prediction'),
-(4, 'modify_prediction'),
-(5, 'delete_prediction');
 
 -- --------------------------------------------------------
 
@@ -8079,20 +8015,20 @@ INSERT INTO `data_source` (`ds_id`, `ds_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `EventType`
+-- Table structure for table `eventtype`
 --
 
-CREATE TABLE IF NOT EXISTS `EventType` (
+CREATE TABLE IF NOT EXISTS `eventtype` (
 `eventId` int(11) NOT NULL,
   `eventName` varchar(256) NOT NULL,
   `eventPublic` char(1) NOT NULL DEFAULT 'y' COMMENT 'Indicates whether this event change is visible to other uses are not.'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `EventType`
+-- Dumping data for table `eventtype`
 --
 
-INSERT INTO `EventType` (`eventId`, `eventName`, `eventPublic`) VALUES
+INSERT INTO `eventtype` (`eventId`, `eventName`, `eventPublic`) VALUES
 (1, 'firstName', 'y'),
 (2, 'middleName', 'y'),
 (3, 'lastName', 'y'),
@@ -8183,19 +8119,19 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bh', 'akupatni', '																				bharath								Bharath																									', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'vivekb88', 'test@gmail.com'),
-(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'n', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
+(1, 'vivek bh', 'akupatni', 'Bharath', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'vivekb88', 'test@gmail.com'),
+(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'y', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
-(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'n', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
-(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', '');
+(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'y', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
+(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@yahoo.com');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userEvent`
+-- Table structure for table `userevent`
 --
 
-CREATE TABLE IF NOT EXISTS `userEvent` (
+CREATE TABLE IF NOT EXISTS `userevent` (
 `id` int(11) NOT NULL COMMENT 'uniques identifies an event for an user',
   `u_id` int(11) NOT NULL COMMENT 'foreign key to user table',
   `eventId` int(11) NOT NULL COMMENT 'foreign key to event table',
@@ -8205,10 +8141,10 @@ CREATE TABLE IF NOT EXISTS `userEvent` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
 
 --
--- Dumping data for table `userEvent`
+-- Dumping data for table `userevent`
 --
 
-INSERT INTO `userEvent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventDate`) VALUES
+INSERT INTO `userevent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventDate`) VALUES
 (4, 1, 11, 'harshalh', '', '2014-11-11 04:09:13'),
 (5, 1, 11, 'jonatho7', '', '2014-11-11 04:12:09'),
 (7, 27, 7, '', 'vivekb88', '2014-11-11 04:13:07'),
@@ -8305,18 +8241,6 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 --
 
 --
--- Indexes for table `activity_log`
---
-ALTER TABLE `activity_log`
- ADD PRIMARY KEY (`activity_id`), ADD KEY `user_id` (`u_id`,`activity_type_id`,`u_id2`), ADD KEY `activity_type_id` (`activity_type_id`), ADD KEY `user_id_2` (`user_id_string`), ADD KEY `up_id` (`up_id`), ADD KEY `u_id2` (`u_id2`);
-
---
--- Indexes for table `activity_types`
---
-ALTER TABLE `activity_types`
- ADD PRIMARY KEY (`activity_type_id`);
-
---
 -- Indexes for table `actual_data`
 --
 ALTER TABLE `actual_data`
@@ -8329,9 +8253,9 @@ ALTER TABLE `data_source`
  ADD PRIMARY KEY (`ds_id`);
 
 --
--- Indexes for table `EventType`
+-- Indexes for table `eventtype`
 --
-ALTER TABLE `EventType`
+ALTER TABLE `eventtype`
  ADD PRIMARY KEY (`eventId`);
 
 --
@@ -8353,9 +8277,9 @@ ALTER TABLE `user`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `userEvent`
+-- Indexes for table `userevent`
 --
-ALTER TABLE `userEvent`
+ALTER TABLE `userevent`
  ADD PRIMARY KEY (`id`), ADD KEY `u_id` (`u_id`), ADD KEY `eventId` (`eventId`);
 
 --
@@ -8369,16 +8293,6 @@ ALTER TABLE `user_pred`
 --
 
 --
--- AUTO_INCREMENT for table `activity_log`
---
-ALTER TABLE `activity_log`
-MODIFY `activity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `activity_types`
---
-ALTER TABLE `activity_types`
-MODIFY `activity_type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
 -- AUTO_INCREMENT for table `actual_data`
 --
 ALTER TABLE `actual_data`
@@ -8389,9 +8303,9 @@ MODIFY `ad_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7921;
 ALTER TABLE `data_source`
 MODIFY `ds_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `EventType`
+-- AUTO_INCREMENT for table `eventtype`
 --
-ALTER TABLE `EventType`
+ALTER TABLE `eventtype`
 MODIFY `eventId` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `region`
@@ -8404,9 +8318,9 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 ALTER TABLE `user`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 --
--- AUTO_INCREMENT for table `userEvent`
+-- AUTO_INCREMENT for table `userevent`
 --
-ALTER TABLE `userEvent`
+ALTER TABLE `userevent`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `user_pred`
@@ -8416,14 +8330,6 @@ MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `activity_log`
---
-ALTER TABLE `activity_log`
-ADD CONSTRAINT `activity_log_ibfk_1` FOREIGN KEY (`activity_type_id`) REFERENCES `activity_types` (`activity_type_id`) ON DELETE CASCADE,
-ADD CONSTRAINT `activity_log_ibfk_2` FOREIGN KEY (`u_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
-ADD CONSTRAINT `activity_log_ibfk_3` FOREIGN KEY (`u_id2`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `actual_data`
@@ -8440,11 +8346,11 @@ ADD CONSTRAINT `follower_table_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user`
 ADD CONSTRAINT `follower_table_ibfk_2` FOREIGN KEY (`follower_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `userEvent`
+-- Constraints for table `userevent`
 --
-ALTER TABLE `userEvent`
+ALTER TABLE `userevent`
 ADD CONSTRAINT `userevent_ibfk_1` FOREIGN KEY (`u_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `userevent_ibfk_2` FOREIGN KEY (`eventId`) REFERENCES `EventType` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `userevent_ibfk_2` FOREIGN KEY (`eventId`) REFERENCES `eventtype` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_pred`
