@@ -1,15 +1,15 @@
 <?php
 
-#define('SERVER_PATH','http://localhost/flutracker/');
+define('SERVER_PATH','http://localhost/flutracker/');
 
 // Path for setting up on Amazon EC2
-define('SERVER_PATH','https://ec2-54-69-66-88.us-west-2.compute.amazonaws.com/flutracker/');
+//define('SERVER_PATH','https://ec2-54-69-66-88.us-west-2.compute.amazonaws.com/flutracker/');
 
 // database constants
 define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASS','buddY181');
-define('DB_DATABASE','flu2');
+define('DB_DATABASE','flu');
 
 //Variable stored in Session for tracking state of each user.
 define('USER_STATE', 'userState');
