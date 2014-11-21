@@ -294,10 +294,7 @@
 		</div>
 		<?php
 			
-			
-			$activities = Event::getEventsforUserPk($e_user->getUserPKId(), $viewingOwnProfile);
-		
-			//DELETE after database access is implemented.(End)
+			$activities = Event::getEventsforUserPk($profile_user->getUserPKId(), $viewingOwnProfile);
 			
 			//Max number of activity feed items to show.
 			$max_activity_feed = 20;
