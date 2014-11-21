@@ -71,13 +71,11 @@
 		</div>
 		<div>
 			<p class="userTPL_profile"><strong>Middle: </strong></p>
-			<p class="userTPL_profile userTPL_middleName">
-				<?php 
-					if($profile_middleName != NULL){
-						echo $profile_middleName;
-					}
-				?>
-			</p>
+			<p class="userTPL_profile userTPL_middleName"><?php 
+				if($profile_middleName != NULL){
+					echo $profile_middleName;
+				}
+			?></p>
 			<div>
 				<input class="form-control userTPL_middleNameForm" type="text" required="" name="middleName">
 			</div>
