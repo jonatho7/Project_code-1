@@ -62,10 +62,16 @@
 	
 	$followingArray = User::getUsersFollowingById($profile_user->getUserPKId());
 	
-	for ($index = 0; $index < count($followingArray); $index++) {
-		$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
-		echo "<p><a href='$friendPath'>$followingArray[$index]</a></p>";
-	}	
+	if ( count($followingArray) == 0){
+		$findFriendsPath = SERVER_PATH . 'app/controller/searchUsers.php';
+		echo "<p>You are not following any users yet. See the <a href='$findFriendsPath'>Find Users</a> page to find users to follow.</p>";
+	} else {
+		for ($index = 0; $index < count($followingArray); $index++) {
+			$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
+			echo "<p><a href='$friendPath'>$followingArray[$index]</a></p>";
+		}
+	}
+		
 	?>
 	
 	<div class="followDiv">
@@ -77,11 +83,15 @@
 	 * 
 	 */
 	$followersArray = User::getUsersFollowersById($profile_user->getUserPKId());
-			
-	for ($index = 0; $index < count($followersArray); $index++) {
-		$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
-		echo "<p><a href='$friendPath'>$followersArray[$index]</a></p>";
-	}	
+	
+	if ( count($followersArray) == 0){
+		echo "<p>You do not have any followers yet.</p>";
+	} else {
+		for ($index = 0; $index < count($followersArray); $index++) {
+			$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
+			echo "<p><a href='$friendPath'>$followersArray[$index]</a></p>";
+		}
+	}
 	?>
 	</div>
 
