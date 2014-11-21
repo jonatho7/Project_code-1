@@ -42,7 +42,7 @@
 	$profile_firstName = $profile_user->getFirstName();
 	$profile_middleName = $profile_user->get('middleName');
 	$profile_lastName = $profile_user->getLastName();
-	$profile_visibility = $profile_user->get('visibility');
+	$profile_visibility = $profile_user->get('emailVisibility');
 	$profile_emailAddress = $profile_user->get('emailAddress');
 ?>
 
