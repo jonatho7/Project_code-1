@@ -94,8 +94,8 @@
               </table> <!-- <!-- End of table format -->
               
               <!--  Add the buttons now side by side -->
-              <button formmethod="post" formaction="<?php echo SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm" >Discard Changes</button>
+              <button data-redirect-url="<?php echo SERVER_PATH?>dashboard.php" class="btn btn-primary btn-sm actionRedirect" >Discard Changes</button>
               <button formmethod="post" formaction="<?php echo SERVER_PATH?>processUserEdit.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
-     	
+
      	</form> <!-- End of form -->
      </div>

@@ -37,7 +37,7 @@ var adminMode = false;
 var main = function() {
 
 	/*
-	Implement toggle between Admin and normal mode
+	    Implement toggle between Admin and normal mode
 	 */
 
 	$("button.adminMode").click(function () {
@@ -233,6 +233,15 @@ var main = function() {
 		$('#errorMessage').text("");
 		$(".errorBox").css( "display", "none" );
 	};
+
+    /*
+        General class of click handlers for buttons. When clicked
+        re direct the page to whatever url mentioned in 'redirect-url'
+        data attirbute
+     */
+    $('.actionRedirect').click(function () {
+        window.location.assign($(this).data("redirect-url"));
+    })
 
 }
 

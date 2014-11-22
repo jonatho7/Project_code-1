@@ -166,8 +166,18 @@
 									<td><?php echo $userPredList[$i]->getComment()?></td>
 									<td>
 										<form role="role">
-											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
-											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
+                                            <?php
+                                                /*
+                                                 * Put the region name here so that server knows which
+                                                 * region to display.
+                                                 */
+                                                $array = array('region'=>$e_region);
+
+                                                // Construct query parameter and post it to dashboard.php
+                                                $query = http_build_query($array);
+                                            ?>
+                                            <button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php?<?=$query?>" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
+											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php?<?=$query?>" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
 										</form>
 									</td>
 								</tr>

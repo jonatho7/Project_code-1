@@ -17,10 +17,11 @@ require_once '../model/User.class.php';
 require_once '../model/UserPred.class.php';
 require_once 'sessionAttributes.php';
 require_once '../model/UserState.class.php';
+require_once 'controllerHelper.php';
 
 function redirectToDashBoard() {
 	#does redirect to dashboard.php page.
-	header('Location: '. SERVER_PATH. 'dashboard.php');
+	header('Location: '. SERVER_PATH. 'dashboard.php' . '?' . get_url_encode_region(@$_GET['region']));
 	exit();
 }
 
@@ -39,28 +40,18 @@ if (empty($userObj)) {
 	redirecttoHomePage();
 }
 
-# create UserState object and pass it along.
-
-$e_userState = UserState::getUserState($userObj);
-if (!empty($_SESSION['REGION_NAME'])) {
-	$e_userState->setcurrentDashBoardRegion($_SESSION['REGION_NAME']);
-}
 
 $userPred = UserPred::getPreditionForId($_POST['up_id']);
 
 if (($userPred == NULL) || $userPred->isExpriredPrediction()) {
-	# Again redirect as there is no prediction or
-	# prediction is already expired. So nothing to do.
 	redirectToDashBoard();
 }
 
 
-#echo "Successfully reached till here";
-
 $e_userPred = $userPred;
 $e_user = $userObj;
 $e_Title = "Edit page";
-
+$e_region = getRegion(@$_GET['region']);
 
 require_once '../view/loggedInHeader.tpl';
 

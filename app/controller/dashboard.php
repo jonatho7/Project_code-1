@@ -12,6 +12,7 @@ require_once '../config.php';
 require_once 'sessionAttributes.php';
 require_once '../model/User.class.php';
 require_once '../model/UserState.class.php';
+require_once 'controllerHelper.php';
 
 #Note the convention that is used here
 # we get the username and region from the get method request to this page.
@@ -33,11 +34,7 @@ if (!empty($_GET['userName'])) {
     $userName = $_GET['userName'];
 }
 
-$region = Region::getFirstRegion();
-
-if (!empty($_GET['region'])) {
-    $region = $_GET['region'];
-}
+$region = getRegion(@$_GET['region']);
 
 
 $user = User::getUserByUserName($_SESSION['userName']);

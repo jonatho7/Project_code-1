@@ -10,7 +10,7 @@
 	/*
 	 * arguments 1) $e_user
 	 *           2) $e_userPred
-	 *           3) $e_userState
+	 *           3) $e_region (variable)
 	 */
 ?>
 	<!-- Basic Header -->
@@ -44,9 +44,7 @@
                         <th>Last Modified</th>
                      </tr>
                  </thead>
-                 <?php 
-                 	$userState = $e_userState;
-                 	$e_region = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
+                 <?php
                  	$p_date = $e_userPred->getDateFormatted();
                  	$p_value = $e_userPred->getValue();
                  	$p_comment = $e_userPred->getComment();
@@ -73,10 +71,19 @@
                   </tbody> <!-- End of rows --> 
                   
               </table> <!-- <!-- End of table format -->
-              
+            <?php
+                /*
+                * Put the region name here so that server knows which
+                * region to display.
+                */
+                $array = array('region'=>$e_region);
+
+                // Construct query parameter and post it to dashboard.php
+                $query = http_build_query($array);
+            ?>
               <!--  Add the buttons now side by side -->
-              <button formmethod="post" formaction="<?php echo SERVER_PATH?>dashboard.php" type="submit" class="btn btn-primary btn-sm">Discard Changes</button>
-              <button formmethod="post" formaction="<?php echo SERVER_PATH?>processHandlePredictionChanges.php" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>dashboard.php?<?=$query?>" type="submit" class="btn btn-primary btn-sm">Discard Changes</button>
+              <button formmethod="post" formaction="<?php echo SERVER_PATH?>processHandlePredictionChanges.php?<?=$query?>" type="submit" class="btn btn-primary btn-sm">Submit Changes</button>
      	
      	</form> <!-- End of form -->
      </div>

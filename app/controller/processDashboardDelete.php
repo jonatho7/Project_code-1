@@ -4,10 +4,11 @@ require_once '../config.php';
 require_once '../model/User.class.php';
 require_once '../model/UserPred.class.php';
 require_once 'sessionAttributes.php';
+require_once 'controllerHelper.php';
 
 function redirectToDashBoard() {
 	#does redirect to dashboard.php page.
-	header('Location: '. SERVER_PATH. 'dashboard.php');
+	header('Location: '. SERVER_PATH. 'dashboard.php' . '?' . get_url_encode_region(@$_GET['region']));
 	exit();
 }
 
@@ -43,6 +44,7 @@ if ($userPred->deleteUserPred()) {
 } else {
 	//echo "Delete unsuccussful";
 }
+
 
 redirectToDashBoard();
 # Now delete the entry and
