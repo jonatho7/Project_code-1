@@ -30,17 +30,17 @@ if (empty($userObj)) {
 
 # create UserState object and pass it along.
 
-$e_userState = UserState::getUserState($userObj);
-if (!empty($_SESSION['REGION_NAME'])) {
-	$e_userState->setcurrentDashBoardRegion($_SESSION['REGION_NAME']);
+$region = @$_GET['region'];
+
+if (empty($region)) {
+    $region = Region::getFirstRegion();
 }
 
 
-#echo "Successfully reached till here";
 
 $e_user = $userObj;
 $e_Title = "Make new Prediction";
-
+$e_region = $region;
 
 require_once '../view/loggedInHeader.tpl';
 

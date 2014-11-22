@@ -6,6 +6,11 @@
 	 */
 	require_once '../model/Region.class.php';
 	require_once '../model/UserState.class.php';
+    /*
+     *
+     * INPUTS: $e_user (object)
+	         $e_region (name)
+     */
 ?>
 	<!-- Basic Header -->
 	<div class="row">
@@ -36,14 +41,7 @@
      		 	* Get all the regions from The database as array
      		 	*/
      				$regions = Region::getAllRegions();
-     				#$size = count($regions);
-     				#for ($i =0; $i < $size; $i++) {
-					#	echo "Region id = " . $regions[$i]->getRegionId(). " name = " . $regions[$i]->getRegionName() . "<br>";
-					#}
-     				$userState = $e_userState;
-     				$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-     				$userPredList = $userState->getPredictionsforRegion($r_name);
-
+     				$userPredList = UserData::getPredictionsForRegion($e_user, $e_region);
 					
      		?>
      	      <!-- Row starts-->
@@ -61,7 +59,7 @@
                                 $size = count($regions);
                                 for ($i =0; $i < $size; $i++) {
 									$selected = '';
-									if ($r_name== $regions[$i]->getRegionName())
+									if ($e_region== $regions[$i]->getRegionName())
 										$selected = "selected";	
                                     echo "<option $selected>". $regions[$i]->getRegionName() . '</option>';
                                 }
@@ -92,17 +90,16 @@
                     	// get users who have made a prediction as a list. getUsersforRegion($r_name) gets users
 
 
-                    	$userState = $e_userState;
-                    	$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-                        $userPredList = $userState->getUsersForRegion($r_name);
+
+                        $userPredList = UserData::getUsersForRegion($e_user, $e_region);
 
                     ?>
                     <p class="h4">
                     	<?php 
                     	if (count($userPredList) != 0) {
-							echo 'List of users who have predictions for '.$r_name;
+							echo 'List of users who have predictions for '.$e_region;
 						} else {
-							echo 'No users with predictions yet made for '.$r_name;
+							echo 'No users with predictions yet made for '.$e_region;
                     	}
 						?>
                 	</p>

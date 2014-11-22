@@ -6,6 +6,10 @@
 	 */
 	require_once '../model/Region.class.php';
 	require_once '../model/UserState.class.php';
+	/*
+	INPUTS: $e_user (object)
+	         $e_region (name)
+	*/
 ?>
 	
 	<?php
@@ -69,10 +73,7 @@
         </div>
      </div>
 	
-	<?php
-		//echo "<p>$e_userState: {$e_userState}</p>";
-	?>
-     
+
      <!-- End of Basic Header -->
      <div class="row">
      	<div class="col-lg-6">
@@ -81,15 +82,9 @@
      			/*
      		 	* Get all the regions from The database as array
      		 	*/
-     				$regions = Region::getAllRegions();
-     				#$size = count($regions);
-     				#for ($i =0; $i < $size; $i++) {
-					#	echo "Region id = " . $regions[$i]->getRegionId(). " name = " . $regions[$i]->getRegionName() . "<br>";
-					#}
-     				$userState = $e_userState;
-     				$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-     				$userPredList = $userState->getPredictionsforRegion($r_name);
-					
+
+     				$userPredList = UserData::getPredictionsForRegion($e_user,$e_region);
+                    $regions = Region::getAllRegions();
      		?>
      	      <!-- Row starts-->
               <div class="row">
@@ -106,7 +101,7 @@
                                 $size = count($regions);
                                 for ($i =0; $i < $size; $i++) {
 									$selected = '';
-									if ($r_name== $regions[$i]->getRegionName())
+									if ($e_region== $regions[$i]->getRegionName())
 										$selected = "selected";	
                                     echo "<option $selected>". $regions[$i]->getRegionName() . '</option>';
                                 }
@@ -141,9 +136,9 @@
                     <p class="h4">
                     	<?php 
                     	if (count($userPredList) != 0) {
-							echo 'List of predictions made for '.$r_name;
+							echo 'List of predictions made for '.$e_region;
 						} else {
-							echo 'No predictions yet made for '.$r_name;
+							echo 'No predictions yet made for '.$e_region;
                     	}
 						?>
                 	</p>

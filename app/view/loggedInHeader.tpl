@@ -4,7 +4,8 @@
 	 * While including do the following:
 	 *  1) Include global configuration file
 	 *  2) $e_Title = Title of the page.
-	 *  3) $e_user = user object.
+	 *  3) $e_user = user object
+	    4) $e_region = user region
 	 */
 
 ?>

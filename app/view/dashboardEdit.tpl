@@ -46,7 +46,7 @@
                  </thead>
                  <?php 
                  	$userState = $e_userState;
-                 	$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
+                 	$e_region = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
                  	$p_date = $e_userPred->getDateFormatted();
                  	$p_value = $e_userPred->getValue();
                  	$p_comment = $e_userPred->getComment();
@@ -56,7 +56,7 @@
                  ?>
                  <tbody> <!--  Start of rows -->
 					<tr>
-						<td><?php echo $r_name?></td>
+						<td><?php echo $e_region?></td>
 						<td><?php echo $p_date?></td>
 						<td>
 							<div class="col-md-6">

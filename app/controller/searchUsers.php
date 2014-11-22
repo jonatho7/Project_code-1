@@ -16,75 +16,45 @@ require_once 'sessionAttributes.php';
 require_once '../model/User.class.php';
 require_once '../model/UserState.class.php';
 
-#Note the order 
+#Note the convention that is used here
+# we get the username and region from the get method request to this page.
+# Otherwise, we select username would be who is logged in and region would
+# be some default region
+# get variables: userName, region
 
 
 if (empty($_SESSION['userName'])) {
-	# Redirect as user is not logged in.
-	session_unset();
-	require_once 'login.php';
-	exit();
+    # Redirect as user is not logged in.
+    session_unset();
+    require_once 'login.php';
+    exit();
+}
+
+$userName = $_SESSION['userName'];
+
+if (!empty($_GET['userName'])) {
+    $userName = $_GET['userName'];
+}
+
+$region = Region::getFirstRegion();
+
+if (!empty($_GET['region'])) {
+    $region = $_GET['region'];
 }
 
 
-
-//echo "UserName = ". $_SESSION['userName'];
 $user = User::getUserByUserName($_SESSION['userName']);
-//echo "Get LAst NAme = ". $user->getFirstName();
-//exit();
-
-$e_userState = UserState::getUserState($user);
-
-
-if (!empty($_SESSION['REGION_NAME'])) {
-    $e_userState->setcurrentDashBoardRegion($_SESSION['REGION_NAME']);
-}
-
-#$userObj = NULL; 
-//$userObj = $_SESSION['userObject']
-//echo "Session Status : " .session_status();
 
 if ($user == NULL) {
-	# CHANGE ME to login folder.
-	
-	header('Location: '. SERVER_PATH. 'test.php');
-	exit();
+    # Unexpected but change later
+    header('Location: '. SERVER_PATH. 'test.php');
+    exit();
 }
 
-# Set the title and user object
+# Set the title, region etc.
 $e_Title = "Dashboard";
 $e_user = $user;
-
-# create UserState object and pass it along.
-
-$e_userState = UserState::getUserState($user);
-
-
-if (!empty($_SESSION['REGION_NAME'])) {
-	$e_userState->setcurrentDashBoardRegion($_SESSION['REGION_NAME']);
-}
-
-/*if (empty($_SESSION)) {
-	echo "Session variable is empty LOL";
-}*/
-
-//$_SESSION[USER_STATE] = $userState;
-
-
-#echo "Set User State object.";
-//if 
-#echo "Current region = ". $_SESSION['UserState']->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-
-//echo "String = <br>"; 
-
-//$list = $userState->getPredictionsforRegion("Region_1");
-
-//$count = count($list);
-
-//for ($i = 0 ; $i < $count ; $i++) {
-	//print_r(date_create($list[$i]->up_date)->format('m/d/Y'));
-	//echo "<br>";
-//}
+$e_region = $region;
 
 require_once '../view/loggedInHeader.tpl';
 require_once '../view/searchUsers.tpl';

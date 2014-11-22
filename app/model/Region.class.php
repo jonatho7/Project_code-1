@@ -130,4 +130,12 @@ class Region {
 		}
 		return mysqli_fetch_assoc($resultSet)['r_id'];
 	}
+
+    /*
+     * Returns the name of the first region extracted from database
+     */
+    public static function getFirstRegion() {
+        $regionsList = self::getAllRegions();
+        return $regionsList[0]->r_name;
+    }
 }
