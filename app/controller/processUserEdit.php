@@ -70,8 +70,7 @@ if (!UserPred::storeNewPrediction($regionName, $value, $predDate, $comment)) {
  * Add the region Name here;
  */
 $_SESSION['REGION_NAME'] = $regionName;
-#header('Location: '. SERVER_PATH. 'dashboard.php?' . get_url_encode_region(@_GET['region']));
-echo "REGION= ". $_GET['region'];
+header('Location: '. SERVER_PATH. 'dashboard.php?' . get_url_encode_region($regionName));
 exit();
 
 

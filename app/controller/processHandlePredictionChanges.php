@@ -1,11 +1,17 @@
-        <?php
+<?php
 
+/*
+ *  This file handles the prediction request changes from user.
+ */
 
 require_once '../config.php';
 require_once '../model/User.class.php';
 require_once '../model/UserPred.class.php';
 require_once 'sessionAttributes.php';
 require_once '../model/UserState.class.php';
+require_once 'controllerHelper.php';
+
+
 
 
 function redirectToDashBoard() {
@@ -64,5 +70,5 @@ $userPred->save($value, $comment);
 * dashboard
 */
 unset($_SESSION['PREDICTION_ID']);
-header('Location: '. SERVER_PATH. 'dashboard.php');
+header('Location: '. SERVER_PATH. 'dashboard.php?' . get_url_encode_region(@$_GET['region']));
 exit();
