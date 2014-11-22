@@ -71,13 +71,11 @@
 		</div>
 		<div>
 			<p class="userTPL_profile"><strong>Middle: </strong></p>
-			<p class="userTPL_profile userTPL_middleName">
-				<?php 
-					if($profile_middleName != NULL){
-						echo $profile_middleName;
-					}
-				?>
-			</p>
+			<p class="userTPL_profile userTPL_middleName"><?php 
+				if($profile_middleName != NULL){
+					echo $profile_middleName;
+				}
+			?></p>
 			<div>
 				<input class="form-control userTPL_middleNameForm" type="text" required="" name="middleName">
 			</div>
@@ -178,6 +176,7 @@
 				echo '</div>';
 				echo '<div class="editProfileDiv">';
 					echo "<button type='button' class='btn btn-primary btn-sm submitChangesButton' >Submit Changes</button>";
+					echo "<button type='button' class='btn btn-primary btn-sm cancelChangesButton' >Cancel Changes</button>";
 				echo '</div>';
 		}
 	?>
@@ -231,24 +230,33 @@
 			
 			$followingArray = User::getUsersFollowingById($profile_user->getUserPKId());
 			$maxFriendsToShow = 5;	//Only show this many friends.
-			$indexMax = $maxFriendsToShow;
-			if (count($followingArray) < $maxFriendsToShow){
-				$indexMax = count($followingArray);
-			}
 			
-			//Don't echo the seperator for the last entry
-			$sep = ',';
-			for ($index = 0; $index < $indexMax; $index++) {
-				$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
-				if ($index == ($indexMax -1))
-					$sep = '';
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>$sep </p>";
-			}
 			
-			if (count($followingArray) > $maxFriendsToShow){
+			if(count($followingArray) == 0){
+				//Show a message saying the user is not following anyone yet.
+				$findFriendsPath = SERVER_PATH . 'app/controller/searchUsers.php';
+				echo "<p>You are not following any users yet. See the <a href='$findFriendsPath'>Find Users</a> page to find users to follow.</p>";
+			} else {
+				$indexMax = $maxFriendsToShow;
+				if (count($followingArray) < $maxFriendsToShow){
+					$indexMax = count($followingArray);
+				}
+					
+				//Don't echo the seperator for the last entry
+				$sep = ',';
+				for ($index = 0; $index < $indexMax; $index++) {
+					$friendPath = SERVER_PATH . "users/" . $followingArray[$index];
+					if ($index == ($indexMax -1))
+						$sep = '';
+					echo "<p class='userTPL_profile'><a href='$friendPath'>$followingArray[$index]</a>$sep </p>";
+				}
+					
+				if (count($followingArray) > $maxFriendsToShow){
 				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
 				echo "<p class='userTPL_profile'><a href ='$redirectPath'>...</a></p>";
+				}
 			}
+			
 			
 		?>
 		</div>
@@ -259,30 +267,35 @@
 			// Get followers from database; 
 			$followersArray = User::getUsersFollowersById($profile_user->getUserPKId());
 			
-			$indexMax = $maxFriendsToShow;
-			if (count($followersArray) < $maxFriendsToShow){
-				$indexMax = count($followersArray);
-			}
-			
-			$sep = ',';
-			for ($index = 0; $index < $indexMax; $index++) {
-				$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
-				if ($index == ($indexMax-1))
-					$sep = '';
-				echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>$sep </p>";
-			}
-			
-			if (count($followersArray) > $maxFriendsToShow){
+			if(count($followersArray) == 0){
+				echo "<p>You do not have any followers yet.</p>";
+			} else {
+				$indexMax = $maxFriendsToShow;
+				if (count($followersArray) < $maxFriendsToShow){
+					$indexMax = count($followersArray);
+				}
+					
+				$sep = ',';
+				for ($index = 0; $index < $indexMax; $index++) {
+					$friendPath = SERVER_PATH . "users/" . $followersArray[$index];
+					if ($index == ($indexMax-1))
+						$sep = '';
+					echo "<p class='userTPL_profile'><a href='$friendPath'>$followersArray[$index]</a>$sep </p>";
+				}
+					
+				if (count($followersArray) > $maxFriendsToShow){
 				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
 				echo "<p class='userTPL_profile'><a href ='$redirectPath'>...</a></p>";
+				}
 			}
+			
 		?>
 		</div>
 		
 		<div>
 			<?php
 				$redirectPath = SERVER_PATH . "users/" . $userQuery . "/friends";
-				echo "<p><a href ='$redirectPath'>(Show All)</a></p>";
+				echo "<p><a href ='$redirectPath'>(Show All Friends)</a></p>";
 			?>
 		</div>
 		
@@ -294,14 +307,17 @@
 		</div>
 		<?php
 			
-			
-			$activities = Event::getEventsforUserPk($e_user->getUserPKId(), $viewingOwnProfile);
-		
-			//DELETE after database access is implemented.(End)
+			$activities = Event::getEventsforUserPk($profile_user->getUserPKId(), $viewingOwnProfile);
 			
 			//Max number of activity feed items to show.
 			$max_activity_feed = 20;
 			
+			if ( count($activities) == 0 ){
+				$redirectPath = SERVER_PATH . "app/controller/dashboardAddNewPrediction.php";
+				echo "There are no activities to show yet. Let's get started by making a <a href='$redirectPath'>new prediction.</a>";
+			} else {
+				
+			}
 			//iterate over the activity feed.
 			for($index = 0; $index < count($activities) && $index < $max_activity_feed; $index++){
 				$activity = $activities[$index]; ?>

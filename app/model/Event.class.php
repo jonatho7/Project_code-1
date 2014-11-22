@@ -114,7 +114,9 @@ class Event {
 		
 
 		if ($resultSet->num_rows === 0) {
-			echo "unexpected";
+			//echo for testing.
+			//echo "unexpected";
+			
 			return NULL;
 		}
 		

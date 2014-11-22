@@ -39,6 +39,7 @@
 .userTPL_visibilityForm,
 .userTPL_emailForm,
 .submitChangesButton,
+.cancelChangesButton,
 .passwordDiv{
 	display: none;
 }
@@ -46,7 +47,7 @@
 .errorBox {
   background-color: rgb(255, 200, 200);
   font-size: 13pt;
-  height: 2em;
+  height: 1.5em;
   display: none;
   margin: 1em;
 }
@@ -87,5 +88,15 @@
 
 .buttonDisplayInherit {
 	display: inherit;
+}
+
+.cancelChangesButton {
+	margin-left: 2em;
+}
+
+#errorMessage {
+	margin-left: 1em;
+	font-size: smaller;
+	font-weight: bold;
 }
 	

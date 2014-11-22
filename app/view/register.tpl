@@ -75,18 +75,6 @@
          placeholder="" style="width: 200px;">
    </div>  
    
-   <!--
-	 Profile Visibility will not be implemented for Project 4. Maybe for Project 5. Email Visibility will be implemented.
-	 -->
-	<!--
-   <div class="checkbox" style="margin: 2em 0 2em 0;">
-      <label>
-      <input type="checkbox" name="profileVisibility" value="yes"> Check here to keep your first, middle, and last name private. 
-      </label>
-   </div>
-   -->
-   
-   
    <button type="submit" class="btn btn-default" style="margin: 2em 0 2em 0;" 
    		formmethod="post" formaction="<?php echo SERVER_PATH?>processRegistration.php">Submit
    </button>
