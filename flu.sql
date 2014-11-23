@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2014 at 11:47 AM
+-- Generation Time: Nov 23, 2014 at 03:41 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8064,7 +8064,8 @@ INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
 (1, 27, '2014-11-10 19:00:31'),
 (26, 24, '2014-11-10 19:58:12'),
 (26, 1, '2014-11-11 09:00:51'),
-(25, 24, '2014-11-11 09:03:05');
+(25, 24, '2014-11-11 09:03:05'),
+(24, 29, '2014-11-23 15:40:48');
 
 -- --------------------------------------------------------
 
@@ -8083,16 +8084,16 @@ CREATE TABLE IF NOT EXISTS `region` (
 --
 
 INSERT INTO `region` (`r_id`, `r_abbr`, `r_name`) VALUES
-(38, 'r_1', 'Virginia'),
-(47, 'r_10', 'North Carolina'),
-(39, 'r_2', 'South Carolina'),
-(40, 'r_3', 'Georgia'),
-(41, 'r_4', 'Maryland'),
-(42, 'r_5', 'Delaware'),
-(43, 'r_6', 'West Virginia'),
-(44, 'r_7', 'Florida'),
-(45, 'r_8', 'Tennessee'),
-(46, 'r_9', 'Kentucky');
+(38, 'r_1', 'Boston HHS'),
+(47, 'r_10', 'Seattle HHS'),
+(39, 'r_2', 'New York HHS'),
+(40, 'r_3', 'Philadelphia HHS'),
+(41, 'r_4', 'Atlanta HHS'),
+(42, 'r_5', 'Chicago HHS'),
+(43, 'r_6', 'Dallas HHS'),
+(44, 'r_7', 'Kansas City HHS'),
+(45, 'r_8', 'Denver HHS'),
+(46, 'r_9', 'San Francisco HHS');
 
 -- --------------------------------------------------------
 
@@ -8112,7 +8113,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(100) NOT NULL,
   `email_address` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `user`
@@ -8123,7 +8124,8 @@ INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `
 (24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'y', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
 (26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'y', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
-(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@yahoo.com');
+(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@yahoo.com'),
+(29, 'Mary', 'Smith', 'A', 'marysmith', NULL, 'Private', 'n', '2014-11-21 16:42:56', 'pass', 'marysmith@yahoo.com');
 
 -- --------------------------------------------------------
 
@@ -8138,7 +8140,7 @@ CREATE TABLE IF NOT EXISTS `userevent` (
   `pastData` varchar(256) NOT NULL COMMENT 'past Data',
   `newData` varchar(256) NOT NULL COMMENT 'new Data',
   `eventDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time when entry has happened'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=63 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Dumping data for table `userevent`
@@ -8174,7 +8176,14 @@ INSERT INTO `userevent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventD
 (59, 1, 11, 'harshalh', '', '2014-11-11 09:00:31'),
 (60, 1, 8, '', 'sarang87', '2014-11-11 09:00:51'),
 (61, 1, 3, 'aku', 'akupatni', '2014-11-11 09:02:03'),
-(62, 24, 8, '', 'harshalh', '2014-11-11 09:03:05');
+(62, 24, 8, '', 'harshalh', '2014-11-11 09:03:05'),
+(63, 29, 5, 'Private', 'Public', '2014-11-21 17:23:03'),
+(64, 29, 2, 'L', 'A', '2014-11-21 18:09:05'),
+(65, 29, 4, 'pass', 'asd', '2014-11-21 18:09:53'),
+(66, 29, 4, 'asd', 'pass', '2014-11-21 18:10:05'),
+(67, 29, 5, 'Public', 'Private', '2014-11-21 18:40:04'),
+(68, 29, 6, 'marysmith@aol.com', 'marysmith@yahoo.com', '2014-11-21 18:46:30'),
+(69, 29, 8, '', 'jonatho7', '2014-11-23 15:40:49');
 
 -- --------------------------------------------------------
 
@@ -8316,12 +8325,12 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `userevent`
 --
 ALTER TABLE `userevent`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=63;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=70;
 --
 -- AUTO_INCREMENT for table `user_pred`
 --
