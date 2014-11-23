@@ -130,10 +130,10 @@ class Event {
 		
 	}
 	
-	public static function getEventsfromAll() {
+	public static function getEventsFromAll() {
 		
 		$query = "select * from ". self::DBTABLE . " where eventId in (select eventId from EventType where eventPublic='y') order by eventDate desc";
-		
+
 		#echo $query;
 		
 		$resultSet = DBAccess::runQuery($query);
@@ -153,10 +153,40 @@ class Event {
 			$row = mysqli_fetch_assoc($resultSet);
 			$events[] = new Event($row, false);
 		}
-		
+
 		return $events;
 	
 	}
+
+    public static function getEventsFromFollowing($myUserID) {
+
+        $query = "SELECT * FROM ". self::DBTABLE . " where eventId in (select eventId from EventType where eventPublic='y') AND (u_id = " . $myUserID . " OR u_id in (select user_id from follower_table where follower_id = " . $myUserID . ")) order by eventDate desc";
+
+        //TODO. Change the 29 to the user_id of course.
+
+        #echo $query;
+
+        $resultSet = DBAccess::runQuery($query);
+
+        if ($resultSet == NULL) {
+            echo "Query failed";
+            return NULL;
+
+        }
+        if ($resultSet->num_rows === 0) {
+            echo "unexpected";
+            return NULL;
+        }
+
+        $events = [];
+        for ($i = 0; $i < $resultSet->num_rows; $i++) {
+            $row = mysqli_fetch_assoc($resultSet);
+            $events[] = new Event($row, false);
+        }
+
+        return $events;
+
+    }
 	
 	public function getEventCreater() {
 		$user = User::getUserbyUserID($this->u_id);

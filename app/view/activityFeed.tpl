@@ -18,10 +18,11 @@
 		
 		
 		<?php
-			
-			$activities = Event::getEventsfromAll();
-			
-			
+
+            $myUserID = $e_user->getUserPKId();
+			$activities = Event::getEventsFromFollowing($myUserID);
+
+
 			//Max number of activity feed items to show.
 			$max_activity_feed = 20;
 			
