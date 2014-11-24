@@ -37,6 +37,8 @@
 	
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="<?php echo  SERVER_PATH ?>public/js/respond.js"></script>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
 	
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

@@ -17,7 +17,23 @@
 	Please type in your username and password in order to log in to the system!
 </h3>
 
-<form role="form" enctype="multipart/form-data">
+<?php
+    /*
+     * The following is a small style for errors. So, better this code be here rather than
+     * anywhere else.
+     */
+?>
+<script src="<?=SERVER_PATH?>public/js/login.js"></script>
+<style>
+
+    #formValidate label.error {
+        width: auto;
+        display: block;   /* Makes error to appear next to element */
+        color: red;        /* Makes error messages red in color */
+    }
+</style>
+
+<form role="form" enctype="multipart/form-data" id="formValidate" class="cmxform">
 
    <div class="form-group">
       <label for="username">Username: </label>

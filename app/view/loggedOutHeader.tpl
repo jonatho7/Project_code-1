@@ -35,6 +35,8 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo  SERVER_PATH ?>public/js/bootstrap.min.js"></script>
 
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+
 
 </head>
 
