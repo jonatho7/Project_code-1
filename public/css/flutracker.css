@@ -52,31 +52,22 @@
   margin: 1em;
 }
 
-.activityFeedDiv{
-	background-color: #E6F0F5;
-	border: 1px solid #d8d8d8;
-	padding-top: 10px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-	word-wrap: break-word;
-	min-height: 200px;
+
+
+.activityFeedDiv {
+    background-color: rgba(100, 100, 100, 0.03);
 }
 
-.activityFeedParag, .activityFeedDate{
+.activityFeedText {
+    font-size: larger;
 	display: inline;
-	word-wrap: break-word;
 }
 
 .activityFeedDate {
-	color: gray;
-	margin-left: 2em;
+    display: inline;
+    color: gray;
 }
 
-.activityFeedComment {
-	margin-top: 0.5em;
-}
 
 .activityFeedPageHeader {
 	margin-bottom: 9em;

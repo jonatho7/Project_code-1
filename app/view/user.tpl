@@ -321,10 +321,15 @@
 			//iterate over the activity feed.
 			for($index = 0; $index < count($activities) && $index < $max_activity_feed; $index++){
 				$activity = $activities[$index]; ?>
-				<div class="activityFeedDiv">
-					<p><a href="<?= SERVER_PATH . 'users/'.$activity->getEventCreater()?>"><?=$activity->getEventCreater()?></a>&nbsp;&nbsp;<?=$activity->getEventTime()?></p>
-					<p><?=$activity->getEventLog()?></p>
-				</div>
+
+                <div class="panel panel-info activityFeedDiv">
+                    <div class="panel-body">
+                        <p class="activityFeedText"><a href="<?= SERVER_PATH . 'users/'.$activity->getEventCreater()?>"><?=$activity->getEventCreater()?></a></p>
+                        <p class="activityFeedDate" style="float: right"><?=$activity->getEventTime()?></p>
+                        <p><?=$activity->getEventLog()?></p>
+                    </div>
+                </div>
+
 				
 			<?php }
 		?>
