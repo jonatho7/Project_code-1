@@ -23,9 +23,9 @@
      * anywhere else.
      */
 ?>
-<script src="<?=SERVER_PATH?>public/js/login.js"></script>
-<style>
+<script src="<?=SERVER_PATH?>public/js/errorValidation.js"></script>
 
+<style>
     #formValidate label.error {
         width: auto;
         display: block;   /* Makes error to appear next to element */

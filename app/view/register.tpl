@@ -17,16 +17,27 @@
 	Register for the world's largest flu tracking system. You'll be up and running in no time.
 </h3>
 
-<form role="form" enctype="multipart/form-data">
+<script src="<?=SERVER_PATH?>public/js/errorValidation.js"></script>
+
+<style>
+    #registrationForm label.error {
+        width: auto;
+        display: block;   /* Makes error to appear next to element */
+        color: red;        /* Makes error messages red in color */
+    }
+</style>
+
+
+<form role="form" enctype="multipart/form-data" id="registrationForm" class="cmxform">
    <div class="form-group">
       <label for="name">Name</label>
       <br />
       
       <input type="text" class="form-control" id="firstName" 
-         placeholder="First" name="firstName" style="display: inline; width: 200px;">
+         placeholder="First" name="firstName" style="display: inline; width: 200px;"><br><br>
       
       <input type="text" class="form-control" id="middleName" name="middleName"
-         placeholder="Middle (Optional)" style="display: inline; width: 200px;">
+         placeholder="Middle (Optional)" style="display: inline; width: 200px;"><br><br>
       
       <input type="text" class="form-control" id="lastName" name="lastName"
          placeholder="Last" style="display: inline; width: 200px;">
@@ -42,15 +53,15 @@
    <div class="form-group">
       <label for="emailAddress">Email Address: </label>
       
-      <input type="text" class="form-control" id="emailAddress" name="emailAddress"
-         placeholder="" style="width: 200px;">
+      <input type="email" class="form-control" id="emailAddress" name="emailAddress"
+         placeholder="alice@gmail.com" style="width: 200px;">
    </div>
    
    <div class="form-group">
       <label for="confirmEmailAddress">Confirm Your Email Address: </label>
       
-      <input type="text" class="form-control" id="confirmEmailAddress" name="confirmEmailAddress"
-         placeholder="" style="width: 200px;">
+      <input type="email" class="form-control" id="confirmEmailAddress" name="confirmEmailAddress"
+         placeholder="alice@gmail.com" style="width: 200px;">
    </div>
    
    <div class="form-group">
