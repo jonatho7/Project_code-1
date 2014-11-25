@@ -95,3 +95,25 @@
     margin-top: 0.5em;
     margin-bottom: 3em;
 }
+
+/*START administration.tpl styles  */
+
+.administrationText {
+    margin-bottom: 1em;
+}
+
+.usernameText, .roleText {
+    display: inline;
+}
+
+.usernameActual, .roleActual {
+    display: inline;
+    color: #3b5998;
+}
+
+.promoteToModerator, .promoteToAdmin {
+    margin-left: 2em;
+
+}
+
+/*END administration.tpl styles  */
