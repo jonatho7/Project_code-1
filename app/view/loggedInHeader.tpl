@@ -162,10 +162,17 @@
                         <a href="<?php echo SERVER_PATH?>searchUsers.php"><i class="fa fa-fw fa-wrench"></i> Find Users</a>
                     </li>
 
-                    <li>
-                        <a href="<?php echo SERVER_PATH?>administration"><i class="fa fa-fw fa-wrench"></i> Administration</a>
-                    </li>
-                	
+                    <?php
+                        if ($e_user->hasModeratorPrivileges()){
+                    ?>
+                            <li>
+                                <a href="<?php echo SERVER_PATH?>administration"><i class="fa fa-fw fa-wrench"></i> Administration</a>
+                            </li>
+                    <?php
+                        }
+                    ?>
+
+
                 	<!--       
                     		Commented out and We need to reconsider whether we need
                     		to add these are not.	

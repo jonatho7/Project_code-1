@@ -151,6 +151,19 @@ class User {
 	public function getLastName() {
 		return $this->lastName;
 	}
+
+    public function getUserRole() {
+        return $this->role;
+    }
+
+    public function hasModeratorPrivileges(){
+        $userRole = $this->getUserRole();
+        if ($userRole == 'moderator' || $userRole == 'admin' || $userRole == 'site manager' ){
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
 	public function get($field=null) {
 		if($field == null){

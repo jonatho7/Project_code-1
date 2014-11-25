@@ -10,13 +10,20 @@
     	exit();
 	}
 
+    //Show message if user does not have at least moderator privileges.
+
+    if (!$e_user->hasModeratorPrivileges()){
+        echo "<h2>I'm sorry</h2>";
+        echo "<h3>You do not have administrative privileges.</h3>";
+        $redirectPath = SERVER_PATH . 'dashboard.php';
+        echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
+        die();
+    }
+    $userName = $e_user->getUserid();
+    $userRole = $e_user->getUserRole();
+
 ?>
 
-
-
-<?php
-	$userName = $e_user->getUserid();
-?>
 
 <div>
 
@@ -30,7 +37,7 @@
             <p class="usernameActual"><?php echo $userName ?></p>
             <p></p>
             <p class="roleText">Role: </p>
-            <p class="roleActual">Registered User</p>
+            <p class="roleActual"><?php echo $userRole ?></p>
             <button type='button' class='btn btn-primary btn-sm promoteToModerator'>Promote to Moderator</button>
             <button type='button' class='btn btn-primary btn-sm promoteToAdmin'>Promote to Admin</button>
 
