@@ -34,13 +34,15 @@ RewriteRule 	^dashboardAddNewPrediction.php$  app/controller/dashboardAddNewPred
 
 RewriteRule		^processHandlePredictionChanges.php$ app/controller/processHandlePredictionChanges.php
 
-RewriteRule     ^users/usernotfound/?$ app/controller/userNotFound.php
-
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/?$ app/controller/user.php?userQuery=$1
 
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/friends/?$ app/controller/friends.php?userQuery=$1
 
-RewriteRule     ^users/([a-zA-Z0-9_-]+)/administration/?$ app/controller/administration.php?userQuery=$1
+RewriteRule     ^users/([a-zA-Z0-9_-]+)/administration/?$ app/controller/administrationForUser.php?userQuery=$1
+
+RewriteRule     ^administration/?$ app/controller/administration.php
+
+
 
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php
 
