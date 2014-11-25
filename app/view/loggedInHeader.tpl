@@ -41,6 +41,15 @@
 	<link href="<?php echo  SERVER_PATH ?>public/css/flutracker.css" rel="stylesheet">
 	<script src="<?php echo  SERVER_PATH ?>public/js/flutracker.js"></script>
 
+    <!-- Highcharts for displaying data for logged in users -->
+
+
+    <link href="<?php echo SERVER_PATH?>public/js/highcharts/style.css" rel="stylesheet" type="text/css">
+    <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts.js"></script>
+    <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts-more.js"></script>
+    <script src="<?php echo SERVER_PATH?>public/js/highcharts/draggable-points.js"></script>
+    <script src="<?php echo SERVER_PATH?>public/js/highcharts/flutracker_charts.js"></script>
+
 </head>
 
 <body data-server-path="<?=SERVER_PATH?>" data-username="<?=$e_user->getUserid()?>">

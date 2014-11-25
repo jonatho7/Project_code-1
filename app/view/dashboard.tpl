@@ -63,7 +63,7 @@
         </div>
      </div>
 
-    <!-- Map of Severity by Region.  -->
+    <!-- Map of Severity by Region.
     <div>
         <h3>
             Influenza-Like-Illness Severity (by Region)
@@ -75,12 +75,13 @@
         </div>
         <p class="severityMapParag">This information was gathered from the CDC.</p>
     </div>
+    -->
 
 
      <!-- End of Basic Header -->
      <div class="row">
      	<div class="col-lg-6">
-     	
+            <h3>Predictions List View</h3>
      		<?php 
      			/*
      		 	* Get all the regions from The database as array
@@ -209,7 +210,19 @@
 					</script>
 				<?php }
      		?>
+           <h3>Predictions Graph View</h3>
+            <div id="container" style="height: 400px"></div>
+            <div id="drag"></div>
+            <div id="drop"></div>
+            <script src="<?php echo SERVER_PATH?>public/js/highcharts/proj5chart.js"></script>
+
+            <div>
+                <button class="changeValue" type="button">
+                    Zoom
+                </button>
+            </div>
      	
      	</div>
+
      
      </div>
