@@ -28,7 +28,7 @@
     }
     
     # Set the title and user object
-    $e_Title = "User Profile";
+    $e_Title = "Activity Feed";
     $e_user = $user;
     
     require_once '../view/loggedInHeader.tpl';
