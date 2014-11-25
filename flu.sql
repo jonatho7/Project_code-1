@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2014 at 03:41 PM
+-- Generation Time: Nov 24, 2014 at 07:59 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8065,7 +8065,9 @@ INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
 (26, 24, '2014-11-10 19:58:12'),
 (26, 1, '2014-11-11 09:00:51'),
 (25, 24, '2014-11-11 09:03:05'),
-(24, 29, '2014-11-23 15:40:48');
+(24, 29, '2014-11-23 15:40:48'),
+(24, 30, '2014-11-24 19:54:37'),
+(1, 30, '2014-11-24 19:57:05');
 
 -- --------------------------------------------------------
 
@@ -8109,23 +8111,24 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_id` varchar(100) NOT NULL,
   `profile_pic` varchar(200) DEFAULT NULL,
   `email_visibility` varchar(20) NOT NULL DEFAULT 'Public',
-  `admin` char(1) NOT NULL DEFAULT 'n',
+  `role` varchar(100) NOT NULL DEFAULT 'registered user',
   `register_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(100) NOT NULL,
   `email_address` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `admin`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bh', 'akupatni', 'Bharath', 'vivekb88', NULL, 'Private', 'y', '2014-10-06 12:43:35', 'vivekb88', 'test@gmail.com'),
-(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'y', '2014-11-07 20:12:29', 'pass', 'jonatho7@vt.edu'),
-(25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'n', '2014-11-07 20:17:08', 'pass', 'harshalh@vt.edu'),
-(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'y', '2014-11-07 20:17:43', 'pass', 'sarang87@vt.edu'),
-(27, 'Jon', 'He', 'D', 'jhellm', NULL, 'Public', 'n', '2014-11-08 00:24:38', 'pass', 'jhellm@yahoo.com'),
-(29, 'Mary', 'Smith', 'A', 'marysmith', NULL, 'Private', 'n', '2014-11-21 16:42:56', 'pass', 'marysmith@yahoo.com');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `role`, `register_date`, `password`, `email_address`) VALUES
+(1, 'vivek bh', 'akupatni', 'Bharath', 'vivekb88', NULL, 'Private', 'site manager', '2014-10-06 12:43:35', 'Password1!', 'test@gmail.com'),
+(24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'site manager', '2014-11-07 20:12:29', 'Password1!', 'jonatho7@vt.edu'),
+(25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'admin', '2014-11-07 20:17:08', 'Password1!', 'harshalh@vt.edu'),
+(26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'site manager', '2014-11-07 20:17:43', 'Password1!', 'sarang87@vt.edu'),
+(27, 'John', 'Doe', NULL, 'jdoe', NULL, 'Public', 'moderator', '2014-11-08 00:24:38', 'Password1!', 'jdoe@yahoo.com'),
+(29, 'Mary', 'Smith', 'A', 'marysmith', NULL, 'Private', 'registered user', '2014-11-21 16:42:56', 'Password1!', 'marysmith@yahoo.com'),
+(30, 'Luke', 'Bryan', NULL, 'lukebryan', NULL, 'Public', 'registered user', '2014-11-24 19:49:09', 'Password1!', 'lukebryan@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -8140,7 +8143,7 @@ CREATE TABLE IF NOT EXISTS `userevent` (
   `pastData` varchar(256) NOT NULL COMMENT 'past Data',
   `newData` varchar(256) NOT NULL COMMENT 'new Data',
   `eventDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'time when entry has happened'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 --
 -- Dumping data for table `userevent`
@@ -8183,7 +8186,9 @@ INSERT INTO `userevent` (`id`, `u_id`, `eventId`, `pastData`, `newData`, `eventD
 (66, 29, 4, 'asd', 'pass', '2014-11-21 18:10:05'),
 (67, 29, 5, 'Public', 'Private', '2014-11-21 18:40:04'),
 (68, 29, 6, 'marysmith@aol.com', 'marysmith@yahoo.com', '2014-11-21 18:46:30'),
-(69, 29, 8, '', 'jonatho7', '2014-11-23 15:40:49');
+(69, 29, 8, '', 'jonatho7', '2014-11-23 15:40:49'),
+(70, 30, 8, '', 'jonatho7', '2014-11-24 19:54:37'),
+(71, 30, 8, '', 'vivekb88', '2014-11-24 19:57:05');
 
 -- --------------------------------------------------------
 
@@ -8199,7 +8204,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=77 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8242,8 +8247,9 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
 (69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
 (72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1),
-(75, 1, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1),
-(76, 1000, '2014-11-11 05:42:38', 38, '2014-11-25', 'adsa', 24);
+(75, 50, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1),
+(76, 1000, '2014-11-11 05:42:38', 38, '2014-11-25', 'adsa', 24),
+(77, 250, '2014-11-23 17:27:33', 38, '2014-11-26', 'Fun stuff.', 1);
 
 --
 -- Indexes for dumped tables
@@ -8283,7 +8289,7 @@ ALTER TABLE `region`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `user_id` (`user_id`), ADD KEY `role` (`role`);
 
 --
 -- Indexes for table `userevent`
@@ -8325,17 +8331,17 @@ MODIFY `r_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48;
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `userevent`
 --
 ALTER TABLE `userevent`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=70;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event for an user',AUTO_INCREMENT=72;
 --
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=77;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=78;
 --
 -- Constraints for dumped tables
 --

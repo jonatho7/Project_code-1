@@ -16,7 +16,7 @@ class User {
 	protected $profilePic;
 	protected $emailAddress;
 	protected $emailVisibility;
-	protected $admin;
+	protected $role;
 	protected $registeredDate;
 	protected $password;
 	protected $isNew = FALSE;
@@ -30,7 +30,7 @@ class User {
 			'profile_pic'=>'profilePic',
 			'email_address'=>'emailAddress',
 			'email_visibility'=>'emailVisibility',
-			'admin'=>'admin',
+			'role'=>'role',
 			'register_date'=>'registeredDate',
 			'password'=>'password');
 	
@@ -68,7 +68,7 @@ class User {
 	}
 	
 	public function isAdmin() {
-		if ($this->admin == 'y')
+		if ($this->role == 'admin')
 			return true;
 		else 
 			return false;
