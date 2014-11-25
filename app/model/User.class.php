@@ -164,6 +164,37 @@ class User {
             return false;
         }
     }
+
+    public function comparePrivileges($userRole, $otherUserRole){
+        $userRoleNum = 0;
+        $otherUserRoleNum = 0;
+
+        if ($userRole == 'registered user'){
+            $userRoleNum = 0;
+        } else if ($userRole == 'moderator'){
+            $userRoleNum = 1;
+        } else if ($userRole == 'admin'){
+            $userRoleNum = 2;
+        } else if ($userRole == 'site manager'){
+            $userRoleNum = 3;
+        }
+
+        if ($otherUserRole == 'registered user'){
+            $otherUserRoleNum = 0;
+        } else if ($otherUserRole == 'moderator'){
+            $otherUserRoleNum = 1;
+        } else if ($otherUserRole == 'admin'){
+            $otherUserRoleNum = 2;
+        } else if ($otherUserRole == 'site manager'){
+            $otherUserRoleNum = 3;
+        }
+
+        if ($userRoleNum > $otherUserRoleNum){
+            return true;
+        } else {
+            return false;
+        }
+    }
 	
 	public function get($field=null) {
 		if($field == null){

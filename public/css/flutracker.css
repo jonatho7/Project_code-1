@@ -96,6 +96,10 @@
     margin-bottom: 3em;
 }
 
+.userNotFound {
+    margin-top: 0.6em;
+}
+
 /*START administrationForUser.tpl styles  */
 
 .administrationText {

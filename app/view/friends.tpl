@@ -20,7 +20,7 @@
 	if ($profile_user == null){
 		//This user does not exist in the DB. 
 		echo "<h2>I'm sorry</h2>";
-		echo "<h3>This user was not found.</h3>";
+        echo "<h4 class='userNotFound'>This user was not found.</h4>";
 		$redirectPath = SERVER_PATH . 'dashboard.php';
 		echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
 		die();
