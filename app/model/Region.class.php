@@ -58,8 +58,9 @@ class Region {
 		if (self::$regionList != NULL) {
 			return self::$regionList;
 		}
-		
-		$query = "select r_id, r_name from ". self::REGION_TABLE;
+
+        //Made this function sort by r_id ascending.
+		$query = "select r_id, r_name from ". self::REGION_TABLE . " order by r_id asc";
 		
 		#echo "$query";
 		
