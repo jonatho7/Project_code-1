@@ -153,14 +153,17 @@
 					<li>
                         <a href="<?php echo SERVER_PATH?>dashboard.php"><i class="fa fa-fw fa-wrench"></i> My Predictions</a>
                     </li>
-					
-					
+
                     <li>
                         <a href="<?php echo SERVER_PATH?>dashboardAddNewPrediction.php"><i class="fa fa-fw fa-wrench"></i> Make New Predictions</a>
                     </li>
 
                     <li class="adminMode">
                         <a href="<?php echo SERVER_PATH?>searchUsers.php"><i class="fa fa-fw fa-wrench"></i> Find Users</a>
+                    </li>
+
+                    <li>
+                        <a href="<?php echo SERVER_PATH?>administration"><i class="fa fa-fw fa-wrench"></i> Administration</a>
                     </li>
                 	
                 	<!--       
