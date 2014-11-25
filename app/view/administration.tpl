@@ -11,7 +11,6 @@
 	}
 
     //Show message if user does not have at least moderator privileges.
-
     if (!$e_user->hasModeratorPrivileges()){
         echo "<h2>I'm sorry</h2>";
         echo "<h3>You do not have administrative privileges.</h3>";
@@ -19,6 +18,7 @@
         echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
         die();
     }
+
     $userName = $e_user->getUserid();
     $userRole = $e_user->getUserRole();
 

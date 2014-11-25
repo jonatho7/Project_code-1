@@ -10,6 +10,18 @@
     	exit();
 	}
 
+    //Show message if user does not have at least moderator privileges.
+    if (!$e_user->hasModeratorPrivileges()){
+        echo "<h2>I'm sorry</h2>";
+        echo "<h3>You do not have administrative privileges.</h3>";
+        $redirectPath = SERVER_PATH . 'dashboard.php';
+        echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
+        die();
+    }
+
+    $userName = $e_user->getUserid();
+    $userRole = $e_user->getUserRole();
+
 ?>
 
 <?php
@@ -29,7 +41,6 @@
 	}
 		
 	$profile_userName = $profile_user->getUserid();
-	$userName = $e_user->getUserid();
 
 	if ($profile_userName == $userName){
 		$viewingOwnProfile = true;
@@ -56,7 +67,7 @@
             <p class="usernameActual"><?php echo $userQuery ?></p>
             <p></p>
             <p class="roleText">Role: </p>
-            <p class="roleActual">Registered User</p>
+            <p class="roleActual"><?php echo $userRole ?></p>
             <button type='button' class='btn btn-primary btn-sm promoteToModerator'>Promote to Moderator</button>
             <button type='button' class='btn btn-primary btn-sm promoteToAdmin'>Promote to Admin</button>
 
@@ -69,27 +80,77 @@
         </div>
         <div class="panel-body">
 
-            <p>Select Region Box Will Go Here. (Coming Soon).</p>
-
 
             <table class="table table-bordered table-hover">
                 <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Comment</th>
-                    <th>Modify</th>
-                </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Region</th>
+                        <th>Comment</th>
+                        <th>Modify</th>
+                    </tr>
                 </thead>
                 <tbody>
+
+
                 <?php
+                    $zeroPredictionsMade = True;
 
-                $numComments = [50, 30, 20, 40, 30, 40, 50, 20];
+                    //Get all the regions from The database as an array
+                    $regions = Region::getAllRegions();
 
-                $count = count($numComments);
+                    //Iterate over the regions array, for each region.
+                    for($regionNumber = 0; $regionNumber < count($regions); $regionNumber++ )
+                    {
+                        $region = $regions[$regionNumber];
+                        $userPredList = UserData::getPredictionsForRegion($profile_user,$region->getRegionName());
+
+                        if( count($userPredList) != 0){
+                            $zeroPredictionsMade = False;
+                        }
+
+                        //Iterate over the specific region, outputting rows for each prediction.
+                        for($userPredNumber = 0; $userPredNumber < count($userPredList); $userPredNumber++)
+                        {
+                 ?>
+                            <tr>
+                                <td><?php echo $userPredList[$userPredNumber]->getDateFormatted()?></td>
+                                <td><?php echo $region->getRegionName()?></td>
+                                <td><?php echo $userPredList[$userPredNumber]->getComment()?></td>
+                                <td>
+                                    <form role="role">
+                                        <?php
+                                        /*
+                                         * Put the region name here so that server knows which
+                                         * region to display.
+                                         */
+                                        //$array = array('region'=>$e_region);
+
+                                        // Construct query parameter and post it to dashboard.php
+                                        //$query = http_build_query($array);
+                                        $query = "meh";
+                                        ?>
+                                        <button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php?<?=$query?>" class="btn btn-warning btn-xs disabled"  name="up_id" value="sheesh">Edit</button>
+                                        <button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php?<?=$query?>" class="btn btn-danger btn-xs disabled" name="up_id" value="sheesh">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                <?php
+                        }
+                    }
+
+                    if( $zeroPredictionsMade == True){
+                        echo "User has not made any predictions yet.";
+                    }
+                ?>
+
+                <?php
+                $count = count($userPredList);
                 for ($i=0; $i < $count; $i++) { ?>
                     <tr>
-                        <td>Wed 17th Sep 2014</td>
-                        <td>@#@#*! Some explicit content.</td>
+                        <td><?php echo $userPredList[$i]->getDateFormatted()?></td>
+                        <td>Boston HHS</td>
+                        <td><?php echo $userPredList[$i]->getComment()?></td>
                         <td>
                             <form role="role">
                                 <?php
