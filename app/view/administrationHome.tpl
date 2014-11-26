@@ -38,8 +38,6 @@
             <p></p>
             <p class="roleText">Role: </p>
             <p class="roleActual"><?php echo $userRole ?></p>
-            <button type='button' class='btn btn-primary btn-sm promoteToModerator'>Promote to Moderator</button>
-            <button type='button' class='btn btn-primary btn-sm promoteToAdmin'>Promote to Admin</button>
 
         </div>
     </div>

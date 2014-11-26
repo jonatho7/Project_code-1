@@ -37,8 +37,8 @@
 
 <?php
 	//We need to determine whether the username from the userQuery is a valid user in the database.
-	$profile_user = User::getUserByUserName($userQuery);
-	if ($profile_user == null){
+	$userQuery_user = User::getUserByUserName($userQuery);
+	if ($userQuery_user == null){
 		//This user does not exist in the DB. Display a message.
 		echo "<h2>I'm sorry</h2>";
         echo "<h4 class='userNotFound'>This user was not found.</h4>";
@@ -47,25 +47,31 @@
 		die();
 	}
 		
-	$profile_userName = $profile_user->getUserid();
+	$userQuery_username = $userQuery_user->getUserid();
 
-	if ($profile_userName == $userName){
-		$viewingOwnProfile = true;
+	if ($userQuery_username == $userName){
+		$viewingOwnPage = true;
 	} else {
-		$viewingOwnProfile = false;
+		$viewingOwnPage = false;
 	}
 
 
-    $profile_userRole = $profile_user->getUserRole();
+    $userQuery_userRole = $userQuery_user->getUserRole();
     //Show a message if the user is not allowed to view this page.
-    //Reasons: 1) moderator trying to view an admin page. admin is above moderator.
-    if (!$e_user->comparePrivileges($userRole, $profile_userRole)){
-        echo "<h2>I'm sorry</h2>";
-        echo "<h4 class='userNotFound'>You do not have sufficient privileges to view this page.</h4>";
-        $redirectPath = SERVER_PATH . 'dashboard.php';
-        echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
-        die();
+    //Reasons: 1) moderator trying to view an admin page. moderator is below admin, and shouldn't
+    //be able to see it.
+    
+    //If a user is viewing their own page, they should be able to see it in admin mode.
+    if (!$viewingOwnPage){
+        if (!User::privilegesGreaterThanOtherUser($userRole, $userQuery_userRole)){
+            echo "<h2>I'm sorry</h2>";
+            echo "<h4 class='userNotFound'>You do not have sufficient privileges to view this page.</h4>";
+            $redirectPath = SERVER_PATH . 'dashboard.php';
+            echo '<p><a href="' . $redirectPath . '">Your Dashboard</a></p>';
+            die();
+        }
     }
+
 
 ?>
 
@@ -83,16 +89,23 @@
                     <p class="usernameActual"><a href="<?php echo SERVER_PATH?>users/<?php echo $userQuery ?>"><?php echo $userQuery ?></a></p>
                     <p></p>
                     <p class="roleText">Role: </p>
-                    <p class="roleActual"><?php echo $profile_userRole ?></p>
+                    <p class="roleActual"><?php echo $userQuery_userRole ?></p>
                     <button type='button' class='btn btn-primary btn-sm changeRoleButton'>Change Role</button>
                     <select class="form-control roleSelector" name="roleSelected">
                         <option>registered user</option>
-                        <option>moderator</option>
-                        <option>admin</option>
+                        <?php if ( $e_user->hasModeratorPrivileges()){
+                            echo "<option>moderator</option>";
+                        }
+                        ?>
+                        <?php if ( $e_user->hasAdminPrivileges()){
+                            echo "<option>admin</option>";
+                        }
+                        ?>
                     </select>
 
-                    <!--Hidden inputs which will have the userQuery, and the region.-->
-                    <input type="hidden" name="userQuery" value="<?php echo $profile_userName ?>">
+                    <!--Hidden inputs which will have the userQuery, user, and the region.-->
+                    <input type="hidden" name="userQuery" value="<?php echo $userQuery_username ?>">
+                    <input type="hidden" name="user" value="<?php echo $userName ?>">
                     <input type="hidden" name="region" value="<?php echo $e_region ?>">
 
 
@@ -117,7 +130,7 @@
 
             <?php
                 //Get all the regions from The database as an array
-                $userPredList = UserData::getPredictionsForRegion($profile_user,$e_region);
+                $userPredList = UserData::getPredictionsForRegion($userQuery_user,$e_region);
                 $regions = Region::getAllRegions();
             ?>
 
@@ -137,7 +150,7 @@
                     </select>
 
                     <!--A hidden input which will have the userQuery.-->
-                    <input type="hidden" name="userQuery" value="<?php echo $profile_userName ?>">
+                    <input type="hidden" name="userQuery" value="<?php echo $userQuery_username ?>">
 
                 </div>
                 <div class="form-group">

@@ -165,10 +165,39 @@ class User {
         }
     }
 
-    public function comparePrivileges($userRole, $otherUserRole){
-        $userRoleNum = 0;
-        $otherUserRoleNum = 0;
+    public function hasAdminPrivileges(){
+        $userRole = $this->getUserRole();
+        if ($userRole == 'admin' || $userRole == 'site manager' ){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public static function privilegesGreaterThanOtherUser($userRole, $otherUserRole){
+        $userRoleValue = User::getUserRoleValue($userRole);
+        $otherUserRoleValue = User::getUserRoleValue($otherUserRole);
+
+        if ($userRoleValue > $otherUserRoleValue){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function privilegesGreaterOrEqualToOtherUser($userRole, $otherUserRole){
+        $userRoleValue = User::getUserRoleValue($userRole);
+        $otherUserRoleValue = User::getUserRoleValue($otherUserRole);
+
+        if ($userRoleValue >= $otherUserRoleValue){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static function getUserRoleValue($userRole){
+        $userRoleNum = 0;
         if ($userRole == 'registered user'){
             $userRoleNum = 0;
         } else if ($userRole == 'moderator'){
@@ -178,22 +207,7 @@ class User {
         } else if ($userRole == 'site manager'){
             $userRoleNum = 3;
         }
-
-        if ($otherUserRole == 'registered user'){
-            $otherUserRoleNum = 0;
-        } else if ($otherUserRole == 'moderator'){
-            $otherUserRoleNum = 1;
-        } else if ($otherUserRole == 'admin'){
-            $otherUserRoleNum = 2;
-        } else if ($otherUserRole == 'site manager'){
-            $otherUserRoleNum = 3;
-        }
-
-        if ($userRoleNum > $otherUserRoleNum){
-            return true;
-        } else {
-            return false;
-        }
+        return $userRoleNum;
     }
 	
 	public function get($field=null) {
