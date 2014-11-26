@@ -175,7 +175,7 @@
                         if ($e_user->hasModeratorPrivileges()){
                     ?>
                             <li>
-                                <a href="<?php echo SERVER_PATH?>administration"><i class="fa fa-fw fa-wrench"></i> Administration</a>
+                                <a href="<?php echo SERVER_PATH?>administrationHome"><i class="fa fa-fw fa-wrench"></i> Administration</a>
                             </li>
                     <?php
                         }

@@ -32,7 +32,7 @@
     $e_user = $user;
     
     require_once '../view/loggedInHeader.tpl';
-    require_once '../view/administrationForUser.tpl';
+    require_once '../view/administrationHome.tpl';
 	require_once '../view/loggedInFooter.tpl';
 
 ?>

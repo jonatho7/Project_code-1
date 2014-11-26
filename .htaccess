@@ -21,6 +21,8 @@ RewriteRule 	^activityFeed/?$  app/controller/activityFeed.php
 
 RewriteRule 	^ProcessDashBoardChangeRegion.php$  app/controller/ProcessDashBoardChangeRegion.php
 
+RewriteRule 	^ProcessAdministrationChangeRegion.php$  app/controller/ProcessAdministrationChangeRegion.php
+
 RewriteRule 	^ProcessSearchUsersChangeRegion.php$  app/controller/ProcessSearchUsersChangeRegion.php
 
 RewriteRule  	^processDashboardEdit.php$    app/controller/processDashboardEdit.php
@@ -31,17 +33,21 @@ RewriteRule     ^processUserEdit.php$ 		    app/controller/processUserEdit.php
 
 RewriteRule 	^dashboardAddNewPrediction.php$  app/controller/dashboardAddNewPrediction.php
 
-
 RewriteRule		^processHandlePredictionChanges.php$ app/controller/processHandlePredictionChanges.php
+
 
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/?$ app/controller/user.php?userQuery=$1
 
 RewriteRule     ^users/([a-zA-Z0-9_-]+)/friends/?$ app/controller/friends.php?userQuery=$1
 
-RewriteRule     ^users/([a-zA-Z0-9_-]+)/administration/?$ app/controller/administrationForUser.php?userQuery=$1
+
+RewriteRule     ^administrationHome/?$ app/controller/administrationHome.php
 
 RewriteRule     ^administration/?$ app/controller/administration.php
 
+RewriteRule  	^processAdministrationEdit/?$ app/controller/processAdministrationEdit.php
+
+RewriteRule		^processHandleAdminPredictionChanges/?$ app/controller/processHandleAdminPredictionChanges.php
 
 
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php

@@ -1,1 +1,7 @@
 app/global.php
+app/config.php
+.buildpath
+.project
+.settings/
+.idea/
+app/view/dashboard_old.tpl

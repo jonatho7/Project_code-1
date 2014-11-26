@@ -100,7 +100,15 @@
     margin-top: 0.6em;
 }
 
-/*START administrationForUser.tpl styles  */
+.selectRegionDiv {
+    margin: 2em;
+}
+
+.listOfPredictions {
+    margin-top: 2em;
+}
+
+/*START administration.tpl styles  */
 
 .administrationText {
     margin-bottom: 1em;
@@ -120,4 +128,4 @@
 
 }
 
-/*END administrationForUser.tpl styles  */
+/*END administration.tpl styles  */

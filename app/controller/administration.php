@@ -1,12 +1,10 @@
 <?php
     	
     require_once '../config.php';
-    
     require_once 'sessionAttributes.php';
     require_once '../model/User.class.php';
     require_once '../model/UserState.class.php';
-	require_once '../model/Activity.class.php';
-    
+    require_once 'controllerHelper.php';
     
     
    if (empty($_SESSION['userName'])) {
@@ -16,9 +14,13 @@
 		header('Location: '. SERVER_PATH. 'login/');
     	exit();
     }
-    
 
-    //echo "UserName = ". $_SESSION['userName'];
+    $hello = $_GET["userQuery"];
+    echo "hello:".$hello;
+
+    $region = getRegion(@$_GET['region']);
+
+
     $user = User::getUserByUserName($_SESSION['userName']);
     
     if ($user == NULL) {
@@ -30,6 +32,7 @@
     # Set the title and user object
     $e_Title = "Administration";
     $e_user = $user;
+    $e_region = $region;
     
     require_once '../view/loggedInHeader.tpl';
     require_once '../view/administration.tpl';

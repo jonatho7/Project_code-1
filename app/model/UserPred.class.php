@@ -126,6 +126,25 @@ class UserPred {
 		return True;
 		
 	}
+
+    public function saveCommentOnly($comment) {
+        /* Saves the comment
+         * for a prediction in the database table
+         */
+        $comment = DBAccess::quoteString($comment);
+
+        $query = 'UPDATE '. self::USER_PRED_TABLE . " set up_comment=$comment ".
+            "where up_id=".$this->up_id;
+        //echo "<br>$query";
+
+        $resultSet = DBAccess::runQuery($query);
+        if ($resultSet == False) {
+            echo "Couldn't delete the entry<br>";
+            return FALSE;
+        }
+        return True;
+
+    }
 	
 	public static function storeNewPrediction($regionName, $value, $predDate, $comment) {
 		
