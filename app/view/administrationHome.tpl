@@ -34,7 +34,7 @@
         </div>
         <div class="panel-body">
             <p class="usernameText">Username: </p>
-            <p class="usernameActual"><?php echo $userName ?></p>
+            <p class="usernameActual"><a href="<?php echo SERVER_PATH?>users/<?php echo $userName ?>"><?php echo $userName ?></a></p>
             <p></p>
             <p class="roleText">Role: </p>
             <p class="roleActual"><?php echo $userRole ?></p>
