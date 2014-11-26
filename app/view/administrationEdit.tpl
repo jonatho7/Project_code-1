@@ -28,14 +28,12 @@
                  	<tr>
                     	<th>Region</th>
                         <th>Prediction Date</th>
-                        <th>Predicted Value</th>
                         <th>Tag</th>
                         <th>Last Modified</th>
                      </tr>
                  </thead>
                  <?php
                  	$p_date = $e_userPred->getDateFormatted();
-                 	$p_value = $e_userPred->getValue();
                  	$p_comment = $e_userPred->getComment();
                  	$p_lastModified = $e_userPred->getLastModifiedFormatted();
                  	/* Save prediction id in SESSION */
@@ -45,11 +43,6 @@
 					<tr>
 						<td><?php echo $e_region?></td>
 						<td><?php echo $p_date?></td>
-						<td>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="<?php echo $e_userPred->getup_pk().'-'.'value'?>" value="<?php echo $p_value?>">
-							</div>
-						</td>
 						<td>
 							<div class="col-md-6">
 								<input type="text" class="form-control" name="<?php echo  $e_userPred->getup_pk().'-'.'comment'?>" value="<?php echo $p_comment?>">

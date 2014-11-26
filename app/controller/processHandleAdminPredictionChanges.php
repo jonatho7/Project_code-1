@@ -43,22 +43,15 @@ $up_id = $_SESSION['PREDICTION_ID'];
 echo " At least I got pid = $up_id";
 
 /*
- * Extract $value and $comment
+ * Extract $comment only
 */
-$value = $_POST[$up_id."-value"];
-
-if (!is_numeric($value) || (intval($value) < 0)) {
-	header('Location: '. SERVER_PATH. 'dashboard.php');
-	exit();
-}
-
 $comment = $_POST[$up_id."-comment"];
 
-echo "<br>value = $value comment = $comment";
+echo "<br>comment = $comment";
 
 $userPred = UserPred::getPreditionForId($up_id);
 
-echo "<br>value = $value comment = $comment";
+echo "<br>comment = $comment";
 
 echo $userPred->getDateFormatted();
 
