@@ -22,6 +22,16 @@
     $userName = $e_user->getUserid();
     $userRole = $e_user->getUserRole();
 
+    $errorMessage = '';
+    if (!empty($_GET['errorMessage'])) {
+        $errorMessage = $_GET['errorMessage'];
+    }
+
+    $userQuery = '';
+    if (!empty($_GET['userQuery'])) {
+        $userQuery = $_GET['userQuery'];
+    }
+
 ?>
 
 
@@ -48,21 +58,33 @@
         </div>
         <div class="panel-body">
 
-            <p>A Search for a user will go here. (Coming Soon).</p>
-            <p>Your search found this user:</p>
-            <a href="<?php echo SERVER_PATH?>administration.php?userQuery=jonatho7">jonatho7</a>
-            <a href="<?php echo SERVER_PATH?>administration?userQuery=harshalh">harshalh</a>
-            <a href="<?php echo SERVER_PATH?>administration?userQuery=jdoe">jdoe</a>
-            <a href="<?php echo SERVER_PATH?>administration?userQuery=marysmith">marysmith</a>
-            <a href="<?php echo SERVER_PATH?>administration?userQuery=lukebryan">lukebryan</a>
+            <form role="form">
+                <p>Search for a user by username:</p>
+                <!--Let the user type in the name they would like to search for.-->
+                <input type="text" required class="form-control searchForUser" name="userQuery" value="<?php echo $userQuery ?>">
+                <button class='btn btn-primary btn-sm searchForUserButton' type='submit'
+                        formmethod="post" formaction="<?php echo SERVER_PATH?>processSearchForUser">Search</button>
 
-        </div>
+                <p></p>
+                <?php
+                if ($errorMessage == 'none') {
+                ?>
+                    <p>Search Results: </p>
+                    <p><a href="<?php echo SERVER_PATH?>administration?userQuery=<?php echo $userQuery ?>"><?php echo $userQuery ?></a></p>
+                <?php
+                } else if ($errorMessage == 'user not found') {
+                    echo "<p>No users found for search term: $userQuery</p>";
+                } else if ($errorMessage == ''){
+                    //Just loaded the page. No error message yet because no search has been performed.
+                }
+                ?>
+            </form>
+
+        </div> <!--  Row Ending -->
+
     </div>
-
-
-
-	
 </div>
+
 
 
 

@@ -60,7 +60,7 @@
     //Show a message if the user is not allowed to view this page.
     //Reasons: 1) moderator trying to view an admin page. moderator is below admin, and shouldn't
     //be able to see it.
-    
+
     //If a user is viewing their own page, they should be able to see it in admin mode.
     if (!$viewingOwnPage){
         if (!User::privilegesGreaterThanOtherUser($userRole, $userQuery_userRole)){

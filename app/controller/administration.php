@@ -15,9 +15,6 @@
     	exit();
     }
 
-    $hello = $_GET["userQuery"];
-    echo "hello:".$hello;
-
     $region = getRegion(@$_GET['region']);
 
 

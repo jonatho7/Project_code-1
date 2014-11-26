@@ -51,6 +51,8 @@ RewriteRule		^processHandleAdminPredictionChanges/?$ app/controller/processHandl
 
 RewriteRule		^processRoleChange/?$ app/controller/processRoleChange.php
 
+RewriteRule		^processSearchForUser/?$ app/controller/processSearchForUser.php
+
 
 
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php

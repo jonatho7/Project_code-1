@@ -149,3 +149,12 @@
 
 
 /*END administration.tpl styles  */
+
+.searchForUser {
+    display: inline;
+    width: 20em;
+}
+
+.searchForUserButton {
+    display: inline;
+}

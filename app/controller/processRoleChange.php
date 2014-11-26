@@ -36,7 +36,7 @@ $userQuery_role = $userQuery_user->getUserRole();
 
 //Now double check that the user actually does have privileges
 //to be able to change the role of this user.
-if ( User::privilegesGreaterOrEqualToOtherUser($e_userRole, $userQuery_role ) ){
+if ( !User::privilegesGreaterOrEqualToOtherUser($e_userRole, $userQuery_role ) ){
     redirectToDashBoard();
 }
 
@@ -46,7 +46,7 @@ $userQuery_user->changeRole($roleSelected);
 
 
 // Construct query parameter.
-$array = array('userQuery'=>$userQuery, 'region'=>$region);
+$array = array('userQuery'=>$userQuery_username, 'region'=>$region);
 $queryParameters = http_build_query($array);
 
 
