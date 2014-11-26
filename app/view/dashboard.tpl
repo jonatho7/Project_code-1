@@ -156,7 +156,7 @@
                          	<tr>
                               <th>Date</th>
                               <th>Value</th>
-                              <th>Tag</th>
+                              <th>Comment</th>
                               <th>Modify</th>
                             </tr>
                         </thead>

@@ -40,7 +40,7 @@
                     	<th>Region</th>
                         <th>Prediction Date</th>
                         <th>Predicted Value</th>
-                        <th>Tag</th>
+                        <th>Comment</th>
                         <th>Last Modified</th>
                      </tr>
                  </thead>
