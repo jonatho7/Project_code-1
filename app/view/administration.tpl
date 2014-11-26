@@ -149,8 +149,8 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
-                            <th>Date</th>
                             <th>Region</th>
+                            <th>Date</th>
                             <th>Comment</th>
                             <th>Modify</th>
                         </tr>
@@ -161,8 +161,8 @@
                     for ($i=0; $i < $count; $i++) {
                     ?>
                         <tr>
-                            <td><?php echo $userPredList[$i]->getDateFormatted()?></td>
                             <td><?php echo $e_region ?></td>
+                            <td><?php echo $userPredList[$i]->getDateFormatted()?></td>
                             <td><?php echo $userPredList[$i]->getComment()?></td>
                             <td>
                                 <form role="role">
