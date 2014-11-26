@@ -243,6 +243,30 @@ var main = function() {
         window.location.assign($(this).data("redirect-url"));
     })
 
+    $(".changeRoleButton").click(function() {
+
+        //Show the other buttons.
+        $(".roleSelector").css( "display", "inline" );
+        $(".roleSubmitChangesButton").css( "display", "inline" );
+        $(".roleCancelButton").css( "display", "inline" );
+
+        //Hide the Change role button.
+        $(".changeRoleButton").css( "display", "none" );
+
+    });
+
+    $(".roleCancelButton").click(function() {
+
+        //Hide the other buttons.
+        $(".roleSelector").css( "display", "none" );
+        $(".roleSubmitChangesButton").css( "display", "none" );
+        $(".roleCancelButton").css( "display", "none" );
+
+        //Show this button.
+        $(".changeRoleButton").css( "display", "inline" );
+
+    });
+
 }
 
 $(document).ready(main);

@@ -54,6 +54,9 @@
             <p>Your search found this user:</p>
             <a href="<?php echo SERVER_PATH?>administration.php?userQuery=jonatho7">jonatho7</a>
             <a href="<?php echo SERVER_PATH?>administration?userQuery=harshalh">harshalh</a>
+            <a href="<?php echo SERVER_PATH?>administration?userQuery=jdoe">jdoe</a>
+            <a href="<?php echo SERVER_PATH?>administration?userQuery=marysmith">marysmith</a>
+            <a href="<?php echo SERVER_PATH?>administration?userQuery=lukebryan">lukebryan</a>
 
         </div>
     </div>

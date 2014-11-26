@@ -77,14 +77,31 @@
             <h3 class="panel-title">User</h3>
         </div>
         <div class="panel-body">
-            <p class="usernameText">Username: </p>
-            <p class="usernameActual"><a href="<?php echo SERVER_PATH?>users/<?php echo $userQuery ?>"><?php echo $userQuery ?></a></p>
-            <p></p>
-            <p class="roleText">Role: </p>
-            <p class="roleActual"><?php echo $profile_userRole ?></p>
-            <button type='button' class='btn btn-primary btn-sm promoteToModerator'>Promote to Moderator</button>
-            <button type='button' class='btn btn-primary btn-sm promoteToAdmin'>Promote to Admin</button>
+            <form role="form">
+                <div class="form-group">
+                    <p class="usernameText">Username: </p>
+                    <p class="usernameActual"><a href="<?php echo SERVER_PATH?>users/<?php echo $userQuery ?>"><?php echo $userQuery ?></a></p>
+                    <p></p>
+                    <p class="roleText">Role: </p>
+                    <p class="roleActual"><?php echo $profile_userRole ?></p>
+                    <button type='button' class='btn btn-primary btn-sm changeRoleButton'>Change Role</button>
+                    <select class="form-control roleSelector" name="roleSelected">
+                        <option>registered user</option>
+                        <option>moderator</option>
+                        <option>admin</option>
+                    </select>
 
+                    <!--Hidden inputs which will have the userQuery, and the region.-->
+                    <input type="hidden" name="userQuery" value="<?php echo $profile_userName ?>">
+                    <input type="hidden" name="region" value="<?php echo $e_region ?>">
+
+
+                    <button class='btn btn-primary btn-sm roleSubmitChangesButton' type='submit'
+                            formmethod="post" formaction="<?php echo SERVER_PATH?>processRoleChange">Submit Changes</button>
+                    <button class='btn btn-primary btn-sm roleCancelButton' type='button'>Cancel</button>
+
+                </div>
+            </form>
         </div>
     </div>
 

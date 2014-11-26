@@ -421,5 +421,16 @@ class User {
 	 	$this->runUpdateQuery("password", $new);
 	 	Event::createEventgivenUser($this, EVENT::EVENT_PASSWORD, $this->password, $new);
 	 }
+
+    public function changeRole($new) {
+
+        if (empty(trim($new)) || ($this->role == $new)) {
+            //Nothing changed
+            return;
+        }
+        $this->runUpdateQuery("role", $new);
+        //Do not create an activity feed event for this change.
+    }
+
 	 
 }

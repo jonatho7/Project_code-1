@@ -49,6 +49,9 @@ RewriteRule  	^processAdministrationEdit/?$ app/controller/processAdministration
 
 RewriteRule		^processHandleAdminPredictionChanges/?$ app/controller/processHandleAdminPredictionChanges.php
 
+RewriteRule		^processRoleChange/?$ app/controller/processRoleChange.php
+
+
 
 RewriteRule     ^amazonWorker.php$   app/controller/amtWorker.php
 
