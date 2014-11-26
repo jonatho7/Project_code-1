@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2014 at 07:59 PM
+-- Generation Time: Nov 26, 2014 at 01:42 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8204,7 +8204,7 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=78 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
 
 --
 -- Dumping data for table `user_pred`
@@ -8243,13 +8243,15 @@ INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, 
 (57, 3, '2014-10-14 04:39:30', 46, '2014-10-28', 'k3', 1),
 (60, 9999, '2014-10-14 05:07:51', 44, '2014-10-25', 'vivek', 1),
 (61, 200, '2014-10-21 18:53:33', 43, '2014-10-12', 'I think this prediction will be more accurate, actually.', 1),
-(67, 240, '2014-10-26 13:02:58', 38, '0000-00-00', 'asdas', 1),
+(67, 240, '2014-10-26 13:02:58', 38, '0000-00-00', 'great stuff', 1),
 (68, 11, '2014-10-26 13:03:21', 38, '0000-00-00', '', 1),
 (69, 1, '2014-10-26 13:03:54', 38, '0000-00-00', '', 1),
 (72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1),
 (75, 50, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1),
 (76, 1000, '2014-11-11 05:42:38', 38, '2014-11-25', 'adsa', 24),
-(77, 250, '2014-11-23 17:27:33', 38, '2014-11-26', 'Fun stuff.', 1);
+(77, 250, '2014-11-23 17:27:33', 38, '2014-11-26', 'Fun stuff.', 1),
+(78, 23, '2014-11-24 23:39:47', 38, '2014-11-26', 'my predictionishness', 25),
+(79, 20, '2014-11-24 23:40:21', 38, '2014-12-03', 'my other predictionings', 25);
 
 --
 -- Indexes for dumped tables
@@ -8341,7 +8343,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=78;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=80;
 --
 -- Constraints for dumped tables
 --
