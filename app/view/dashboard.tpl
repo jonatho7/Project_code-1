@@ -11,8 +11,10 @@
 	         $e_region (name)
 	*/
 ?>
-	
-	<?php
+	<!-- Add page specific script files -->
+    <script src="<?= SERVER_PATH?>public/js/dashboard.js"></script>
+
+    <?php
 		//TODO. Get user role from database.
 		//userRole options: 0 = "registered_user", 1 = "moderator", 2 = "admin".
 		$userRole = 2;
@@ -142,32 +144,45 @@
                               <th>Date</th>
                               <th>Value</th>
                               <th>Comment</th>
-                              <th>Modify</th>
+                              <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
                          <?php
                          	$count = count($userPredList);
                          	for ($i=0; $i < $count; $i++) { ?>
-								<tr>
-									<td><?php echo $userPredList[$i]->getDateFormatted()?></td>
-									<td><?php echo $userPredList[$i]->getValue()?></td>
+								<tr class="predictionTable">
+									<td class="predictionDate"><?php echo $userPredList[$i]->getDateFormatted()?></td>
+									<td class="predictionValue"><?php echo $userPredList[$i]->getValue()?></td>
 									<td><?php echo $userPredList[$i]->getComment()?></td>
 									<td>
-										<form role="role">
-                                            <?php
-                                                /*
-                                                 * Put the region name here so that server knows which
-                                                 * region to display.
-                                                 */
-                                                $array = array('region'=>$e_region);
+                                        <!-- Create a table for options -->
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="info"">
+                                                        <form role="role">
+                                                            <?php
+                                                            /*
+                                                             * Put the region name here so that server knows which
+                                                             * region to display.
+                                                             */
+                                                            $array = array('region'=>$e_region);
 
-                                                // Construct query parameter and post it to dashboard.php
-                                                $query = http_build_query($array);
-                                            ?>
-                                            <button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php?<?=$query?>" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
-											<button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardDelete.php?<?=$query?>" class="btn btn-danger btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
-										</form>
+                                                            // Construct query parameter and post it to dashboard.php
+                                                            $query = http_build_query($array);
+                                                            ?>
+                                                            <button type="submit" formmethod="post" formaction="<?php echo SERVER_PATH?>processDashboardEdit.php?<?=$query?>" class="btn btn-warning btn-xs" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Edit</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="danger">
+                                                        <button type="button" class="btn btn-danger btn-xs deletePrediction" data-method="post" data-region="<?=$e_region?>" data-url="<?= SERVER_PATH. 'processDashboardDelete.php?' . $query ?>" <?php if ($userPredList[$i]->isExpriredPrediction()) {echo "disabled"; } ?> name="up_id" value="<?php echo $userPredList[$i]->getup_pk()?>">Delete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 									</td>
 								</tr>
 							<?php }

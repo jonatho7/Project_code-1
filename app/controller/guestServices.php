@@ -13,6 +13,16 @@ require_once '../model/Region.class.php';
 $service = @$_GET['service'];
 $type = @$_GET['type'];
 
+function get_data($url) {
+    $ch = curl_init();
+    $timeout = 5;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data;
+}
 
 if (empty($service) || empty($type)) {
     echo "";
@@ -27,7 +37,10 @@ if (empty($service) || empty($type)) {
         Get the latest date from the following url:
         http://www.cdc.gov/flu/weekly/flureport.xml
      */
-    $response = file_get_contents('http://www.cdc.gov/flu/weekly/flureport.xml');
+
+    //$response = file_get_contents('http://www.cdc.gov/flu/weekly/flureport.xml');
+    $response = get_data('http://www.cdc.gov/flu/weekly/flureport.xml');
+
     $xml = simplexml_load_string($response);
 
     /*

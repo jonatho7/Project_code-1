@@ -47,4 +47,3 @@ if ($userPred->deleteUserPred()) {
 
 
 redirectToDashBoard();
-# Now delete the entry and
