@@ -63,7 +63,7 @@
         </div>
      </div>
 
-    <!-- Map of Severity by Region.
+    <!--
     <div>
         <h3>
             Influenza-Like-Illness Severity (by Region)

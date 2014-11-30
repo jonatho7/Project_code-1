@@ -70,5 +70,7 @@ RewriteRule 	^ProcessOtherUsersChangeRegion.php$  app/controller/ProcessOtherUse
 
 RewriteRule    ^handleUserProfileChanges.php$ app/controller/handleUserProfileChanges.php
 
+RewriteRule  ^guest/api/getLatestActualData/HSS/?$  app/controller/guestServices.php?service=getLatestActualData&type=HSS
 
+RewriteRule  ^guest/api/getLatestActualData/CDC/stateActivity/? app/controller/guestServices.php?service=getLatestActualData&type=stateActivity
 

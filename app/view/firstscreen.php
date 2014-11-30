@@ -1,4 +1,3 @@
-
 <?php
 require_once '../config.php';
 ?>
@@ -6,7 +5,6 @@ require_once '../config.php';
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -17,18 +15,27 @@ require_once '../config.php';
     <!-- Bootstrap core CSS -->
     <link href="<?php echo SERVER_PATH?>public/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="<?php echo SERVER_PATH?>public/js/ie-emulation-modes-warning.js"></script>
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="<?=SERVER_PATH ?>public/js/datamaps.usa.min.js"></script>
+    <script src="<?=SERVER_PATH ?>public/js/custom_map_display.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="<?php echo SERVER_PATH?>public/css/carousel.css" rel="stylesheet">
+
+    <!-- Style the portion in which visualization is displayed. -->
+    <style>
+        #map_severity {
+            position: relative;
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -146,7 +153,19 @@ require_once '../config.php';
 
     <hr class="featurette-divider">
 
+    <div class="row">
+        <p class="h3">
+            Influenza-Like-Illness Severity
+        </p>
+        <div id="map_severity">
+            <!-- US map comes here -->
 
+
+        </div>
+        <p class="severityMapParag">This information was gathered from the CDC.</p>
+    </div>
+
+    <hr class="featurette-divider">
     <!-- /END THE FEATURETTES -->
 
 
@@ -165,7 +184,5 @@ require_once '../config.php';
 <script src="<?php echo SERVER_PATH?>public/js/jquery-1.11.0.js"></script>
 <script src="<?php echo SERVER_PATH?>public/js/bootstrap.min.js"></script>
 <script src="<?php echo SERVER_PATH?>public/js/docs.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="<?php echo SERVER_PATH?>public/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

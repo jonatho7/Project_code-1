@@ -13,6 +13,9 @@ require_once '../model/User.class.php';
 require_once '../model/Event.class.php';
 
 
+require_once '../model/Region.class.php';
+
+
 function println($string) {
 	echo $string . "<br>";
 }
@@ -25,7 +28,7 @@ $following = User::getUsersFollowingById(1);
 for ($i = 0 ; $i < count($following); $i++) {
 	println($following[$i]);
 }
-*/
+
 
 $followers = User::getUsersFollowersById(1);
 
@@ -34,7 +37,17 @@ for ($i = 0 ; $i < count($followers); $i++) {
 }
 
 Event::createEventNameToIdMapping();
+*/
 
+
+$regions = Region::getLatestActualData();
+
+foreach($regions as $x) {
+    print_r($x);
+    println("");
+}
+
+println(json_encode($regions));
 
 
 ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2014 at 07:32 PM
+-- Generation Time: Nov 30, 2014 at 05:53 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8078,24 +8078,25 @@ INSERT INTO `follower_table` (`user_id`, `follower_id`, `follow_date`) VALUES
 CREATE TABLE IF NOT EXISTS `region` (
 `r_id` int(11) NOT NULL,
   `r_abbr` varchar(20) NOT NULL,
-  `r_name` varchar(100) NOT NULL
+  `r_name` varchar(100) NOT NULL,
+  `r_name_display` varchar(50) NOT NULL COMMENT 'The name that is meaningful for external display or sources'
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
 
 --
 -- Dumping data for table `region`
 --
 
-INSERT INTO `region` (`r_id`, `r_abbr`, `r_name`) VALUES
-(38, 'r_1', 'Boston HHS'),
-(47, 'r_10', 'Seattle HHS'),
-(39, 'r_2', 'New York HHS'),
-(40, 'r_3', 'Philadelphia HHS'),
-(41, 'r_4', 'Atlanta HHS'),
-(42, 'r_5', 'Chicago HHS'),
-(43, 'r_6', 'Dallas HHS'),
-(44, 'r_7', 'Kansas City HHS'),
-(45, 'r_8', 'Denver HHS'),
-(46, 'r_9', 'San Francisco HHS');
+INSERT INTO `region` (`r_id`, `r_abbr`, `r_name`, `r_name_display`) VALUES
+(38, 'r_1', 'Boston HHS', '1'),
+(39, 'r_2', 'New York HHS', '2'),
+(40, 'r_3', 'Philadelphia HHS', '3'),
+(41, 'r_4', 'Atlanta HHS', '4'),
+(42, 'r_5', 'Chicago HHS', '5'),
+(43, 'r_6', 'Dallas HHS', '6'),
+(44, 'r_7', 'Kansas City HHS', '7'),
+(45, 'r_8', 'Denver HHS', '8'),
+(46, 'r_9', 'San Francisco HHS', '9'),
+(47, 'r_10', 'Seattle HHS', '10');
 
 -- --------------------------------------------------------
 

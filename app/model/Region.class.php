@@ -2,6 +2,12 @@
 
 require_once 'DbAccess.class.php';
 
+/*
+ *  Look at the static methods for more details regarding what information
+ *  is provided by each API.
+ *
+ */
+
 class Region {
 	/*
 	 * The number of regions cannot be changed while web app
@@ -138,5 +144,40 @@ class Region {
     public static function getFirstRegion() {
         $regionsList = self::getAllRegions();
         return $regionsList[0]->r_name;
+    }
+
+
+    /*
+     *  This method returns the latest surveillance data for each region
+     *  in the system.
+     *
+     *  Output: An associative array:
+     *   {<region_id>: {"region_abbr":<value>, "region_name":<value>, "date":<value>, "count":<value> }
+     */
+    public static function getLatestActualData() {
+        $query = "select r_name_display as region_id , r_abbr as region_abbr, r_name as region_name, ad_date as date , ad_value as value from region, actual_data where ad_date =(select max(ad_date) from actual_data) and region.r_id = actual_data.r_id";
+
+        $resultSet = DBAccess::runQuery($query);
+		if ($resultSet->num_rows === 0) {
+            return NULL;
+        }
+
+        # find number of rows
+		$rows = mysqli_num_rows($resultSet);
+		if ($rows == 0)
+            return NULL;
+
+        $regions = array();
+		for($i = 0; $i < $rows; $i++) {
+            $temp = mysqli_fetch_assoc($resultSet);
+            $region_id = $temp['region_id'];
+            $regions[$region_id] = array();
+            $regions[$region_id]['region_abbr'] = $temp['region_abbr'];
+            $regions[$region_id]['region_name'] = $temp['region_name'];
+            $regions[$region_id]['date'] = $temp['date'];
+            $regions[$region_id]['value'] = $temp['value'];
+        }
+
+        return $regions;
     }
 }
