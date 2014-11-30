@@ -63,21 +63,6 @@
         </div>
      </div>
 
-    <!--
-    <div>
-        <h3>
-            Influenza-Like-Illness Severity (by Region)
-        </h3>
-        <div>
-            <script type='text/javascript' src='<?php echo SERVER_PATH . 'public/js/google_jsapi.js' ?>'></script>
-            <script type='text/javascript' src='<?php echo SERVER_PATH . 'public/js/flutracker_geochart.js' ?>'></script>
-            <div id="geochart-colors" style="width: 700px; height: 433px;"></div>
-        </div>
-        <p class="severityMapParag">This information was gathered from the CDC.</p>
-    </div>
-    -->
-
-
      <!-- End of Basic Header -->
      <div class="row">
      	<div class="col-lg-6">
