@@ -208,6 +208,21 @@
             </div>
      	
      	</div>
-
+        <!-- End of right column  -->
      
      </div>
+
+    <hr class="featurette-divider">
+    <div class="row">
+        <p class="h3">Influenza-Like-Illness Severity</p>
+        <div id="map_severity">
+            <!-- US map comes here -->
+            <!-- These script files very specific to this page. Therefore, include them here. -->
+            <script src="http://d3js.org/d3.v3.min.js"></script>
+            <script src="http://d3js.org/topojson.v1.min.js"></script>
+            <script src="<?=SERVER_PATH ?>public/js/datamaps.usa.min.js"></script>
+            <script src="<?=SERVER_PATH ?>public/js/custom_map_display.js"></script>
+
+        </div>
+        <small>The data for the geo map has been extracted from <a href="http://www.cdc.gov/flu/weekly/flureport.xml">CDC weekly status activity report</a></small>
+</div>

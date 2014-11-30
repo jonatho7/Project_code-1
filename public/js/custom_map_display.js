@@ -18,7 +18,7 @@ function populateStateData() {
     $.ajax(url, {
         success: function (response) {
             json_response = response;
-            console.log(json_response);
+            //console.log(json_response);
         },
         async: false,
         dataType: "json"

@@ -28,13 +28,7 @@ require_once '../config.php';
     <link href="<?php echo SERVER_PATH?>public/css/carousel.css" rel="stylesheet">
 
     <!-- Style the portion in which visualization is displayed. -->
-    <style>
-        #map_severity {
-            position: relative;
-            width: 800px;
-            height: 600px;
-        }
-    </style>
+   <link href="<?= SERVER_PATH?>public/css/geomap.css" rel="stylesheet">
 
 </head>
 <!-- NAVBAR
@@ -162,7 +156,7 @@ require_once '../config.php';
 
 
         </div>
-        <p class="severityMapParag">This information was gathered from the CDC.</p>
+        <small>The data for the geo map has been extracted from <a href="http://www.cdc.gov/flu/weekly/flureport.xml">CDC weekly status activity report</a></small>
     </div>
 
     <hr class="featurette-divider">

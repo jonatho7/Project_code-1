@@ -45,6 +45,8 @@
 
 
     <link href="<?php echo SERVER_PATH?>public/js/highcharts/style.css" rel="stylesheet" type="text/css">
+    <link href="<?= SERVER_PATH?>public/css/geomap.css" rel="stylesheet">
+
     <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts.js"></script>
     <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts-more.js"></script>
     <script src="<?php echo SERVER_PATH?>public/js/highcharts/draggable-points.js"></script>
