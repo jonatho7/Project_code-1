@@ -43,7 +43,10 @@ class Region {
 
     public static function getRegionIdFromName($r_name){
 
+        $r_name = DBAccess::quoteString($r_name);
+
         $query = "select r_id from ". self::REGION_TABLE . " where r_name = $r_name";
+
         $result = DBAccess::runQuery($query);
 
         if ($result == NULL || $result == False) {
@@ -94,7 +97,7 @@ class Region {
 	
 	public static function getLatestPredictionDate($r_name) {
 		/*
-		 * Returns the date object corressponding to latest 
+		 * Returns the date object corresponding to latest
 		 * real data available for a given region
 		 */
 		$r_name = DBAccess::quoteString($r_name);
@@ -209,5 +212,32 @@ class Region {
         }
 
         return $regions;
+    }
+
+    /*
+     * Get the surveillance data for the given region and season
+     */
+    public static function getActualData($region, $season_year) {
+
+        $r_id = self::getRegionIdFromName($region);
+
+        $query = "select ad_date as date, ad_value as value from actual_data where r_id=$r_id and ad_season=$season_year";
+
+        $resultSet = DBAccess::runQuery($query);
+        if ($resultSet->num_rows === 0) {
+            return NULL;
+        }
+
+        # find number of rows
+        $rows = mysqli_num_rows($resultSet);
+        if ($rows == 0)
+            return NULL;
+
+        $output = array();
+        for($i = 0; $i < $rows; $i++) {
+            $temp = mysqli_fetch_assoc($resultSet);
+            $output[$temp['date']] = $temp['value'];
+        }
+        return $output;
     }
 }

@@ -75,3 +75,6 @@ RewriteRule  ^guest/api/getLatestActualData/HSS/?$  app/controller/guestServices
 RewriteRule  ^guest/api/getLatestActualData/CDC/stateActivity/? app/controller/guestServices.php?service=getLatestActualData&type=stateActivity
 
 RewriteRule ^loggedIn/api/getNextPredictionDate/?   app/controller/loggedInServices.php?service=getNextPredictionDate
+
+#Append a query string
+RewriteRule ^loggedIn/api/getPredictionEntries/?    app/controller/loggedInServices.php?service=getPredictionEntries [QSA]

@@ -60,6 +60,12 @@ class UserPred {
 		return $this->up_id;
 		
 	}
+
+    public function getPredictionDate() {
+        /* Gets the prediction date */
+        return $this->up_date;
+    }
+
 	public function isExpriredPrediction() {
 		$maxdate = Region::getLatestPredictionDateById($this->r_id);
 		

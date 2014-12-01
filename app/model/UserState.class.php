@@ -4,13 +4,9 @@ require_once 'User.class.php';
 
 require_once 'Region.class.php';
 require_once 'UserPred.class.php';
+
 /*
- * This class encapsulates all the state about 
- * user who is logged in. 
- * This should be created when user logs in and
- * destroyed when user logs out and is stored in Session.
- *
- *  and this points to $userObject (object encapulation)
+ *  Handles the user predictions entries in the database.
  */
 
 class UserData {
