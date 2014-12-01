@@ -26,7 +26,9 @@ function doFormAction($button) {
     $form.attr("method", "post");
     $form.append($input);
 
+    $("body").append($form);
     $form.submit();
+
 
 }
 
