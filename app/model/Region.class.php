@@ -1,7 +1,7 @@
 <?php
 
 require_once 'DbAccess.class.php';
-
+require_once 'User.class.php';
 /*
  *  Look at the static methods for more details regarding what information
  *  is provided by each API.
@@ -111,7 +111,7 @@ class Region {
 	}
 	public static function getLatestPredictionDateById($r_id) {
 		/*
-		 * Returns the date object corressponding to latest
+		 * Returns the date object corresponding to latest
 		* real data available for a given region id
 		*/
 		$query = "SELECT max(ad_date) as date from actual_data where r_id = $r_id";
@@ -120,16 +120,46 @@ class Region {
 		if ($resultSet->num_rows === 0) {
 			return NULL;
 		}
-		//$row = mysqli_fetch_assoc($resultSet);
-		//print_r($row);
+
+
 		return date_create(mysqli_fetch_assoc($resultSet)['date']);
 	}
+
+    /*
+     * We will return the Wednesday of every week.
+     * Find the maximum of actual data or latest date predicted by the user
+     * and add 1 more week.
+     */
+    public static function getNextPredictonDateForUser($r_id, $username) {
+        $user = User::getUserByUserName($username);
+
+        if ($user == null) {
+            echo "In invalid state";
+            return null;
+        }
+
+        $u_id = $user->getUserPKId();
+
+        $query = "select max(max_date) as max_date from (select max(up_date) as max_date from user_pred where u_id=$u_id and r_id=$r_id union select max(ad_date) as max_date from actual_data where r_id=$r_id) as temp";
+
+        $resultSet = DBAccess::runQuery($query);
+
+        if ($resultSet->num_rows === 0) {
+            echo "No entries";
+            return NULL;
+        }
+
+        $max_date = mysqli_fetch_assoc($resultSet)['max_date'];
+
+        return date('Y-m-d', strtotime('next Wednesday', strtotime($max_date)));
+
+    }
 	
 	public static function getRegionPKfromRegionName($r_name) {
 		$r_name = DBAccess::quoteString($r_name);
 		
 		$query = "select distinct(r_id) as r_id from region where r_name=$r_name";
-		#echo $query;
+
 		
 		$resultSet = DBAccess::runQuery($query);
 		if ($resultSet->num_rows === 0) {

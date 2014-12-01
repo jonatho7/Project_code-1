@@ -7,13 +7,17 @@
 	require_once '../model/Region.class.php';
 	require_once '../model/UserState.class.php';
 	
+
 	/*
 	 * arguments 1) $e_user
 	 *           2) $e_userPred
 	 *           3) $e_userState
 	 */
 ?>
-	<!-- Basic Header -->
+
+
+    <script src="<?=SERVER_PATH?>public/js/dashboardAddNewPrediction.js"></script>
+    <!-- Basic Header -->
 	<div class="row">
     	<div class="col-lg-12">
         	<h1 class="page-header">
@@ -46,14 +50,7 @@
                  <?php 
                  	$regions = Region::getAllRegions();
                  	
-                 	/*$userState = $e_userState;
-                 	$r_name = $userState->getCurrentActiveRegion(UserState::DASHBOARD_PAGE);
-                 	$p_date = $e_userPred->getDateFormatted();
-                 	$p_value = $e_userPred->getValue();
-                 	$p_comment = $e_userPred->getComment();
-                 	$p_lastModified = $e_userPred->getLastModified();
-                 	/* Save prediction id in SESSION */
-                 	//$_SESSION['PREDICTION_ID'] = $e_userPred->getup_pk();
+
                  	/*
                  	 * Select any region as of them will have the same latest date
                  	 */
@@ -63,19 +60,19 @@
 					<tr>
 						<!--  Region selection -->
 						<td><div class="form-group">
-                            <select class="form-control" name="regionName">
-                            <?php 
+                            <select class="form-control" name="regionName" id="regionSelected">
+                            <?php
                                 $size = count($regions);
-                                for ($i =0; $i < $size; $i++) {	
+                                for ($i =0; $i < $size; $i++) {
                                     echo "<option>". $regions[$i]->getRegionName() . '</option>';
                                 }
                             ?>
                         	</select>
                         </td>
-						
+
 						<td>
 							<div class="col-md-8">
-								<input type="date" required class="form-control" min="<?php echo $min_date->format('Y-m-d')?>" name="predDate"> 
+								<input type="text" required class="form-control"  readonly id="predDate" name="predDate">
 							</div>
 						</td>
 						<td>

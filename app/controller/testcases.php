@@ -11,6 +11,7 @@ require_once '../config.php';
 require_once '../model/User.class.php';
 
 require_once '../model/Event.class.php';
+require_once '../model/Region.class.php';
 
 
 require_once '../model/Region.class.php';
@@ -37,7 +38,7 @@ for ($i = 0 ; $i < count($followers); $i++) {
 }
 
 Event::createEventNameToIdMapping();
-*/
+
 
 
 $regions = Region::getLatestActualData();
@@ -48,6 +49,15 @@ foreach($regions as $x) {
 }
 
 println(json_encode($regions));
+*/
 
 
-?>
+#echo "date = " . Region::getNextPredictonDateForUser(38, 'vivekb88');
+$d  = Region::getNextPredictonDateForUser(38, 'vivekb88');
+echo "date= $d <br>";
+echo "time = ". time($d) . "<br>";
+
+#echo date("Y-m-d", strtotime("next Wednesday", time($d)));
+
+
+echo date('Y-m-d', strtotime('next Wednesday', strtotime($d))) . "<br>";

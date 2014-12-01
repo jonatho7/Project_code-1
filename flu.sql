@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 30, 2014 at 05:53 AM
+-- Generation Time: Dec 01, 2014 at 05:57 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -8123,7 +8123,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `middle_name`, `user_id`, `profile_pic`, `email_visibility`, `role`, `register_date`, `password`, `email_address`) VALUES
-(1, 'vivek bh', 'akupatni', 'Bharath', 'vivekb88', NULL, 'Private', 'site manager', '2014-10-06 12:43:35', 'Password1!', 'test@gmail.com'),
+(1, 'vivek bh', 'akupatni', 'Bharath', 'vivekb88', NULL, 'Private', 'moderator', '2014-10-06 12:43:35', 'Password1!', 'test@gmail.com'),
 (24, 'Jonathon', 'Hellmann', 'D', 'jonatho7', NULL, 'Public', 'site manager', '2014-11-07 20:12:29', 'Password1!', 'jonatho7@vt.edu'),
 (25, 'Harshal', 'Hayatnagarkar', NULL, 'harshalh', NULL, 'Private', 'admin', '2014-11-07 20:17:08', 'Password1!', 'harshalh@vt.edu'),
 (26, 'Sarang', 'Joshi', NULL, 'sarang87', NULL, 'Public', 'site manager', '2014-11-07 20:17:43', 'Password1!', 'sarang87@vt.edu'),
@@ -8205,51 +8205,20 @@ CREATE TABLE IF NOT EXISTS `user_pred` (
   `up_date` date NOT NULL COMMENT 'Contains the date for which prediction is made',
   `up_comment` varchar(500) DEFAULT NULL COMMENT 'Comments made by user for this prediction',
   `u_id` int(11) NOT NULL COMMENT 'Foreign key to user id'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=80 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
 
 --
 -- Dumping data for table `user_pred`
 --
 
 INSERT INTO `user_pred` (`up_id`, `up_value`, `up_modified`, `r_id`, `up_date`, `up_comment`, `u_id`) VALUES
-(1, 150, '2014-10-13 02:40:10', 38, '2014-09-24', NULL, 1),
-(6, 220, '2014-10-13 02:41:57', 38, '2014-09-17', NULL, 1),
-(13, 150, '2014-10-13 02:40:10', 39, '2014-09-24', NULL, 1),
-(14, 220, '2014-10-13 02:41:57', 39, '2014-09-17', NULL, 1),
-(17, 175, '2014-10-13 00:00:00', 39, '2014-10-08', NULL, 1),
-(18, 300, '2014-10-13 02:52:07', 39, '2014-10-22', NULL, 1),
-(19, 450, '2014-10-13 02:52:07', 39, '2014-10-29', NULL, 1),
-(22, 12000, '2014-10-14 02:59:37', 47, '2014-10-15', 'test', 1),
-(24, 130, '2014-10-14 03:03:25', 40, '2014-10-08', NULL, 1),
-(25, 110, '2014-10-14 03:03:25', 40, '2014-10-15', NULL, 1),
-(26, 145, '2014-10-14 03:03:25', 40, '2014-10-22', NULL, 1),
-(27, 230, '2014-10-14 03:03:25', 41, '2014-10-22', NULL, 1),
-(28, 165, '2014-10-14 03:04:46', 41, '2014-10-15', NULL, 1),
-(29, 1250, '2014-10-14 03:04:46', 41, '2014-10-08', '', 1),
-(32, 130, '2014-10-14 03:09:02', 43, '2014-10-22', NULL, 1),
-(34, 130, '2014-10-14 03:09:53', 45, '2014-10-22', NULL, 1),
-(35, 155, '2014-10-14 03:09:53', 45, '2014-10-29', NULL, 1),
-(38, 130, '2014-10-14 03:11:33', 45, '2014-10-15', NULL, 1),
-(39, 155, '2014-10-14 03:11:33', 45, '2014-10-08', NULL, 1),
-(40, 130, '2014-10-14 03:12:09', 43, '2014-10-15', NULL, 1),
-(41, 155, '2014-10-14 03:12:09', 43, '2014-10-08', NULL, 1),
-(42, 130, '2014-10-14 03:13:19', 44, '2014-10-29', NULL, 1),
-(43, 155, '2014-10-14 03:13:19', 44, '2014-10-22', NULL, 1),
-(44, 130, '2014-10-14 03:13:19', 44, '2014-10-15', NULL, 1),
-(45, 155, '2014-10-14 03:13:19', 44, '2014-10-08', NULL, 1),
-(50, 130, '2014-10-14 03:15:21', 47, '2014-10-29', NULL, 1),
-(51, 155, '2014-10-14 03:15:21', 47, '2014-10-22', NULL, 1),
-(55, 12, '2014-10-14 04:38:57', 46, '2014-10-14', 'k1', 1),
-(56, 2, '2014-10-14 04:39:14', 46, '2014-10-28', 'k2', 1),
-(57, 3, '2014-10-14 04:39:30', 46, '2014-10-28', 'k3', 1),
-(60, 9999, '2014-10-14 05:07:51', 44, '2014-10-25', 'vivek', 1),
-(61, 200, '2014-10-21 18:53:33', 43, '2014-10-12', 'I think this prediction will be more accurate, actually.', 1),
-(72, 254, '2014-11-09 10:08:57', 38, '2014-11-19', 'hii', 1),
-(75, 50, '2014-11-11 02:19:51', 38, '2014-11-25', 'test 1', 1),
-(76, 1000, '2014-11-11 05:42:38', 38, '2014-11-25', 'adsa', 24),
-(77, 250, '2014-11-23 17:27:33', 38, '2014-11-26', 'Fun stuff.', 1),
-(78, 23, '2014-11-24 23:39:47', 38, '2014-11-26', 'my predictionishness', 25),
-(79, 20, '2014-11-24 23:40:21', 38, '2014-12-03', 'my other predictionings', 25);
+(85, 1, '2014-11-30 23:54:36', 38, '2014-10-01', 'first prediction', 1),
+(86, 2, '2014-11-30 23:54:53', 38, '2014-10-08', 'prediction 2', 1),
+(87, 3, '2014-11-30 23:55:11', 38, '2014-10-15', 'prediction 3', 1),
+(88, 4, '2014-11-30 23:55:26', 38, '2014-10-22', 'prediction 4', 1),
+(89, 1, '2014-11-30 23:55:55', 39, '2014-10-01', 'pred for new york', 1),
+(90, 2, '2014-11-30 23:56:15', 39, '2014-10-08', 'pred for new york 2', 1),
+(91, 3, '2014-11-30 23:56:41', 39, '2014-10-15', 'pred for new york 3', 1);
 
 --
 -- Indexes for dumped tables
@@ -8341,7 +8310,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'uniques identifies an event
 -- AUTO_INCREMENT for table `user_pred`
 --
 ALTER TABLE `user_pred`
-MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=80;
+MODIFY `up_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key to indentify a row',AUTO_INCREMENT=92;
 --
 -- Constraints for dumped tables
 --
