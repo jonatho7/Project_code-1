@@ -87,7 +87,7 @@
                 <div class="panel-body">
                     <form role="form">
                         <div class="form-group">
-                            <select class="form-control" name="ChangeRegionName">
+                            <select class="form-control" name="ChangeRegionName" id="currentRegion" data-current-region="<?=$e_region?>">
                             <?php 
                                 $size = count($regions);
                                 for ($i =0; $i < $size; $i++) {
@@ -210,17 +210,22 @@
 					</script>
 				<?php }
      		?>
-           <h3>Predictions Graph View</h3>
-            <div id="container" style="height: 400px"></div>
-            <div id="drag"></div>
-            <div id="drop"></div>
-            <script src="<?php echo SERVER_PATH?>public/js/highcharts/proj5chart.js"></script>
 
-            <div>
-                <button class="changeValue" type="button">
-                    Zoom
-                </button>
-            </div>
+            <?php
+                /*
+                 * For code for displaying the visualization.
+                 */
+            ?>
+
+            <div id="plot-container" style="height: 400px"></div>
+            <div id="plot-drag"></div>
+            <div id="plot-drop"></div>
+
+            <!-- Include script files here as these are specific to this page.-->
+            <script src="http://code.highcharts.com/highcharts.js"></script>
+            <script src="http://code.highcharts.com/highcharts-more.js"></script>
+            <script src="<?=SERVER_PATH?>public/js/draggable-points.js"></script>
+            <script src="<?=SERVER_PATH?>public/js/plotAnimation.js"></script>
      	
      	</div>
         <!-- End of right column  -->
@@ -237,7 +242,6 @@
             <script src="http://d3js.org/topojson.v1.min.js"></script>
             <script src="<?=SERVER_PATH ?>public/js/datamaps.usa.min.js"></script>
             <script src="<?=SERVER_PATH ?>public/js/custom_map_display.js"></script>
-
         </div>
         <small>The data for the geo map has been extracted from <a href="http://www.cdc.gov/flu/weekly/flureport.xml">CDC weekly status activity report</a></small>
 </div>

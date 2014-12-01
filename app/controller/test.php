@@ -17,21 +17,14 @@
 <!-- JS dependencies -->
 <script src="<?php echo  SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
 <script src="<?=SERVER_PATH?>public/js/bootstrap.min.js"></script>
+<?php
 
-<!-- bootbox code -->
-<script src="<?=SERVER_PATH?>public/js/bootbox.min.js"></script>
-<script>
-    $(document).on("click", ".alert", function(e) {
-        bootbox.alert("Hello world!", function() {
-            console.log("Alert Callback");
-        });
-    });
-    bootbox.confirm("Are you sure?", function(result) {
-        console.log(result);
-        if (result == true) {
-            window.location.href = "http://stackoverflow.com";
-        }
-    });
-</script>
+    if (date_create('2014-10-10') > date_create('2014-10-11')) {
+        echo "greater";
+    } else {
+        echo "lesser";
+    }
+
+?>
 </body>
 </html>

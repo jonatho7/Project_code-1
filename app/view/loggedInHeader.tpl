@@ -41,18 +41,9 @@
 	<link href="<?php echo  SERVER_PATH ?>public/css/flutracker.css" rel="stylesheet">
 	<script src="<?php echo  SERVER_PATH ?>public/js/flutracker.js"></script>
 
-    <!-- Highcharts for displaying data for logged in users -->
 
-    <!--
-        Create this later
-    <link href="<?php echo SERVER_PATH?>public/js/highcharts/style.css" rel="stylesheet" type="text/css">
-    -->
     <link href="<?= SERVER_PATH?>public/css/geomap.css" rel="stylesheet">
 
-    <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts.js"></script>
-    <script src="<?php echo SERVER_PATH?>public/js/highcharts/highcharts-more.js"></script>
-    <script src="<?php echo SERVER_PATH?>public/js/highcharts/draggable-points.js"></script>
-    <script src="<?php echo SERVER_PATH?>public/js/highcharts/flutracker_charts.js"></script>
 
     <!-- bootbox code -->
     <script src="<?=SERVER_PATH?>public/js/bootbox.min.js"></script>

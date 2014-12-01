@@ -23,6 +23,7 @@ require_once '../model/User.class.php';
  * can do the visualization.
  */
 
+
 if (empty($_SESSION['userName'])) {
     # Redirect as user is not logged in.
     session_unset();
@@ -81,7 +82,10 @@ if ($service == 'getNextPredictionDate') {
 
     if ($predictionEntryList != null) {
         foreach ($predictionEntryList as $entry) {
-            $temp[$entry->getPredictionDate()] = $entry->getValue();
+            //$temp[$entry->getPredictionDate()] = $entry->getValue();
+            $temp[$entry->getPredictionDate()] = array();
+            $temp[$entry->getPredictionDate()]['value'] = $entry->getValue();
+            $temp[$entry->getPredictionDate()]['expired'] = $entry->isExpriredPrediction();
         }
     }
 

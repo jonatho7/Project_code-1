@@ -236,7 +236,9 @@ class Region {
         $output = array();
         for($i = 0; $i < $rows; $i++) {
             $temp = mysqli_fetch_assoc($resultSet);
-            $output[$temp['date']] = $temp['value'];
+            //$output[$temp['date']] = $temp['value'];
+            $output[$temp['date']] = array();
+            $output[$temp['date']]['value'] = $temp['value'];
         }
         return $output;
     }
