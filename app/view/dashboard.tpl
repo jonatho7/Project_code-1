@@ -153,7 +153,7 @@
                          	for ($i=0; $i < $count; $i++) { ?>
 								<tr class="predictionTable">
 									<td class="predictionDate"><?php echo $userPredList[$i]->getDateFormatted()?></td>
-									<td class="predictionValue"><?php echo $userPredList[$i]->getValue()?></td>
+									<td class="predictionValue" id="<?=$userPredList[$i]->getPredictionDate()?>"><?=$userPredList[$i]->getValue()?></td>
 									<td><?php echo $userPredList[$i]->getComment()?></td>
 									<td>
                                         <!-- Create a table for options -->
@@ -217,16 +217,22 @@
                  */
             ?>
 
-            <div id="plot-container" style="height: 400px"></div>
-            <div id="plot-drag"></div>
-            <div id="plot-drop"></div>
+            <div id="plot-container" style="height: 400px">
+                <!-- Include script files here as these are specific to this page.-->
+                <script src="http://code.highcharts.com/highcharts.js"></script>
+                <script src="http://code.highcharts.com/highcharts-more.js"></script>
+                <script src="<?=SERVER_PATH?>public/js/draggable-points.js"></script>
+                <script src="<?=SERVER_PATH?>public/js/plotAnimation.js"></script>
 
-            <!-- Include script files here as these are specific to this page.-->
-            <script src="http://code.highcharts.com/highcharts.js"></script>
-            <script src="http://code.highcharts.com/highcharts-more.js"></script>
-            <script src="<?=SERVER_PATH?>public/js/draggable-points.js"></script>
-            <script src="<?=SERVER_PATH?>public/js/plotAnimation.js"></script>
-     	
+
+            </div>
+            <div class="row">
+                <br>
+                <div class="col-lg-5 col-md-5 col-sm-5 col-md-offset-4 col-lg-offset-4 col-sm-offset-4" style="display:none" id="saveChangesPlot">
+                    <button type="button"  class="btn btn-primary btn-lg btn-block">Save Changes</button>
+                    <small><b>Click the above button to save the changes in database.</b></small>
+                </div>
+            </div>
      	</div>
         <!-- End of right column  -->
      

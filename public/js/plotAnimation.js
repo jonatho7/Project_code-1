@@ -7,7 +7,8 @@
  */
 var jsonServerData = null;
 var actualData = {};
-var predictionData = {}
+var predictionData = {};
+var maxActualDate = null;
 function data_init() {
     /*
         craft the url
@@ -32,14 +33,16 @@ function data_init() {
     predictionData = jsonServerData['prediction']
 }
 
-
+/*
+    Constructs points for Actual values
+ */
 function constructPoint(x,y) {
     var obj = {};
     obj.x = x;
     obj.y = y;
-    console.log(x,y);
     return obj;
 }
+
 /*
     formats the actual values as expected by highcharts
     returns : array of objects
@@ -47,10 +50,58 @@ function constructPoint(x,y) {
 function getActualValues() {
     var array = [];
     for(var key in actualData) {
-        console.log(key);
+
+        if (maxActualDate == null) {
+            maxActualDate = key;
+        } else {
+            if (key > maxActualDate)
+                maxActualDate = key;
+        }
+
         var temp = key.split("-");
         array.push(constructPoint(Date.UTC(temp[0], temp[1] -1, temp[2]), +actualData[key]['value']));
     }
+    return array;
+}
+
+/*
+    splits the string passed into years, months, and date.
+ */
+function splitDateString(dateString) {
+    var temp = dateString.split("-");
+    temp[1] = temp[1] -1 ; //month
+    return temp;
+}
+
+/*
+    Constructs a prediction object
+ */
+function constructPredictionPoint(x, y, isExpired) {
+    var obj = {};
+    obj.x = x;
+    obj.y = y;
+    obj['expired'] = isExpired;
+    return obj;
+}
+
+/*
+    formats the prediction values as expected by highcharts.
+ */
+function getPredictionValues() {
+    var array = [];
+    var startPoint = splitDateString(maxActualDate);
+
+    for(var key in predictionData) {
+        var temp = key.split("-");
+        array.push(constructPredictionPoint(Date.UTC(temp[0], temp[1] -1, temp[2]), +predictionData[key]['value'],
+                    predictionData[key]['expired']));
+    }
+
+    //add to predicted data too.
+    predictionData[maxActualDate] = {};
+    predictionData[maxActualDate]['value'] = +actualData[maxActualDate]['value'];
+    predictionData[maxActualDate]['expired'] = true;
+
     return array;
 }
 
@@ -72,9 +123,17 @@ function chart_init() {
         },
 
         xAxis: {
-            type: 'datetime'
+            type: 'datetime',
+            title: {
+                text: 'Date'
+            }
         },
 
+        yAxis: {
+            title: {
+                text: 'ILI Count (weekly)'
+            }
+        },
         plotOptions: {
             series: {
                 cursor: 'ns-resize',
@@ -82,21 +141,25 @@ function chart_init() {
                     events: {
 
                         drag: function (e) {
-                            $('#plot-drag').html(
-                                'Dragging <b>' + this.series.name + '</b>, <b>' + this.category + '</b> to <b>' + Highcharts.numberFormat(e.newY, 2) + ' old Y=' + Highcharts.numberFormat(e.y, 2)+ '</b>');
-
-                            /*
-                            testPoint = e;
-                            currentPoint = Highcharts.dateFormat('%Y-%m-%d', e.newX)
-                            if (e.newX == 1410220800000) {
+                            var predX = Highcharts.dateFormat('%Y-%m-%d', e.newX);
+                            if (predictionData[predX]['expired'] === true ) {
                                 e.preventDefault();
-                                //console.log(e.hover);
-                                e.target.tooltipFormatter = function () { return new Date(e.newX) + "vivek bharath"; }
-                            }*/
+                            }
                         },
                         drop: function () {
-                            $('#plot-drop').html(
-                                'In <b>' + this.series.name + ' ' +'</b>, <b>' + this.category + '</b> was set to <b>' + Highcharts.numberFormat(this.y, 2) + '</b>');
+
+                            var date = Highcharts.dateFormat('%Y-%m-%d', this.x);
+
+                            if (predictionData[date]['expired']) {
+                                return;
+                            }
+
+                            var id = '#' + date;
+
+                            /* Change the underlying element */
+                            $(id).html(Math.ceil(this.y));
+                            predictionData[date].newValue = Math.ceil(this.y);
+                            $("#saveChangesPlot").fadeIn();
                         }
                     }
                 },
@@ -119,40 +182,58 @@ function chart_init() {
                 type :'spline',
                 color:'black'
             },
-            /*{
-                data: [0, 71.5, 106.4, 129.2, 144.0],
-                draggableY: true,
-                name: "Actual Data",
-                type :'spline',
-                allowPointSelect: true,
-                pointStart: Date.UTC(2014, 8, 2),
-                pointInterval: 24 * 3600 * 1000 * 7 // one
-            },*/
-            /*{
-                data:[
-                    {x: Date.UTC(2014,10,1), y:10},
-            {x: Date.UTC(2014,10,10), y:20},
-        {x: Date.UTC(2014,10,17), y:30}
-                ],
-                type: 'spline',
-                color:'black',
-                draggableY: true
-            },
             {
-                data:[
-                    [Date.UTC(2014,11,20), 30]
-                ],
-                type: 'spline',
-                color:'black',
-                draggableY:true
-            }*/
+                data: getPredictionValues(),
+                draggableY: true,
+                name: "Predicted Data",
+                type :'spline',
+                color:'red',
+                dashStyle: 'dash'
+
+            }
         ]
 
     });
 
 }
 
+/*
+    This function post the data via AJAX to save the predictions made by the user
+    via visualization.
+ */
+function savePredictionChanges() {
+    console.log("I am here");
+    var $url = window.location.origin + '/flutracker/loggedIn/api/storePredictionEntries';
+    $.ajax({
+        url: $url,
+        type: 'post',
+        data: {"data" : JSON.stringify(predictionData)},
+        async: false,
+        dataType: "json",
+        success: function(response) {
+            console.log(response);
+            if (response.success == true) {
+                // Successfully updated the data in backend.
+                bootbox.alert("Successfully updated in the database");
+
+                setInterval(function () {
+                    var redirectUrl = window.location.origin + '/flutracker/dashboard.php';
+
+                    var query = { 'region': $("#currentRegion").data("current-region")};
+                    redirectUrl += '?' + $.param(query);
+                    window.location.replace(redirectUrl);
+                }, 1000);
+
+            }
+        }
+    });
+
+}
+
 $(document).ready(function() {
+
     data_init();
     chart_init();
+
+    $("#saveChangesPlot").on('click', 'button', savePredictionChanges);
 });

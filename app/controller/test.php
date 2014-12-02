@@ -12,18 +12,20 @@
 </head>
 <body>
 
-<p>Content here. <a class="alert" href=#>Alert!</a></p>
 
 <!-- JS dependencies -->
 <script src="<?php echo  SERVER_PATH ?>public/js/jquery-1.11.0.js"></script>
 <script src="<?=SERVER_PATH?>public/js/bootstrap.min.js"></script>
+
 <?php
 
-    if (date_create('2014-10-10') > date_create('2014-10-11')) {
-        echo "greater";
-    } else {
-        echo "lesser";
-    }
+// Test if our data came through
+if (isset($_POST["points"])) {
+    // Decode our JSON into PHP objects we can use
+    $points = json_decode($_POST["points"]);
+    var_dump($points);
+}
+
 
 ?>
 </body>
