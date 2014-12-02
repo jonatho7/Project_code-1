@@ -78,3 +78,4 @@ RewriteRule ^loggedIn/api/getNextPredictionDate/?   app/controller/loggedInServi
 
 #Append a query string
 RewriteRule ^loggedIn/api/getPredictionEntries/?    app/controller/loggedInServices.php?service=getPredictionEntries [QSA]
+RewriteRule  ^loggedIn/api/storePredictionEntries/? app/controller/loggedInServices.php?service=storePredictionEntries

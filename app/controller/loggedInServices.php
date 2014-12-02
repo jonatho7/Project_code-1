@@ -13,6 +13,7 @@ require_once '../model/Region.class.php';
 require_once 'sessionAttributes.php';
 require_once '../model/UserState.class.php';
 require_once '../model/User.class.php';
+require_once '../model/UserPred.class.php';
 
 /*
  * Service = getNextPredictionDate
@@ -21,6 +22,9 @@ require_once '../model/User.class.php';
  * Service = getPredictionEntries
  *  Gets a list of prediction and actual values for a given region so that front End
  * can do the visualization.
+ *
+ * service = storePredictionEntries
+ *  Stores the predictions made by user via visualization
  */
 
 
@@ -42,6 +46,40 @@ if (empty($service)) {
     exit;
 }
 
+/*
+ * Store the prediction values stored by the user
+ */
+if ($service == 'storePredictionEntries') {
+
+    $data = @$_POST['data'];
+
+    if (empty($data)) {
+        echo "";
+        exit;
+    }
+
+    $data = json_decode($data);
+
+
+
+    //loop through all the predictions values and update in the database.
+    foreach ($data as $entry) {
+        if (!empty($entry->newValue)){
+            if (!empty($entry->predId)) {
+                $predId = intval($entry->predId);
+                $predEntry = UserPred::getPreditionForId($predId);
+                if (!empty($predEntry)) {
+                    $predEntry->save(intval($entry->newValue), $predEntry->getComment());
+                }
+            }
+        }
+    }
+    $output = array();
+    $output['success'] = true;
+
+    echo json_encode($output);
+    exit;
+}
 
 if ($service == 'getNextPredictionDate') {
     $username = $_SESSION['userName'];
@@ -86,6 +124,7 @@ if ($service == 'getNextPredictionDate') {
             $temp[$entry->getPredictionDate()] = array();
             $temp[$entry->getPredictionDate()]['value'] = $entry->getValue();
             $temp[$entry->getPredictionDate()]['expired'] = $entry->isExpriredPrediction();
+            $temp[$entry->getPredictionDate()]['predId'] = $entry->getup_pk();
         }
     }
 
