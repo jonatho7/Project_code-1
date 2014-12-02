@@ -13,13 +13,12 @@ require_once 'sessionAttributes.php';
  */
 $regionName = trim($_POST['ChangeRegionName']);
 
-#echo 'Selected regionid = '. $regionName;
+$array = array('region'=>$regionName);
 
-# Store the regionName in SESSION and redirect.
+// Construct query parameter and post it to dashboard.php
+$query = http_build_query($array);
 
-$_SESSION['REGION_NAME'] = $regionName;
-
-header('Location: '. SERVER_PATH. 'searchUsers.php');
+header('Location: '. SERVER_PATH. 'searchUsers.php?'. $query);
 exit();
 
 

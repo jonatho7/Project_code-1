@@ -52,9 +52,10 @@ if ($user == NULL) {
 }
 
 # Set the title, region etc.
-$e_Title = "Dashboard";
+$e_Title = "Find Users";
 $e_user = $user;
 $e_region = $region;
+
 
 require_once '../view/loggedInHeader.tpl';
 require_once '../view/searchUsers.tpl';

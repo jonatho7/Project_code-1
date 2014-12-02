@@ -23,7 +23,7 @@ class UserData {
 		#echo $query;
 		$resultSet = DBAccess::runQuery($query);
 		if ($resultSet == NULL || $resultSet == False) {
-			echo "Unable to access database";
+            echo "Unable to access database";
 			return NULL;
 		}
 
@@ -42,20 +42,18 @@ class UserData {
 		return $userPredList;
 	}
 
-    public static function getUsersForRegion ($user, $r_name){
+    /*
+     *  Gets the userids of all users who predicted for a given
+     * region.
+     */
+    public static function getUsersForRegion ($r_name){
 
-        $userPId = $user->getUserPKId(); //Take Primary key
-
-        $userPId = DBAccess::quoteString($userPId);
-        $r_name = DBAccess::quoteString($r_name);
-
-        // $region_id gets the id from the region name.
         $region_id = Region::getRegionIdFromName($r_name);
 
         $query = "select user_id from " . User::DBTABLE . " where id in " . "(select distinct u_id from " . UserPred::USER_PRED_TABLE . " where r_id= $region_id)";
 
-
         $resultSet = DBAccess::runQuery($query);
+
         if ($resultSet == NULL || $resultSet == False) {
             echo "Unable to access database";
             return NULL;
@@ -73,10 +71,6 @@ class UserData {
             $user_list[] = $row["user_id"];
         }
         return $user_list;
-
-
-
-
     }
 
 

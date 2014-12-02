@@ -16,18 +16,12 @@
 	<div class="row">
     	<div class="col-lg-12">
         	<h1 class="page-header">
-                            Find Users
+                            Find Users who made predictions (region-wise)
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard" ></i>  <a href="#">Find users</a>
                             </li>
-                            
-                            <!--  Not Required as of Now. See me later.
-                            	<li class="active">
-                                	<i class="fa fa-file"></i>My Predictions
-                            	</li>
-                             -->
                         </ol>
                     </div>
      </div>
@@ -38,10 +32,9 @@
      	
      		<?php 
      			/*
-     		 	* Get all the regions from The database as array
+     		 	* Get all the regions from the database as array
      		 	*/
      				$regions = Region::getAllRegions();
-     				$userPredList = UserData::getPredictionsForRegion($e_user, $e_region);
 					
      		?>
      	      <!-- Row starts-->
@@ -78,35 +71,30 @@
             </div> <!-- Row ends -->
      		 	
     		
-            <!--  <div class="row"> 
-                <p class="h3">
-                    Bordered Table
-                </p> -->
-                
+
                 <!-- Start of table-->
                 <div class="table-responsive">
                     <?php 
 
-                    	// get users who have made a prediction as a list. getUsersforRegion($r_name) gets users
+                    	// get users who have made a prediction as a list
+                        // getUsersforRegion($r_name) gets users
 
-
-
-                        $userPredList = UserData::getUsersForRegion($e_user, $e_region);
+                        $usersList = UserData::getUsersForRegion($e_region);
 
                     ?>
                     <p class="h4">
                     	<?php 
-                    	if (count($userPredList) != 0) {
+                    	if (count($usersList) != 0) {
 							echo 'List of users who have predictions for '.$e_region;
 						} else {
-							echo 'No users with predictions yet made for '.$e_region;
+							echo 'No users have yet made predictions made for '.$e_region;
                     	}
 						?>
                 	</p>
                     
                     
                    <?php //Table appears only if there are any entries
-                   if (count($userPredList) != 0) { ?>
+                   if (count($usersList) != 0) { ?>
                     <!-- table starts -->
                     <table class="table table-bordered table-hover">
                         <thead>
@@ -117,15 +105,15 @@
                         </thead>
                         <tbody>
                          <?php
-                         	$count = count($userPredList);
+                         	$count = count($usersList);
 
                          	for ($i=0; $i < $count; $i++) {
-                         	if ($userPredList[$i]==$userName)
-                         	continue;
-                         	$friendPath = SERVER_PATH . "users/" . $userPredList[$i];
+                         	    if ($usersList[$i]==$userName)
+                         	        continue;
+                         	    $friendPath = SERVER_PATH . "users/" . $usersList[$i];
                          	?>
 								<tr>
-									<td><a href=<?=$friendPath?>><?=$userPredList[$i]?></a></td>
+									<td><a href=<?=$friendPath?>><?=$usersList[$i]?></a></td>
 
 								</tr>
 							<?php }
