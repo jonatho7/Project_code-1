@@ -106,6 +106,7 @@
                             </button>
                         </div>
                     </form>
+                    <img src="<?= SERVER_PATH . 'public/img/regionsMap.png' ?>"" alt="Regions Map">
                 </div>
              </div> <!-- End of panel -->
             </div> <!-- Row ends -->
