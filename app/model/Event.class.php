@@ -13,8 +13,8 @@ class Event {
 	protected static $event_type_mappings = NULL;
 	// EventName to EventId mappings
 	
-	const EVENT_TYPE_TABLE = "EventType";
-	const USER_EVENT_TABLE = "userEvent";
+	const EVENT_TYPE_TABLE = "eventtype";
+	const USER_EVENT_TABLE = "userevent";
 	
 	const EVENT_UNFOLLOW = "unfollow";
 	const EVENT_FOLLOWING = "following";
@@ -27,7 +27,7 @@ class Event {
 	const EVENT_EMAILID  = "email";
 	const EVENT_VISIBILITY = "emailVisibility";
 	
-	const DBTABLE="userEvent";
+	const DBTABLE="userevent";
 	
 	// Same as database names
 	protected $id;
@@ -82,7 +82,7 @@ class Event {
 	}
 	
 	public static function createEventNameToIdMapping() {
-		$query = 'SELECT EventId, EventName from '. self::EVENT_TYPE_TABLE;
+		$query = 'SELECT eventId, eventName from '. self::EVENT_TYPE_TABLE;
 		
 		$resultSet = DBAccess::runQuery($query);
 		
@@ -95,7 +95,7 @@ class Event {
 		
 		for ($i = 0; $i < $resultSet->num_rows; $i++) {
 			$row = mysqli_fetch_assoc($resultSet);
-			self::$event_type_mappings[$row['EventName']] = $row['EventId'];
+			self::$event_type_mappings[$row['eventName']] = $row['eventId'];
 		}
 		
 		#print_r(self::$event_type_mappings);
@@ -106,7 +106,7 @@ class Event {
 		if ($includePrivate == true) {
 			$query = "select * from ". self::DBTABLE . ' where u_id='. $u_id . ' order by eventDate desc';
 		} else {
-			$query = "select * from ". self::DBTABLE . ' where u_id='. $u_id . " and eventId in (select eventId from EventType where eventPublic='y')"
+			$query = "select * from ". self::DBTABLE . ' where u_id='. $u_id . " and eventId in (select eventId from eventtype where eventPublic='y')"
 					. ' order by eventDate desc';
 		}
 		
@@ -132,7 +132,7 @@ class Event {
 	
 	public static function getEventsFromAll() {
 		
-		$query = "select * from ". self::DBTABLE . " where eventId in (select eventId from EventType where eventPublic='y') order by eventDate desc";
+		$query = "select * from ". self::DBTABLE . " where eventId in (select eventId from eventtype where eventPublic='y') order by eventDate desc";
 
 		#echo $query;
 		
@@ -160,7 +160,7 @@ class Event {
 
     public static function getEventsFromFollowing($myUserID) {
 
-        $query = "SELECT * FROM ". self::DBTABLE . " where eventId in (select eventId from EventType where eventPublic='y') AND (u_id = " . $myUserID . " OR u_id in (select user_id from follower_table where follower_id = " . $myUserID . ")) order by eventDate desc";
+        $query = "SELECT * FROM ". self::DBTABLE . " where eventId in (select eventId from eventtype where eventPublic='y') AND (u_id = " . $myUserID . " OR u_id in (select user_id from follower_table where follower_id = " . $myUserID . ")) order by eventDate desc";
 
         //TODO. Change the 29 to the user_id of course.
 
