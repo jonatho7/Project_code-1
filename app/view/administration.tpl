@@ -77,7 +77,11 @@
 
 <div>
 
-    <h2 class="administrationText">Administration</h2>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header administrationText">Administration</h1>
+        </div>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">User</h3>
