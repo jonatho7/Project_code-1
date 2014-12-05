@@ -10,13 +10,11 @@
 	}
 
 ?>
-	
-	<div class="userActivityFeed">
-		<div>
-			<h2 class="activityFeedPageHeader">Activity Feed</h2>
-		</div>
-		
-		
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header activityFeedPageHeader">Activity Feed</h1>
+
 		<?php
 
             $myUserID = $e_user->getUserPKId();
@@ -37,7 +35,8 @@
                 </div>
 	<?php  } ?>
 
-	</div>
+        </div>
+    </div>
 
 </div>
 

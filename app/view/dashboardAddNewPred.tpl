@@ -20,18 +20,8 @@
     <!-- Basic Header -->
 	<div class="row">
     	<div class="col-lg-12">
-        	<h1 class="page-header">
-                            DashBoard	
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="<?php echo SERVER_PATH?>dashboard.php">Dashboard</a>
-                            </li>
-                            <li class="active">
-                            	<i class="fa fa-dashboard" ></i>  <a href="#">Make new Prediction</a>
-                            </li>
-                        </ol>
-                    </div>
+        	<h1 class="page-header">DashBoard</h1>
+        </div>
      </div>
      
      <!-- End of Basic Header -->
